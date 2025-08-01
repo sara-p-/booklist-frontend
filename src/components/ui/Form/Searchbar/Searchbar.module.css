@@ -1,0 +1,21 @@
+.searchbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.input {
+  width: 100%;
+  padding: 16px;
+  border: var(--border-thick);
+  border-radius: 100px;
+  background-color: var(--secondary);
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+}
