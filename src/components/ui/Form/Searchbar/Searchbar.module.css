@@ -1,16 +1,20 @@
 .searchbar {
   display: flex;
   align-items: center;
+  gap: 4px;
   width: 100%;
+  padding: 0 8px;
   max-width: 400px;
+  border: none;
+  background-color: var(--secondary);
+  border-radius: 100px;
 }
 
 .input {
   width: 100%;
-  padding: 16px;
-  border: var(--border-thick);
-  border-radius: 100px;
-  background-color: var(--secondary);
+  padding: 8px 0;
+  border: none;
+  background-color: transparent;
   color: var(--primary);
   font-size: 16px;
   font-weight: 400;
