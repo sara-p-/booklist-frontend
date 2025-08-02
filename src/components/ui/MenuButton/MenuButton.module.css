@@ -1,0 +1,23 @@
+.menuButton {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--secondary);
+  text-decoration: none;
+  padding: 20px 16px;
+  background-color: var(--primary);
+  border-left: 1px solid var(--secondary);
+  border-right: 1px solid var(--secondary);
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: var(--accent);
+    color: var(--primary);
+    border-left: 1px solid var(--accent);
+    border-right: 1px solid var(--accent);
+  }
+  &.active {
+    background-color: var(--secondary);
+    color: var(--primary);
+    border-left: 1px solid var(--secondary);
+    border-right: 1px solid var(--secondary);
+  }
+}

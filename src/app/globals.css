@@ -1,7 +1,10 @@
 :root {
   --primary: #242424;
   --secondary: #e6e6e6;
-  --accent: #b6b6b6;
+  --light: #b6b6b6;
+  --medium: #858585;
+  --dark: #545454;
+  --accent: var(--medium);
 
   [data-theme='dark'] {
     --primary: #e6e6e6;
@@ -19,7 +22,7 @@
   --padding: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --primary: #e6e6e6;
     --secondary: #242424;
@@ -27,7 +30,7 @@
   html {
     color-scheme: dark;
   }
-}
+} */
 
 html,
 body {
