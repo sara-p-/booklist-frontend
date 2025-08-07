@@ -1,6 +1,7 @@
 import styles from './page.module.css'
 import { BookType } from '@/types/bookType'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function Home() {
   const data = await fetch(
@@ -15,12 +16,14 @@ export default async function Home() {
       <ul className={styles.bookList}>
         {booklist.map((book: BookType) => (
           <li className={styles.bookItem} key={book.bookId}>
-            {/* <h2>{book.title}</h2> */}
-            <Image
-              src={book.image}
-              alt={`Book cover of ${book.title}`}
-              fill={true}
-            />
+            <Link href={`/book/${book.slug}`} className={styles.bookLink}>
+              <Image
+                src={book.image}
+                alt={`Book cover of ${book.title}`}
+                fill={true}
+                sizes='208px, 310px'
+              />
+            </Link>
           </li>
         ))}
       </ul>

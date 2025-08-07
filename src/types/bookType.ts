@@ -1,6 +1,7 @@
 export interface BookType {
   bookId: number
   title: string
+  slug: string
   author: bookAuthor[]
   series: bookSeries[]
   image: string

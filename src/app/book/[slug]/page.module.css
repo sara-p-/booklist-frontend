@@ -1,0 +1,5 @@
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: calc(var(--header-height) + 48px) auto;
+}
