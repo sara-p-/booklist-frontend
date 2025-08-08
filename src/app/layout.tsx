@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header/Header'
 // FontAwesome Icons
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import { BookDataProvider } from '@/contexts/BookData/BookDataContextProvider'
 config.autoAddCss = false
 
 const inter = Inter({
@@ -26,8 +27,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.variable}`}>
-        <Header />
-        {children}
+        <BookDataProvider>
+          <Header />
+          {children}
+        </BookDataProvider>
       </body>
     </html>
   )

@@ -2,6 +2,7 @@ import styles from './page.module.css'
 import { BookType } from '@/types/bookType'
 import Image from 'next/image'
 import Link from 'next/link'
+import { BookDataProvider } from '@/contexts/BookData/BookDataContextProvider'
 
 export default async function Home() {
   const data = await fetch(
