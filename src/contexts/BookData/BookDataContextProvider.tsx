@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, ReactNode } from 'react'
 import { BookType } from '@/types/bookType'
 import {
@@ -7,12 +9,14 @@ import {
 
 interface BookDataProviderProps {
   children: ReactNode
+  initialData: BookType[]
 }
 
 export const BookDataProvider: React.FC<BookDataProviderProps> = ({
   children,
+  initialData,
 }) => {
-  const [data, setData] = useState<BookType[]>([])
+  const [data, setData] = useState<BookType[]>(initialData)
 
   const contextValue: BookDataContextType = { data, setData }
 

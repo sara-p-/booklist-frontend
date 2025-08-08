@@ -7,6 +7,8 @@ import Header from '@/components/layout/Header/Header'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { BookDataProvider } from '@/contexts/BookData/BookDataContextProvider'
+import useFetch from '@/hooks/useFetch'
+import { fetchData } from '@/lib/fetch'
 config.autoAddCss = false
 
 const inter = Inter({
@@ -19,15 +21,19 @@ export const metadata: Metadata = {
   description: "A list of books I've read",
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const data = await fetchData(
+    'https://readthatbooklist.com/wp-json/booklist/v1/books'
+  )
+
   return (
     <html lang='en'>
       <body className={`${inter.variable}`}>
-        <BookDataProvider>
+        <BookDataProvider initialData={data}>
           <Header />
           {children}
         </BookDataProvider>

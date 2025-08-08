@@ -1,3 +1,5 @@
+'use client'
+
 import { BookType } from '@/types/bookType'
 import { createContext } from 'react'
 
