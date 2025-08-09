@@ -16,9 +16,12 @@
 
   /* UI */
   --border-thick: 3px solid var(--primary);
+  --border-medium: 2px solid var(--primary);
+  --border-thin: 1px solid var(--primary);
 
   /* Layout */
   --max-width: 1095px;
+  --medium-width: 1000px;
   --padding: 16px;
   --header-height: 56px;
 }

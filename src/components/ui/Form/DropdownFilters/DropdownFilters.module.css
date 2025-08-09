@@ -1,0 +1,106 @@
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  background-color: var(--secondary);
+  border: none;
+  outline: none;
+  border-bottom: var(--border-thick);
+  border-top: 1px solid var(--secondary);
+  border-left: 1px solid var(--secondary);
+  border-right: 1px solid var(--secondary);
+  width: 100%;
+  appearance: none;
+  &.open {
+    /* border-top: 1px solid var(--primary);
+    border-left: 1px solid var(--primary);
+    border-right: 1px solid var(--primary); */
+    /* background-color: var(--light); */
+  }
+}
+
+.buttonText {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.buttonIcon {
+  font-size: 12px;
+}
+
+.content {
+  display: none;
+  width: 100%;
+  padding: 0;
+  border: var(--border-thin);
+  background-color: var(--secondary);
+  position: absolute;
+  top: 33px;
+  left: 0;
+  width: 100%;
+  &.open {
+    display: block;
+    z-index: 100;
+  }
+}
+
+.selectionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: var(--border-thin);
+}
+
+.selectionText {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.clearButton {
+  font-size: 12px;
+  font-weight: 400;
+  appearance: none;
+  border: var(--border-thin);
+  border-radius: 0;
+  padding: 4px 16px;
+  background-color: var(--secondary);
+  color: var(--primary);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+}
+
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  padding: 0px;
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.filterItem {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-bottom: var(--border-thin);
+}
+
+.filterItem input {
+  margin-right: 8px;
+}
+
+.filterItem label {
+  font-size: 12px;
+}

@@ -7,7 +7,6 @@ import Header from '@/components/layout/Header/Header'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { BookDataProvider } from '@/contexts/BookData/BookDataContextProvider'
-import useFetch from '@/hooks/useFetch'
 import { fetchData } from '@/lib/fetch'
 config.autoAddCss = false
 
