@@ -2,13 +2,13 @@ export interface BookType {
   bookId: number
   title: string
   slug: string
-  author: bookAuthor[]
-  series: bookSeries[]
+  author: BookAuthor[]
+  series: BookSeries[]
   image: string
-  genres: bookGenre[]
-  tropes: bookTrope[]
-  creatures: bookCreature[]
-  booktags: bookTag[]
+  genres: BookGenre[]
+  tropes: BookTrope[]
+  creatures: BookCreature[]
+  booktags: BookTag[]
   bookNumber: string
   publishDate: string
   length: string
@@ -26,38 +26,38 @@ export interface BookType {
   amazonLink: string
 }
 
-type bookAuthor = {
+export type BookAuthor = {
   authorId: number
-  authorName: string
-  authorSlug: string
+  name: string
+  slug: string
 }
 
-type bookSeries = {
+export type BookSeries = {
   seriesId: number
-  seriesName: string
-  seriesSlug: string
+  name: string
+  slug: string
 }
 
-type bookGenre = {
+export type BookGenre = {
   genreId: number
-  genreName: string
-  genreSlug: string
+  name: string
+  slug: string
 }
 
-type bookTrope = {
+export type BookTrope = {
   tropeId: number
-  tropeName: string
-  tropeSlug: string
+  name: string
+  slug: string
 }
 
-type bookCreature = {
+export type BookCreature = {
   creatureId: number
-  creatureName: string
-  creatureSlug: string
+  name: string
+  slug: string
 }
 
-type bookTag = {
+export type BookTag = {
   tagId: number
-  tagName: string
-  tagSlug: string
+  name: string
+  slug: string
 }

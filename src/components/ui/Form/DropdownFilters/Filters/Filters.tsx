@@ -1,20 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from './DropdownFilters.module.css'
+import styles from './Filters.module.css'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { range } from '@/lib/utils'
 import { useState } from 'react'
 
-type DropdownFiltersProps = {
-  filterOptions?: React.ReactNode
-  selectionSection?: React.ReactNode
+type FiltersProps = {
+  children?: React.ReactNode
   buttonText: string
 }
 
-export default function DropdownFilters({
-  filterOptions,
-  selectionSection,
-  buttonText,
-}: DropdownFiltersProps) {
+export default function Filters({ children, buttonText }: FiltersProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   const contentClasses = isOpen
@@ -36,7 +31,8 @@ export default function DropdownFilters({
         )}
       </button>
       <div className={contentClasses}>
-        <div className={styles.selectionContainer}>
+        {children}
+        {/* <div className={styles.selectionContainer}>
           <p className={styles.selectionText}>0 selected</p>
           <button className={styles.clearButton}>Clear</button>
         </div>
@@ -47,7 +43,7 @@ export default function DropdownFilters({
               <label htmlFor={`filter-${index}`}>{`Filter ${index + 1}`}</label>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   )

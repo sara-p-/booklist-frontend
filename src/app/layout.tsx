@@ -6,8 +6,11 @@ import Header from '@/components/layout/Header/Header'
 // FontAwesome Icons
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { BookDataProvider } from '@/contexts/BookData/BookDataContextProvider'
+import { BookDataContextProvider } from '@/contexts/BookData/BookDataContextProvider'
 import { fetchData } from '@/lib/fetch'
+import BookListContextProvider from '@/contexts/BookList/BookListContextProvider'
+import { globalFilterValues } from '@/lib/globals'
+import { FilterType } from '@/types/filterType'
 config.autoAddCss = false
 
 const inter = Inter({
@@ -32,10 +35,12 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.variable}`}>
-        <BookDataProvider initialData={data}>
+        {/* <BookDataContextProvider initialData={data}> */}
+        <BookListContextProvider initialBookList={data}>
           <Header />
           {children}
-        </BookDataProvider>
+        </BookListContextProvider>
+        {/* </BookDataContextProvider> */}
       </body>
     </html>
   )

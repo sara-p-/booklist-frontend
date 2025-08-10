@@ -1,3 +1,33 @@
+.selectionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: var(--border-thin);
+}
+
+.selectionText {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.clearButton {
+  font-size: 12px;
+  font-weight: 400;
+  appearance: none;
+  border: var(--border-thin);
+  border-radius: 0;
+  padding: 4px 16px;
+  background-color: var(--secondary);
+  color: var(--primary);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+}
+
 .filterContainer {
   display: flex;
   flex-direction: column;
@@ -10,14 +40,23 @@
 .filterItem {
   display: flex;
   align-items: center;
-  padding: 8px;
+  padding: 0;
   border-bottom: var(--border-thin);
-}
-
-.filterItem input {
-  margin-right: 8px;
 }
 
 .filterItem label {
   font-size: 12px;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  &.selected {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+}
+
+.filterItem input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }

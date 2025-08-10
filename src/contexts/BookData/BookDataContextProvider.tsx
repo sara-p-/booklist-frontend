@@ -12,7 +12,7 @@ interface BookDataProviderProps {
   initialData: BookType[]
 }
 
-export const BookDataProvider: React.FC<BookDataProviderProps> = ({
+export const BookDataContextProvider: React.FC<BookDataProviderProps> = ({
   children,
   initialData,
 }) => {
