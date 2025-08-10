@@ -9,6 +9,8 @@ import DropdownFilters from '@/components/ui/Form/DropdownFilters/DropdownFilter
 export default function Home() {
   const { data } = useBookDataContext()
 
+  const books = data.reverse()
+
   return (
     <div className={styles.container}>
       <FiltersSection>
@@ -23,7 +25,7 @@ export default function Home() {
         <DropdownFilters buttonText='spice'></DropdownFilters>
         <DropdownFilters buttonText='completed'></DropdownFilters>
       </FiltersSection>
-      <BookGrid books={data} />
+      <BookGrid books={books} />
     </div>
   )
 }

@@ -5,12 +5,14 @@ import { range } from '@/lib/utils'
 import { useState } from 'react'
 
 type DropdownFiltersProps = {
-  children?: React.ReactNode
+  filterOptions?: React.ReactNode
+  selectionSection?: React.ReactNode
   buttonText: string
 }
 
 export default function DropdownFilters({
-  children,
+  filterOptions,
+  selectionSection,
   buttonText,
 }: DropdownFiltersProps) {
   const [isOpen, setIsOpen] = useState(false)

@@ -80,27 +80,3 @@
     color: var(--secondary);
   }
 }
-
-.filterContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  padding: 0px;
-  height: 200px;
-  overflow-y: scroll;
-}
-
-.filterItem {
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  border-bottom: var(--border-thin);
-}
-
-.filterItem input {
-  margin-right: 8px;
-}
-
-.filterItem label {
-  font-size: 12px;
-}
