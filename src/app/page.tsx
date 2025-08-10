@@ -21,7 +21,7 @@ export default function Home() {
       <FiltersSection>
         <DropdownFilters buttonText='sort'></DropdownFilters>
         <DropdownFilters buttonText='authors'>
-          <Multiselect />
+          <Multiselect items={authors} />
         </DropdownFilters>
         <DropdownFilters buttonText='series'></DropdownFilters>
         <DropdownFilters buttonText='genres'></DropdownFilters>

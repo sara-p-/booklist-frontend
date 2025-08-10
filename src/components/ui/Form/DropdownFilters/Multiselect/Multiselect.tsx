@@ -1,10 +1,9 @@
 import styles from './Multiselect.module.css'
-import { range } from '@/lib/utils'
-import { BookAuthor } from '@/types/bookType'
+import { BookItem } from '@/types/bookType'
 import { useState } from 'react'
 
 type MultiselectProps = {
-  items?: BookAuthor[]
+  items: BookItem[]
 }
 
 export default function Multiselect({ items }: MultiselectProps) {
@@ -17,18 +16,18 @@ export default function Multiselect({ items }: MultiselectProps) {
         <button className={styles.clearButton}>Clear</button>
       </div>
       <div className={styles.filterContainer}>
-        {range(1, 10).map((item, index) => (
-          <div className={styles.filterItem} key={index}>
+        {items.map((item) => (
+          <div className={styles.filterItem} key={item.id}>
             <label
               className={isChecked ? styles.selected : ''}
-              htmlFor={`filter-${index}`}
+              htmlFor={item.slug}
             >
               <input
                 type='checkbox'
-                id={`filter-${index}`}
+                id={item.slug}
                 onChange={() => setIsChecked(!isChecked)}
               />
-              {`Filter ${index + 1}`}
+              {item.name}
             </label>
           </div>
         ))}
