@@ -2,6 +2,7 @@
 
 import { createContext } from 'react'
 import { FilterType } from '@/types/filterType'
+import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
 export interface FilterValuesContextType {
   filterValues: FilterType
@@ -9,19 +10,6 @@ export interface FilterValuesContextType {
 }
 
 export const FilterValuesContext = createContext<FilterValuesContextType>({
-  filterValues: {
-    sort: 'series',
-    order: 'desc',
-    authors: [],
-    series: [],
-    genres: [],
-    tropes: [],
-    creatures: [],
-    booktags: [],
-    rating: [],
-    spice: [],
-    completed: true,
-    search: '',
-  },
+  filterValues: DEFAULT_FILTER_VALUES,
   setFilterValues: () => {},
 })

@@ -1,24 +1,19 @@
 'use client'
 
 import { FilterType } from '@/types/filterType'
-import {
-  FilterValuesContext,
-  FilterValuesContextType,
-} from './FilterValuesContext'
+import { FilterValuesContext } from './FilterValuesContext'
 import { useState } from 'react'
 
 interface FilterValuesContextProviderProps {
   children: React.ReactNode
-  filterValuesContext: FilterValuesContextType
+  newFilterValues: FilterType
 }
 
 export default function FilterValuesContextProvider({
   children,
-  filterValuesContext,
+  newFilterValues,
 }: FilterValuesContextProviderProps) {
-  const [filterValues, setFilterValues] = useState<FilterType>(
-    filterValuesContext.filterValues
-  )
+  const [filterValues, setFilterValues] = useState<FilterType>(newFilterValues)
 
   const contextValue = {
     filterValues,

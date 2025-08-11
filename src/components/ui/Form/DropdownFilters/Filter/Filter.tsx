@@ -1,15 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from './Filters.module.css'
+import styles from './Filter.module.css'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { range } from '@/lib/utils'
 import { useState } from 'react'
 
-type FiltersProps = {
+type FilterProps = {
   children?: React.ReactNode
   buttonText: string
 }
 
-export default function Filters({ children, buttonText }: FiltersProps) {
+export default function Filter({ children, buttonText }: FilterProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   const contentClasses = isOpen
@@ -30,21 +30,7 @@ export default function Filters({ children, buttonText }: FiltersProps) {
           <FontAwesomeIcon icon={faChevronDown} />
         )}
       </button>
-      <div className={contentClasses}>
-        {children}
-        {/* <div className={styles.selectionContainer}>
-          <p className={styles.selectionText}>0 selected</p>
-          <button className={styles.clearButton}>Clear</button>
-        </div>
-        <div className={styles.filterContainer}>
-          {range(1, 10).map((item, index) => (
-            <div className={styles.filterItem} key={index}>
-              <input type='checkbox' id={`filter-${index}`} />
-              <label htmlFor={`filter-${index}`}>{`Filter ${index + 1}`}</label>
-            </div>
-          ))}
-        </div> */}
-      </div>
+      <div className={contentClasses}>{children}</div>
     </div>
   )
 }

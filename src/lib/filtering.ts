@@ -8,13 +8,13 @@ import { BookType, BookItem } from '@/types/bookType'
  */
 export const getFilterItems = (
   bookList: BookType[],
-  type: string
+  type: 'author' | 'series' | 'genres' | 'tropes' | 'creatures' | 'booktags'
 ): BookItem[] => {
-  const authors = bookList.map((book) => book.author).flat()
+  const items = bookList.map((book) => book[type]).flat()
   // remove the duplicate objects from the array by authorName
-  const uniqueAuthors = authors.filter(
+  const uniqueItems = items.filter(
     (obj, index, self) => index === self.findIndex((t) => t.name === obj.name)
   )
 
-  return uniqueAuthors
+  return uniqueItems
 }

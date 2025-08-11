@@ -18,12 +18,6 @@
   border-right: 1px solid var(--secondary);
   width: 100%;
   appearance: none;
-  &.open {
-    /* border-top: 1px solid var(--primary);
-    border-left: 1px solid var(--primary);
-    border-right: 1px solid var(--primary); */
-    /* background-color: var(--light); */
-  }
 }
 
 .buttonText {

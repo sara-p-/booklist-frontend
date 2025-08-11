@@ -4,10 +4,21 @@ import { useState } from 'react'
 
 type MultiselectProps = {
   items: BookItem[]
+  onChange: (filter: string, value: string) => void
+  filter: string
 }
 
-export default function Multiselect({ items }: MultiselectProps) {
+export default function Multiselect({
+  onChange,
+  items,
+  filter,
+}: MultiselectProps) {
   const [isChecked, setIsChecked] = useState(false)
+
+  function handleChange(filter: string, value: string) {
+    onChange(filter, value)
+    setIsChecked(!isChecked)
+  }
 
   return (
     <>
@@ -25,7 +36,8 @@ export default function Multiselect({ items }: MultiselectProps) {
               <input
                 type='checkbox'
                 id={item.slug}
-                onChange={() => setIsChecked(!isChecked)}
+                onChange={() => handleChange(filter, item.name)}
+                checked={!isChecked}
               />
               {item.name}
             </label>
