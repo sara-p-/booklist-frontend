@@ -27,6 +27,16 @@
     background-color: var(--primary);
     color: var(--secondary);
   }
+  &:active {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+  &:hover {
+    background-color: var(--light);
+  }
+  &:focus {
+    background-color: var(--light);
+  }
 }
 
 .filterItem input {
