@@ -19,6 +19,8 @@
   --border-medium: 2px solid var(--primary);
   --border-thin: 1px solid var(--primary);
 
+  --box-shadow: 5px 5px 10px 0 rgba(36, 36, 36, 0.4);
+
   /* Layout */
   --max-width: 1095px;
   --medium-width: 1000px;

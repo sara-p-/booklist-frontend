@@ -7,8 +7,8 @@ export type FilterType = {
   tropes: string[]
   creatures: string[]
   booktags: string[]
-  rating: number[]
-  spice: number[]
+  rating: string[]
+  spice: string[]
   completed: boolean
   search: string
 }

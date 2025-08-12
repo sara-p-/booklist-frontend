@@ -18,3 +18,37 @@ export const getFilterItems = (
 
   return uniqueItems
 }
+
+/**
+ * Accepts a filter key and returns the typing of the filter.
+ * @param {string} filterKey - The filter key.
+ * @returns {string} The typing of the filter.
+ */
+export const getFilterType = (filterKey: string) => {
+  switch (filterKey) {
+    case 'sort':
+      return 'string'
+    case 'order':
+      return 'string'
+    case 'authors':
+      return 'string[]'
+    case 'series':
+      return 'string[]'
+    case 'genres':
+      return 'string[]'
+    case 'tropes':
+      return 'string[]'
+    case 'creatures':
+      return 'string[]'
+    case 'booktags':
+      return 'string[]'
+    case 'rating':
+      return 'string[]'
+    case 'spice':
+      return 'string[]'
+    case 'completed':
+      return 'boolean'
+    case 'search':
+      return 'string'
+  }
+}

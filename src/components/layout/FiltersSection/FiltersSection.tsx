@@ -2,9 +2,12 @@ import Filter from '@/components/ui/Form/DropdownFilters/Filter/Filter'
 import styles from './FiltersSection.module.css'
 import Multiselect from '@/components/ui/Form/DropdownFilters/Multiselect/Multiselect'
 import { useBookListContext } from '@/hooks/useBookListContext'
-import { getFilterItems } from '@/lib/filtering'
+import { getFilterItems, getFilterType } from '@/lib/filtering'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { FilterType } from '@/types/filterType'
+import { useEffect } from 'react'
+import { SORT_OPTIONS } from '@/lib/globals'
+import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
 
 export default function FiltersSection() {
   const { bookList } = useBookListContext()
@@ -19,47 +22,54 @@ export default function FiltersSection() {
 
   function handleMultiselectChange(filter: string, value: string) {
     const newFilterValues = { ...filterValues }
-    // if (
-    //   filter !== 'sort' &&
-    //   filter !== 'order' &&
-    //   filter !== 'completed' &&
-    //   filter !== 'search'
-    // ) {
-    //   setFilterValues({
-    //     ...newFilterValues,
-    //     [filter]: Array.isArray(newFilterValues[filter as keyof FilterType])
-    //       ? [
-    //           ...(newFilterValues[filter as keyof FilterType] as string[]),
-    //           value,
-    //         ]
-    //       : [value],
-    //   })
-    // } else {
-    //   setFilterValues({ ...newFilterValues, [filter]: value })
-    // }
+    // If the filter is of type string[]:
+    if (
+      filter === 'authors' ||
+      filter === 'series' ||
+      filter === 'genres' ||
+      filter === 'tropes' ||
+      filter === 'creatures' ||
+      filter === 'booktags' ||
+      filter === 'rating' ||
+      filter === 'spice'
+    ) {
+      // If the new value is already in the array, remove it. Otherwise, add it.
+      if (newFilterValues[filter].includes(value)) {
+        setFilterValues({
+          ...newFilterValues,
+          [filter]: newFilterValues[filter].filter((item) => item !== value),
+        })
+      } else {
+        setFilterValues({
+          ...newFilterValues,
+          [filter]: [...newFilterValues[filter], value],
+        })
+      }
+    }
+  }
 
-    // if (Array.isArray(newFilterValues[filter as keyof FilterType])) {
-    //   newFilterValues[filter as keyof FilterType] = [
-    //     ...(newFilterValues[filter as keyof FilterType] as string[]),
-    //     value,
-    //   ]
-    // } else {
-    //   newFilterValues[filter as keyof FilterType] = [value]
-
+  function handleRadioChange(filter: string, value: string) {
+    const newFilterValues = { ...filterValues }
     setFilterValues({
       ...newFilterValues,
-      [filter]: Array.isArray(newFilterValues[filter as keyof FilterType])
-        ? [...(newFilterValues[filter as keyof FilterType] as string[]), value]
-        : [value],
+      [filter]: value,
     })
-
-    console.log(newFilterValues)
   }
+
+  useEffect(() => {
+    console.log(filterValues.authors)
+  }, [filterValues])
 
   return (
     <div className={styles.container}>
       <div className={styles.filtersWrapper}>
-        <Filter buttonText='sort'></Filter>
+        <Filter buttonText='sort'>
+          <Radio
+            items={SORT_OPTIONS}
+            groupName='sort'
+            onChange={handleRadioChange}
+          />
+        </Filter>
         <Filter buttonText='authors'>
           <Multiselect
             onChange={handleMultiselectChange}
