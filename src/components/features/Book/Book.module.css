@@ -1,0 +1,37 @@
+.bookGridItem {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+/* Fallback for aspect ratio */
+.bookGridItem::after {
+  content: '';
+  display: block;
+  padding-top: 66.67%;
+}
+
+.bookGridItem {
+  aspect-ratio: 2/3; /* Modern property, overrides padding-top if supported */
+}
+
+.bookGridItem .bookLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* List view */
+.bookListItem {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  max-height: 200px;
+}
+
+.bookListItem .bookLink {
+  display: flex;
+  height: 200px;
+  gap: 8px;
+  position: relative;
+}

@@ -1,7 +1,8 @@
 import { FilterType } from '@/types/filterType'
 
 export const DEFAULT_FILTER_VALUES: FilterType = {
-  sort: 'series',
+  view: 'grid',
+  sort: 'reading order',
   order: 'desc',
   authors: [],
   series: [],
@@ -23,7 +24,8 @@ export const SORT_OPTIONS = [
   'reading order',
   'rating',
   'spice',
-  'completed',
 ]
 
 export const ORDER_OPTIONS = ['asc', 'desc']
+
+export const VIEW_OPTIONS = ['list', 'grid']

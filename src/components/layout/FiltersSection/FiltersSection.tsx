@@ -2,12 +2,18 @@ import Filter from '@/components/ui/Form/DropdownFilters/Filter/Filter'
 import styles from './FiltersSection.module.css'
 import Multiselect from '@/components/ui/Form/DropdownFilters/Multiselect/Multiselect'
 import { useBookListContext } from '@/hooks/useBookListContext'
-import { getFilterItems, getFilterType } from '@/lib/filtering'
+import { getFilterItems } from '@/lib/filtering'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import { FilterType } from '@/types/filterType'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { SORT_OPTIONS } from '@/lib/globals'
 import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faArrowDownAZ,
+  faArrowUpAZ,
+  faList,
+} from '@fortawesome/free-solid-svg-icons'
+import BookCountSection from '../BookCountSection/BookCountSection'
 
 export default function FiltersSection() {
   const { bookList } = useBookListContext()
@@ -55,10 +61,6 @@ export default function FiltersSection() {
       [filter]: value,
     })
   }
-
-  useEffect(() => {
-    console.log(filterValues.authors)
-  }, [filterValues])
 
   return (
     <div className={styles.container}>
@@ -116,6 +118,7 @@ export default function FiltersSection() {
         <Filter buttonText='spice'></Filter>
         <Filter buttonText='completed'></Filter>
       </div>
+      <BookCountSection />
     </div>
   )
 }

@@ -15,6 +15,8 @@ export const getFilterItems = (
   const uniqueItems = items.filter(
     (obj, index, self) => index === self.findIndex((t) => t.name === obj.name)
   )
+  // sort the array by name
+  uniqueItems.sort((a, b) => a.name.localeCompare(b.name))
 
   return uniqueItems
 }
@@ -51,4 +53,43 @@ export const getFilterType = (filterKey: string) => {
     case 'search':
       return 'string'
   }
+}
+
+/**
+ * Accepts the booklist and a sort value and returns a sorted booklist.
+ * @param {BookType[]} bookList - The booklist.
+ * @param {string} sort - The sort value.
+ * @returns {BookType[]} The sorted booklist.
+ */
+export const sortBookList = (bookList: BookType[], sort: string) => {
+  const books = [...bookList]
+
+  if (sort === 'series') {
+    books.sort((a, b) => a.series[0].name.localeCompare(b.series[0].name))
+  } else if (sort === 'title') {
+    books.sort((a, b) => a.title.localeCompare(b.title))
+  } else if (sort === 'published') {
+    books.sort((a, b) => a.publishDate.localeCompare(b.publishDate))
+  } else if (sort === 'reading order') {
+    books.sort((a, b) => a.finishDate.localeCompare(b.finishDate))
+  } else if (sort === 'rating') {
+    books.sort((a, b) => a.rating.localeCompare(b.rating))
+  } else if (sort === 'spice') {
+    books.sort((a, b) => a.spice.localeCompare(b.spice))
+  }
+  return books
+}
+
+/**
+ * Accepts the list of books and an order value and returns an ordered list of books.
+ * @param {BookType[]} bookList - The booklist.
+ * @param {string} order - The order value.
+ * @returns {BookType[]} The ordered booklist.
+ */
+export const orderBookList = (bookList: BookType[], order: string) => {
+  const books = [...bookList]
+  if (order === 'desc') {
+    return books.reverse()
+  }
+  return books
 }

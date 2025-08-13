@@ -1,6 +1,14 @@
 export type FilterType = {
   order: 'asc' | 'desc'
-  sort: 'series' | 'title' | 'rating' | 'spice' | 'length' | 'year'
+  view: 'list' | 'grid'
+  sort:
+    | 'series'
+    | 'title'
+    | 'rating'
+    | 'spice'
+    | 'length'
+    | 'year'
+    | 'reading order'
   authors: string[]
   series: string[]
   genres: string[]
