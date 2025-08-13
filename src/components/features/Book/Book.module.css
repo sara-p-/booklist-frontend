@@ -35,3 +35,24 @@
   gap: 8px;
   position: relative;
 }
+
+.bookListItem .bookImageContainer {
+  height: auto;
+  position: relative;
+}
+
+.bookListItem .bookImageContainer::after {
+  content: '';
+  display: block;
+  padding-top: 66.67%;
+}
+
+.bookListItem .bookImageContainer {
+  aspect-ratio: 2/3;
+}
+
+.bookListItem .bookImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
