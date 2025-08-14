@@ -18,7 +18,7 @@ export default function Radio({ items, groupName, onChange }: RadioProps) {
         return (
           <div className={styles.filterItem} key={`${item}-${index}`}>
             <label
-              className={isItemChecked ? styles.selected : ''}
+              // className={isItemChecked ? styles.selected : ''}
               htmlFor={item}
             >
               <input

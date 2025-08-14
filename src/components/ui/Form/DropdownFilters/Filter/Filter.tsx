@@ -4,6 +4,7 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { range } from '@/lib/utils'
 import { useState } from 'react'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
+import useEscapeKey from '@/hooks/useEscapeKey'
 
 type FilterProps = {
   children?: React.ReactNode
@@ -13,7 +14,8 @@ type FilterProps = {
 export default function Filter({ children, buttonText }: FilterProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { filterValues } = useFilterValuesContext()
-  const sortValue = filterValues.sort
+  // Close dropdown when escape key is pressed
+  useEscapeKey(() => setIsOpen(false))
 
   const contentClasses = isOpen
     ? `${styles.content} ${styles.open}`
@@ -34,7 +36,7 @@ export default function Filter({ children, buttonText }: FilterProps) {
         {buttonText === 'sort' ? (
           <span
             className={styles.buttonText}
-          >{`${buttonText}: ${sortValue}`}</span>
+          >{`${buttonText}: ${filterValues.sort}`}</span>
         ) : (
           <span className={styles.buttonText}>{buttonText}</span>
         )}

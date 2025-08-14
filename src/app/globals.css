@@ -4,11 +4,12 @@
   --light: #b6b6b6;
   --medium: #858585;
   --dark: #545454;
-  --accent: var(--medium);
+  --accent: var(--dark);
 
   [data-theme='dark'] {
     --primary: #e6e6e6;
     --secondary: #242424;
+    --accent: var(--light);
   }
 
   /* Typography */
@@ -59,12 +60,16 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  text-transform: lowercase;
 }
 
 a {
   color: inherit;
   text-decoration: underline;
   font-weight: 500;
+  &:hover {
+    color: var(--accent);
+  }
 }
 
 h1,

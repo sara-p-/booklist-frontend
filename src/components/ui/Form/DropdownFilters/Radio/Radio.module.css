@@ -23,11 +23,7 @@
   cursor: pointer;
   width: 100%;
   padding: 8px;
-  &.selected {
-    background-color: var(--primary);
-    color: var(--secondary);
-  }
-  &:active {
+  &:has(input:checked) {
     background-color: var(--primary);
     color: var(--secondary);
   }

@@ -24,14 +24,14 @@
   border-right: 1px solid var(--secondary);
   width: 100%;
   appearance: none;
-  &:focus {
+  /* &:focus {
     outline: var(--border-thin);
     outline-offset: -1px;
-  }
+  } */
 }
 
 .buttonText {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 

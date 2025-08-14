@@ -73,9 +73,14 @@
   cursor: pointer;
   width: 100%;
   padding: 8px;
+  /* text-transform: lowercase; */
   &.selected {
     background-color: var(--primary);
     color: var(--secondary);
+    &:hover {
+      background-color: var(--dark);
+      color: var(--secondary);
+    }
   }
   &:hover {
     background-color: var(--light);
