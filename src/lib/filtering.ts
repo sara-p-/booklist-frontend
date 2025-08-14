@@ -62,10 +62,23 @@ export const getFilterType = (filterKey: string) => {
  * @returns {BookType[]} The sorted booklist.
  */
 export const sortBookList = (bookList: BookType[], sort: string) => {
-  const books = [...bookList]
+  let books = [...bookList]
 
   if (sort === 'series') {
-    books.sort((a, b) => a.series[0].name.localeCompare(b.series[0].name))
+    const seriesArray = books.map((book) => {
+      return book.series[0].name
+    })
+    const uniqueSeries = [...new Set(seriesArray)]
+    const alphaSeries = uniqueSeries.sort((a, b) => a.localeCompare(b))
+    // For each series, make an array of the books in that series
+    const arrayOfSeries = alphaSeries
+      .map((series) => {
+        const newArray = books.filter((book) => book.series[0].name === series)
+        newArray.sort((a, b) => a.bookNumber.localeCompare(b.bookNumber))
+        return newArray
+      })
+      .flat()
+    books = arrayOfSeries
   } else if (sort === 'title') {
     books.sort((a, b) => a.title.localeCompare(b.title))
   } else if (sort === 'published') {

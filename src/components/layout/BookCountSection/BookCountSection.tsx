@@ -27,10 +27,6 @@ export default function BookCountSection() {
     setFilterValues({ ...filterValues, view: bookViewList ? 'list' : 'grid' })
   }
 
-  useEffect(() => {
-    console.log(filterValues)
-  }, [filterValues])
-
   return (
     <div className={styles.container}>
       <h4 className={styles.bookCount}>{bookList.length} books</h4>
