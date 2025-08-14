@@ -4,7 +4,7 @@ import Multiselect from '@/components/ui/Form/DropdownFilters/Multiselect/Multis
 import { useBookListContext } from '@/hooks/useBookListContext'
 import { getFilterItems } from '@/lib/filtering'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SORT_OPTIONS } from '@/lib/globals'
 import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -17,6 +17,7 @@ export default function Multiselect({
   filter,
 }: MultiselectProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
+
   // get the length of the array if the filter is of type string[]
   const filterType = getFilterType(filter)
   const selectedItems =

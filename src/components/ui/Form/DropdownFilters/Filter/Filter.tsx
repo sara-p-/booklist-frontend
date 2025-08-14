@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Filter.module.css'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { range } from '@/lib/utils'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useEscapeKey from '@/hooks/useEscapeKey'
+import useClickOutside from '@/hooks/useClickOutside'
 
 type FilterProps = {
   children?: React.ReactNode
@@ -14,8 +15,14 @@ type FilterProps = {
 export default function Filter({ children, buttonText }: FilterProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { filterValues } = useFilterValuesContext()
+  const filterRef = useRef<HTMLDivElement>(null)
   // Close dropdown when escape key is pressed
   useEscapeKey(() => setIsOpen(false))
+  // Close dropdown when clicking outside of dropdown
+  function handleClickOutside() {
+    setIsOpen(false)
+  }
+  useClickOutside({ callback: handleClickOutside, elementRef: filterRef })
 
   const contentClasses = isOpen
     ? `${styles.content} ${styles.open}`
@@ -31,7 +38,7 @@ export default function Filter({ children, buttonText }: FilterProps) {
       : styles.container
 
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses} ref={filterRef}>
       <button className={buttonClasses} onClick={() => setIsOpen(!isOpen)}>
         {buttonText === 'sort' ? (
           <span
