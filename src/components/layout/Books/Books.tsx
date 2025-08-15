@@ -1,10 +1,10 @@
 import { BookType } from '@/types/bookType'
-import styles from './BookGrid.module.css'
+import styles from './Books.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 import Book from '@/components/features/Book/Book'
 
-export default function BookGrid() {
+export default function Books() {
   const filteredBooks = useFilteredBooks()
   const { filterValues } = useFilterValuesContext()
   const viewClass =

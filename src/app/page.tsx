@@ -1,10 +1,9 @@
 'use client'
 
-import BookGrid from '@/components/layout/BookGrid/BookGrid'
 import styles from './page.module.css'
 import FiltersSection from '@/components/layout/FiltersSection/FiltersSection'
 import { useBookListContext } from '@/hooks/useBookListContext'
-import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
+import Books from '@/components/layout/Books/Books'
 
 export default function Home() {
   const { bookList } = useBookListContext()
@@ -12,7 +11,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <FiltersSection />
-      {bookList.length > 0 && <BookGrid />}
+      {bookList.length > 0 && <Books />}
     </div>
   )
 }

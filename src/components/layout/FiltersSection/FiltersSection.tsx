@@ -2,7 +2,7 @@ import Filter from '@/components/ui/Form/DropdownFilters/Filter/Filter'
 import styles from './FiltersSection.module.css'
 import Multiselect from '@/components/ui/Form/DropdownFilters/Multiselect/Multiselect'
 import { useBookListContext } from '@/hooks/useBookListContext'
-import { getFilterItems } from '@/lib/filtering'
+import { getFilterItems } from '@/lib/filtering-utils'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import React, { useEffect, useState } from 'react'
 import { SORT_OPTIONS } from '@/lib/globals'
@@ -27,6 +27,7 @@ export default function FiltersSection() {
   const booktags = getFilterItems(bookList, 'booktags')
 
   function handleMultiselectChange(filter: string, value: string) {
+    // TODO: Add the handling of the 'rating', 'spice', and 'completed' filters.
     const newFilterValues = { ...filterValues }
     // If the filter is of type string[]:
     if (

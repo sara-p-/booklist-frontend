@@ -1,7 +1,7 @@
 import styles from './Multiselect.module.css'
 import { BookItem } from '@/types/bookType'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import { getFilterType } from '@/lib/filtering'
+import { getFilterType } from '@/lib/filtering-utils'
 import { FilterType } from '@/types/filterType'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
