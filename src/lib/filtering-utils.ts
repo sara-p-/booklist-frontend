@@ -113,3 +113,33 @@ export function sortArrayGroups(
 
   return arrayOfType
 }
+
+/**
+ * Accepts a list of books and a series of filter values and returns a list of books that match the filter values.
+ *
+ * Used in the main filtering function.
+ *
+ * @param {BookType[]} books - The booklist.
+ * @param {string[]} filterValuesArray - The filter values.
+ * @returns {BookType[]} The filtered booklist.
+ */
+export function filterBooksByArray(
+  books: BookType[],
+  filterValuesArray: string[]
+) {
+  // loop through each book.
+  // for each book genre array, pull out the Object values, and then check to see if they contain every Filter Value genre. If so, add that book to the new array
+  const newBooksArray: BookType[] = []
+  books.forEach((book) => {
+    // Grab the book's genres and pull out the name values
+    const bookGenres = book.genres.map((genre) => genre.name)
+    // Check to see if the book's genres contain every Filter Value genre. If so, add that book to the new array
+    const allGenresPresent = filterValuesArray.every((value) => {
+      return bookGenres.includes(value)
+    })
+    if (allGenresPresent) {
+      newBooksArray.push(book)
+    }
+  })
+  return newBooksArray
+}

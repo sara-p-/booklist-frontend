@@ -4,15 +4,9 @@ import Multiselect from '@/components/ui/Form/DropdownFilters/Multiselect/Multis
 import { useBookListContext } from '@/hooks/useBookListContext'
 import { getFilterItems } from '@/lib/filtering-utils'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { SORT_OPTIONS } from '@/lib/globals'
 import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faArrowDownAZ,
-  faArrowUpAZ,
-  faList,
-} from '@fortawesome/free-solid-svg-icons'
 import BookCountSection from '../BookCountSection/BookCountSection'
 
 export default function FiltersSection() {
@@ -25,9 +19,9 @@ export default function FiltersSection() {
   const tropes = getFilterItems(bookList, 'tropes')
   const creatures = getFilterItems(bookList, 'creatures')
   const booktags = getFilterItems(bookList, 'booktags')
+  // TODO: Add the handling of the 'rating', 'spice', and 'completed' filters.
 
   function handleMultiselectChange(filter: string, value: string) {
-    // TODO: Add the handling of the 'rating', 'spice', and 'completed' filters.
     const newFilterValues = { ...filterValues }
     // If the filter is of type string[]:
     if (

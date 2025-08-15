@@ -1,5 +1,6 @@
 import { BookType } from '@/types/bookType'
-import { sortArrayGroups } from './filtering-utils'
+import { filterBooksByArray, sortArrayGroups } from './filtering-utils'
+import { FilterType } from '@/types/filterType'
 
 /**
  * Accepts the booklist and a sort value and returns a sorted booklist.
@@ -36,6 +37,9 @@ export const sortBookList = (bookList: BookType[], sort: string) => {
 
 /**
  * Accepts the list of books and an order value and returns an ordered list of books.
+ *
+ * This is the main ordering function.
+ *
  * @param {BookType[]} bookList - The booklist.
  * @param {string} order - The order value.
  * @returns {BookType[]} The ordered booklist.
@@ -46,4 +50,66 @@ export const orderBookList = (bookList: BookType[], order: string) => {
     return books.reverse()
   }
   return books
+}
+
+/**
+ * Accepts the list of books and the filter values and returns a filtered list of books.
+ *
+ * This is the main filtering function.
+ *
+ * @param {BookType[]} bookList - The booklist.
+ * @param {FilterType} filterValues - The filter values.
+ * @returns {BookType[]} The filtered booklist.
+ */
+export const filterBookList = (
+  bookList: BookType[],
+  filterValues: FilterType
+) => {
+  const books = [...bookList]
+  let newBooks: BookType[] = books
+
+  const authors = filterValues.authors
+  const series = filterValues.series
+  const genres = filterValues.genres
+  const tropes = filterValues.tropes
+  const creatures = filterValues.creatures
+  const booktags = filterValues.booktags
+
+  if (authors.length > 0) {
+    const authorsArray = authors.map((author) => {
+      return books.filter((book) => book.author[0].name === author)
+    })
+    newBooks = authorsArray.flat()
+  }
+
+  // Series
+  if (series.length > 0) {
+    const seriesArray = series.map((series) => {
+      return books.filter((book) => book.series[0].name === series)
+    })
+    newBooks = seriesArray.flat()
+  }
+
+  // Genres
+  if (genres.length > 0) {
+    newBooks = filterBooksByArray(books, genres)
+  }
+
+  // Tropes
+  if (tropes.length > 0) {
+    newBooks = filterBooksByArray(books, tropes)
+  }
+
+  // Creatures
+  if (creatures.length > 0) {
+    newBooks = filterBooksByArray(books, creatures)
+  }
+
+  // Booktags
+  if (booktags.length > 0) {
+    newBooks = filterBooksByArray(books, booktags)
+  }
+
+  console.log(newBooks)
+  return newBooks
 }

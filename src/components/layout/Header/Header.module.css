@@ -37,6 +37,14 @@
   align-items: center;
 }
 
+.titleLink {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    color: var(--accent);
+  }
+}
+
 .title {
   font-weight: 900;
   font-size: 32px;

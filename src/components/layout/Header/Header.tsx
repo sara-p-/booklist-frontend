@@ -6,6 +6,7 @@ import Searchbar from '@/components/ui/Form/Searchbar/Searchbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook, faMoon } from '@fortawesome/free-solid-svg-icons'
 import MenuButton from '@/components/ui/MenuButton/MenuButton'
+import Link from 'next/link'
 
 export default function Header() {
   const [activeButton, setActiveButton] = React.useState('books')
@@ -18,10 +19,12 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={`${styles.column} ${styles.leftColumn}`}>
-          <div className={styles.titleContainer}>
-            <FontAwesomeIcon className={styles.icon} icon={faBook} />
-            <h1 className={styles.title}>BookList</h1>
-          </div>
+          <Link href='/' className={styles.titleLink}>
+            <div className={styles.titleContainer}>
+              <FontAwesomeIcon className={styles.icon} icon={faBook} />
+              <h1 className={styles.title}>BookList</h1>
+            </div>
+          </Link>
           <div className={styles.menuContainer}>
             <MenuButton
               href='/'
