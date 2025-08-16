@@ -125,19 +125,20 @@ export function sortArrayGroups(
  */
 export function filterBooksByArray(
   books: BookType[],
-  filterValuesArray: string[]
+  filterValuesArray: string[],
+  filterType: 'genres' | 'tropes' | 'creatures' | 'booktags'
 ) {
-  // loop through each book.
-  // for each book genre array, pull out the Object values, and then check to see if they contain every Filter Value genre. If so, add that book to the new array
+  // Create a new array to store the filtered books
   const newBooksArray: BookType[] = []
+  // Loop through each book
   books.forEach((book) => {
-    // Grab the book's genres and pull out the name values
-    const bookGenres = book.genres.map((genre) => genre.name)
+    // Grab the book's category array and pull out the 'name' values
+    const bookFilterCategoryArray = book[filterType].map((value) => value.name)
     // Check to see if the book's genres contain every Filter Value genre. If so, add that book to the new array
-    const allGenresPresent = filterValuesArray.every((value) => {
-      return bookGenres.includes(value)
+    const allValuesPresent = filterValuesArray.every((value) => {
+      return bookFilterCategoryArray.includes(value)
     })
-    if (allGenresPresent) {
+    if (allValuesPresent) {
       newBooksArray.push(book)
     }
   })

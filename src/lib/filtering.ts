@@ -77,7 +77,7 @@ export const filterBookList = (
 
   if (authors.length > 0) {
     const authorsArray = authors.map((author) => {
-      return books.filter((book) => book.author[0].name === author)
+      return newBooks.filter((book) => book.author[0].name === author)
     })
     newBooks = authorsArray.flat()
   }
@@ -85,31 +85,30 @@ export const filterBookList = (
   // Series
   if (series.length > 0) {
     const seriesArray = series.map((series) => {
-      return books.filter((book) => book.series[0].name === series)
+      return newBooks.filter((book) => book.series[0].name === series)
     })
     newBooks = seriesArray.flat()
   }
 
   // Genres
   if (genres.length > 0) {
-    newBooks = filterBooksByArray(books, genres)
+    newBooks = filterBooksByArray(newBooks, genres, 'genres')
   }
 
   // Tropes
   if (tropes.length > 0) {
-    newBooks = filterBooksByArray(books, tropes)
+    newBooks = filterBooksByArray(newBooks, tropes, 'tropes')
   }
 
   // Creatures
   if (creatures.length > 0) {
-    newBooks = filterBooksByArray(books, creatures)
+    newBooks = filterBooksByArray(newBooks, creatures, 'creatures')
   }
 
   // Booktags
   if (booktags.length > 0) {
-    newBooks = filterBooksByArray(books, booktags)
+    newBooks = filterBooksByArray(newBooks, booktags, 'booktags')
   }
 
-  console.log(newBooks)
   return newBooks
 }
