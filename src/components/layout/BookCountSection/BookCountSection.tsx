@@ -10,9 +10,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { useEffect, useState } from 'react'
 import { useBookListContext } from '@/hooks/useBookListContext'
+import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 
 export default function BookCountSection() {
-  const { bookList } = useBookListContext()
+  const newBooks = useFilteredBooks()
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const [bookOrderAsc, setBookOrderAsc] = useState(false)
   const [bookViewList, setBookViewList] = useState(false)
@@ -29,7 +30,7 @@ export default function BookCountSection() {
 
   return (
     <div className={styles.container}>
-      <h4 className={styles.bookCount}>{bookList.length} books</h4>
+      <h4 className={styles.bookCount}>{newBooks.length} books</h4>
       <div className={styles.bookOrderContainer}>
         <button
           className={`${styles.bookOrderButton} ${styles.bookView}`}
