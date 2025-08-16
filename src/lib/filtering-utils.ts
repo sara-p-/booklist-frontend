@@ -46,10 +46,13 @@ export const getFilterType = (filterKey: string) => {
  * @param {string} type - The type of object to return.
  * @returns {BookItem[]} An array of all the author objects.
  */
-export const getFilterItems = (
+export const getAllFilterItems = (
   bookList: BookType[],
   type: 'author' | 'series' | 'genres' | 'tropes' | 'creatures' | 'booktags'
 ): BookItem[] => {
+  // Get a list of all of the current options (depending on the selected filters)
+
+  // pull out the objects from the bookList array that match the type
   const items = bookList.map((book) => book[type]).flat()
   // remove the duplicate objects from the array by authorName
   const uniqueItems = items.filter(
@@ -59,6 +62,68 @@ export const getFilterItems = (
   uniqueItems.sort((a, b) => a.name.localeCompare(b.name))
 
   return uniqueItems
+}
+
+/**
+ * Takes the original bookList and the filtered bookList and returns an array of filter items with a new property 'disabled', which is true if the item is not in the filtered bookList.
+ *
+ * Used in the creation of the multiselect filter options.
+ *
+ * @param {BookType[]} bookList - The bookList array.
+ * @param {BookType[]} filteredBookList - The filtered bookList array.
+ * @param {FilterType} filterValues - The filter values.
+ * @returns {BookItem[]} An array of all the filter objects.
+ */
+export function getTheFilteredItems(
+  bookList: BookType[],
+  filteredBookList: BookType[],
+  type: 'author' | 'series' | 'genres' | 'tropes' | 'creatures' | 'booktags'
+) {
+  // Get a list of all of the current options (depending on the selected filters)
+  const allFilterItems = getAllFilterItems(bookList, type)
+  // Loop through each filter item and check if it is in the filtered bookList
+  // If the item is in the filtered bookList, set the disabled property to false
+  // If the item is not in the filtered bookList, set the disabled property to true
+  const itemsWithAmounts = allFilterItems.map((item) => {
+    return {
+      ...item,
+      disabled: !filteredBookList.some((book) =>
+        book[type].some((filter) => filter.name === item.name)
+      ),
+    }
+  })
+  return itemsWithAmounts
+}
+
+/**
+ * Takes the filter items and returns an array of filter items with a new property 'amount', which is the number of books that have the filter item.
+ *
+ * Used in the creation of the multiselect filter options.
+ *
+ * @param {BookType[]} bookList - The bookList array.
+ * @param {BookType[]} filteredBookList - The filtered bookList array.
+ * @param {FilterType} filterValues - The filter values.
+ * @returns {BookItem[]} An array of all the filter objects.
+ */
+export function getTheFilteredItemsWithAmount(
+  bookList: BookType[],
+  filteredBookList: BookType[],
+  type: 'author' | 'series' | 'genres' | 'tropes' | 'creatures' | 'booktags'
+) {
+  // Get a list of all of the current options (depending on the selected filters)
+  const allFilterItems = getAllFilterItems(bookList, type)
+  // Loop through each filter item and check if it is in the filtered bookList
+  // If the item is in the filtered bookList, set the disabled property to false
+  // If the item is not in the filtered bookList, set the disabled property to true
+  const itemsWithAmounts = allFilterItems.map((item) => {
+    return {
+      ...item,
+      amount: filteredBookList.filter((book) =>
+        book[type].some((filter) => filter.name === item.name)
+      ).length,
+    }
+  })
+  return itemsWithAmounts
 }
 
 /**

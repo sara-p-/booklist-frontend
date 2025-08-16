@@ -24,15 +24,20 @@
   border-right: 1px solid var(--secondary);
   width: 100%;
   appearance: none;
-  /* &:focus {
-    outline: var(--border-thin);
-    outline-offset: -1px;
-  } */
+  &.selected {
+    background-color: var(--light);
+    border-bottom: 3px solid var(--light);
+  }
 }
 
 .buttonText {
   font-size: 14px;
   font-weight: 600;
+}
+
+.buttonCount {
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .buttonIcon {

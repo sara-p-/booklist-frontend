@@ -30,4 +30,6 @@ export type BookItem = {
   id: number
   name: string
   slug: string
+  disabled?: boolean
+  amount?: number
 }

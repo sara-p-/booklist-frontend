@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Filter.module.css'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
-import { range } from '@/lib/utils'
 import { useRef, useState } from 'react'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useEscapeKey from '@/hooks/useEscapeKey'
@@ -9,7 +8,14 @@ import useClickOutside from '@/hooks/useClickOutside'
 
 type FilterProps = {
   children?: React.ReactNode
-  buttonText: string
+  buttonText:
+    | 'sort'
+    | 'authors'
+    | 'series'
+    | 'genres'
+    | 'tropes'
+    | 'creatures'
+    | 'booktags'
 }
 
 export default function Filter({ children, buttonText }: FilterProps) {
@@ -28,9 +34,10 @@ export default function Filter({ children, buttonText }: FilterProps) {
     ? `${styles.content} ${styles.open}`
     : styles.content
 
-  const buttonClasses = isOpen
-    ? `${styles.button} ${styles.open}`
-    : styles.button
+  const buttonClasses =
+    isOpen || filterValues[buttonText].length > 0
+      ? `${styles.button} ${styles.selected}`
+      : styles.button
 
   const containerClasses =
     buttonText === 'sort'
@@ -40,12 +47,21 @@ export default function Filter({ children, buttonText }: FilterProps) {
   return (
     <div className={containerClasses} ref={filterRef}>
       <button className={buttonClasses} onClick={() => setIsOpen(!isOpen)}>
+        {/* If buttonText is sort, show the sort value */}
         {buttonText === 'sort' ? (
           <span
             className={styles.buttonText}
           >{`${buttonText}: ${filterValues.sort}`}</span>
         ) : (
-          <span className={styles.buttonText}>{buttonText}</span>
+          // Otherwise, show the button text and the number of filters applied
+          <span className={styles.buttonText}>
+            {`${buttonText} `}
+            {filterValues[buttonText].length > 0 && (
+              <span className={styles.buttonCount}>
+                ({filterValues[buttonText].length})
+              </span>
+            )}
+          </span>
         )}
         {isOpen ? (
           <FontAwesomeIcon icon={faChevronUp} />
