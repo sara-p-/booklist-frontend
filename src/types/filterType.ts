@@ -20,3 +20,11 @@ export type FilterType = {
   completed: boolean
   search: string
 }
+
+export type FilterArrayType =
+  | 'authors'
+  | 'series'
+  | 'genres'
+  | 'tropes'
+  | 'creatures'
+  | 'booktags'

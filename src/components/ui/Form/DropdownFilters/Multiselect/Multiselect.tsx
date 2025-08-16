@@ -1,30 +1,24 @@
 import styles from './Multiselect.module.css'
-import { BookItem } from '@/types/bookType'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { getAllFilterItems, getFilterType } from '@/lib/filtering-utils'
-import { FilterType } from '@/types/filterType'
+import { FilterArrayType, FilterType } from '@/types/filterType'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useBookListContext } from '@/hooks/useBookListContext'
 
 type MultiselectProps = {
   onChange: (filter: string, value: string) => void
-  filter: 'author' | 'series' | 'genres' | 'tropes' | 'creatures' | 'booktags'
+  filter: FilterArrayType
 }
 
-export default function Multiselect({
-  onChange,
-  // items,
-  filter,
-}: MultiselectProps) {
+export default function Multiselect({ onChange, filter }: MultiselectProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { bookList } = useBookListContext()
   const items = getAllFilterItems(bookList, filter)
-  const filterName = filter === 'author' ? 'authors' : filter
 
   // get the length of the array if the filter is of type string[]
   const filterType = getFilterType(filter)
   const selectedItems =
-    filterType === 'string[]' ? filterValues[filterName].length : 0
+    filterType === 'string[]' ? filterValues[filter].length : 0
 
   // Handle the item change
   function handleChange(filter: string, value: string) {
@@ -54,7 +48,7 @@ export default function Multiselect({
         {items.map((item) => {
           // If the filter is selected, add the class name styles.selected and checked={true}
           const isItemChecked =
-            filterValues[filterName].includes(item.name) || false
+            filterValues[filter].includes(item.name) || false
 
           return (
             <div className={styles.filterItem} key={item.id}>

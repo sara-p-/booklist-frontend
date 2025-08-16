@@ -1,4 +1,5 @@
 import { BookItem, BookType } from '@/types/bookType'
+import { FilterArrayType } from '@/types/filterType'
 
 /**
  * Accepts a filter key and returns the typing of the filter.
@@ -48,7 +49,7 @@ export const getFilterType = (filterKey: string) => {
  */
 export const getAllFilterItems = (
   bookList: BookType[],
-  type: 'author' | 'series' | 'genres' | 'tropes' | 'creatures' | 'booktags'
+  type: FilterArrayType
 ): BookItem[] => {
   // Get a list of all of the current options (depending on the selected filters)
 
@@ -77,7 +78,7 @@ export const getAllFilterItems = (
 export function getTheFilteredItems(
   bookList: BookType[],
   filteredBookList: BookType[],
-  type: 'author' | 'series' | 'genres' | 'tropes' | 'creatures' | 'booktags'
+  type: FilterArrayType
 ) {
   // Get a list of all of the current options (depending on the selected filters)
   const allFilterItems = getAllFilterItems(bookList, type)
@@ -108,7 +109,7 @@ export function getTheFilteredItems(
 export function getTheFilteredItemsWithAmount(
   bookList: BookType[],
   filteredBookList: BookType[],
-  type: 'author' | 'series' | 'genres' | 'tropes' | 'creatures' | 'booktags'
+  type: FilterArrayType
 ) {
   // Get a list of all of the current options (depending on the selected filters)
   const allFilterItems = getAllFilterItems(bookList, type)

@@ -2,7 +2,7 @@ export interface BookType {
   bookId: number
   title: string
   slug: string
-  author: BookItem[]
+  authors: BookItem[]
   series: BookItem[]
   image: string
   genres: BookItem[]

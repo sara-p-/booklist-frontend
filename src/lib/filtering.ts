@@ -77,7 +77,7 @@ export const filterBookList = (
 
   if (authors.length > 0) {
     const authorsArray = authors.map((author) => {
-      return newBooks.filter((book) => book.author[0].name === author)
+      return newBooks.filter((book) => book.authors[0].name === author)
     })
     newBooks = authorsArray.flat()
   }

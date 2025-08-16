@@ -11,31 +11,29 @@ export default function FiltersSection() {
 
   // TODO: Add the handling of the 'rating', 'spice', and 'completed' filters.
 
-  function handleMultiselectChange(filter: string, value: string) {
+  function handleMultiselectChange(
+    filter:
+      | 'authors'
+      | 'series'
+      | 'genres'
+      | 'tropes'
+      | 'creatures'
+      | 'booktags',
+    value: string
+  ) {
     const newFilterValues = { ...filterValues }
-    // If the filter is of type string[]:
-    if (
-      filter === 'authors' ||
-      filter === 'series' ||
-      filter === 'genres' ||
-      filter === 'tropes' ||
-      filter === 'creatures' ||
-      filter === 'booktags' ||
-      filter === 'rating' ||
-      filter === 'spice'
-    ) {
-      // If the new value is already in the array, remove it. Otherwise, add it.
-      if (newFilterValues[filter].includes(value)) {
-        setFilterValues({
-          ...newFilterValues,
-          [filter]: newFilterValues[filter].filter((item) => item !== value),
-        })
-      } else {
-        setFilterValues({
-          ...newFilterValues,
-          [filter]: [...newFilterValues[filter], value],
-        })
-      }
+    const filterValue = newFilterValues[filter]
+
+    if (filterValue.includes(value)) {
+      setFilterValues({
+        ...newFilterValues,
+        [filter]: filterValue.filter((item) => item !== value),
+      })
+    } else {
+      setFilterValues({
+        ...newFilterValues,
+        [filter]: [...filterValue, value],
+      })
     }
   }
 
@@ -58,7 +56,7 @@ export default function FiltersSection() {
           />
         </Filter>
         <Filter buttonText='authors'>
-          <Multiselect onChange={handleMultiselectChange} filter='author' />
+          <Multiselect onChange={handleMultiselectChange} filter='authors' />
         </Filter>
         <Filter buttonText='series'>
           <Multiselect onChange={handleMultiselectChange} filter='series' />

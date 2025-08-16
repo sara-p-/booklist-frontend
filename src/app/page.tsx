@@ -2,7 +2,6 @@
 
 import styles from './page.module.css'
 import FiltersSection from '@/components/layout/FiltersSection/FiltersSection'
-import { useBookListContext } from '@/hooks/useBookListContext'
 import Books from '@/components/layout/Books/Books'
 import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 
