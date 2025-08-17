@@ -27,6 +27,10 @@ export const sortBookList = (bookList: BookType[], sort: string) => {
     newBooks = books.sort((a, b) =>
       a.finishDate.localeCompare(b.finishDate, undefined, { numeric: true })
     )
+  } else if (sort === 'length') {
+    newBooks = books.sort((a, b) =>
+      a.length.localeCompare(b.length, undefined, { numeric: true })
+    )
   } else if (sort === 'rating') {
     newBooks = sortArrayGroups(books, 'rating')
   } else if (sort === 'spice') {
