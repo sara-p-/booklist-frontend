@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Filter.module.css'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useEscapeKey from '@/hooks/useEscapeKey'
 import useClickOutside from '@/hooks/useClickOutside'
@@ -15,18 +15,28 @@ type FilterProps = {
 }
 
 export default function Filter({ children, buttonText }: FilterProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  // const [isOpen, setIsOpen] = useState(false)
   const { filterValues } = useFilterValuesContext()
   // Context that defines whether the filter is open or not
   const { filterState, setFilterState } = useFilterStateContext()
   const filterRef = useRef<HTMLDivElement>(null)
-  // Close dropdown when escape key is pressed
-  useEscapeKey(() => setIsOpen(false))
-  // Close dropdown when clicking outside of dropdown
-  function handleClickOutside() {
-    setIsOpen(false)
+  // Close the filter dropdown for a variety of reasons
+  function handleCloseFilter() {
+    // setIsOpen(false)
+    setFilterState({
+      ...filterState,
+      [buttonText]: false,
+    })
   }
-  useClickOutside({ callback: handleClickOutside, elementRef: filterRef })
+  // Close dropdown when escape key is pressed
+  useEscapeKey(() => handleCloseFilter())
+  // Close dropdown when clicking outside of dropdown
+  useClickOutside({ callback: handleCloseFilter, elementRef: filterRef })
+
+  useEffect(() => {
+    console.log(filterState)
+  }, [filterState])
+
   // get the 'rating' and 'spice' filter values as numbers
   const ratingValues = filterValues.rating.map((value) => {
     return parseInt(value)
@@ -61,6 +71,7 @@ export default function Filter({ children, buttonText }: FilterProps) {
       : styles.container
 
   function handleButtonClick() {
+    // setIsOpen(!isOpen)
     setFilterState({
       ...filterState,
       [buttonText]: !filterState[buttonText],

@@ -16,6 +16,7 @@ export default function useClickOutside({
         !elementRef?.current.contains(event.target as Node)
       ) {
         callback()
+        // console.log(elementRef.current)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)

@@ -3,6 +3,7 @@
 import * as Slider from '@radix-ui/react-slider'
 import styles from './Range.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
+import useFilterStateContext from '@/hooks/useFilterStateContext'
 
 type RangeProps = {
   max: number
@@ -12,6 +13,7 @@ type RangeProps = {
 
 export default function Range({ max, buttonText }: RangeProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
+  const { filterState, setFilterState } = useFilterStateContext()
   // convert the filter values to numbers since the filter values are strings
   const filterValuesNumbers = filterValues[buttonText].map((value) =>
     parseInt(value)
@@ -37,6 +39,10 @@ export default function Range({ max, buttonText }: RangeProps) {
     setFilterValues({
       ...newFilterValues,
       [buttonText]: ['0', max.toString()],
+    })
+    setFilterState({
+      ...filterState,
+      [buttonText]: false,
     })
   }
 
