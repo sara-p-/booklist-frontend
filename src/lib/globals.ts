@@ -10,9 +10,9 @@ export const DEFAULT_FILTER_VALUES: FilterType = {
   tropes: [],
   creatures: [],
   booktags: [],
-  rating: [],
-  spice: [],
-  completed: true,
+  rating: ['0', '10'],
+  spice: ['0', '5'],
+  finished: true,
   search: '',
 }
 
@@ -29,3 +29,5 @@ export const SORT_OPTIONS = [
 export const ORDER_OPTIONS = ['asc', 'desc']
 
 export const VIEW_OPTIONS = ['list', 'grid']
+
+export const FINISHED_OPTIONS = ['all', 'completed', 'not completed']

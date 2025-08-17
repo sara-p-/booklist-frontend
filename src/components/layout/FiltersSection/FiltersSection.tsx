@@ -2,26 +2,18 @@ import Filter from '@/components/ui/Form/DropdownFilters/Filter/Filter'
 import styles from './FiltersSection.module.css'
 import Multiselect from '@/components/ui/Form/DropdownFilters/Multiselect/Multiselect'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import { SORT_OPTIONS } from '@/lib/globals'
+import { FINISHED_OPTIONS, SORT_OPTIONS } from '@/lib/globals'
 import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
 import BookCountSection from '../BookCountSection/BookCountSection'
 import Range from '@/components/ui/Form/DropdownFilters/Range/Range'
+import { FilterArrayType } from '@/types/filterType'
 
 export default function FiltersSection() {
   const { filterValues, setFilterValues } = useFilterValuesContext()
 
-  // TODO: Add the handling of the 'rating', 'spice', and 'completed' filters.
+  // TODO: Add the handling of the 'completed' filter.
 
-  function handleMultiselectChange(
-    filter:
-      | 'authors'
-      | 'series'
-      | 'genres'
-      | 'tropes'
-      | 'creatures'
-      | 'booktags',
-    value: string
-  ) {
+  function handleMultiselectChange(filter: FilterArrayType, value: string) {
     const newFilterValues = { ...filterValues }
     const filterValue = newFilterValues[filter]
 
@@ -39,6 +31,14 @@ export default function FiltersSection() {
   }
 
   function handleRadioChange(filter: string, value: string) {
+    const newFilterValues = { ...filterValues }
+    setFilterValues({
+      ...newFilterValues,
+      [filter]: value,
+    })
+  }
+
+  function handleRangeChange(filter: 'rating' | 'spice', value: string[]) {
     const newFilterValues = { ...filterValues }
     setFilterValues({
       ...newFilterValues,
@@ -75,12 +75,18 @@ export default function FiltersSection() {
           <Multiselect onChange={handleMultiselectChange} filter='booktags' />
         </Filter>
         <Filter buttonText='rating'>
-          <Range />
+          <Range max={10} buttonText='rating' onChange={handleRangeChange} />
         </Filter>
         <Filter buttonText='spice'>
-          <Range />
+          <Range max={5} buttonText='spice' onChange={handleRangeChange} />
         </Filter>
-        <Filter buttonText='completed'></Filter>
+        {/* <Filter buttonText='finished'>
+          <Radio
+            items={FINISHED_OPTIONS}
+            groupName='completed'
+            onChange={handleRadioChange}
+          />
+        </Filter> */}
       </div>
       <BookCountSection />
     </div>

@@ -6,7 +6,7 @@ import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useBookListContext } from '@/hooks/useBookListContext'
 
 type MultiselectProps = {
-  onChange: (filter: string, value: string) => void
+  onChange: (filter: FilterArrayType, value: string) => void
   filter: FilterArrayType
 }
 
@@ -21,7 +21,7 @@ export default function Multiselect({ onChange, filter }: MultiselectProps) {
     filterType === 'string[]' ? filterValues[filter].length : 0
 
   // Handle the item change
-  function handleChange(filter: string, value: string) {
+  function handleChange(filter: FilterArrayType, value: string) {
     onChange(filter, value)
   }
 

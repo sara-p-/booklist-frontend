@@ -5,17 +5,11 @@ import { useRef, useState } from 'react'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useEscapeKey from '@/hooks/useEscapeKey'
 import useClickOutside from '@/hooks/useClickOutside'
+import { FilterArrayType } from '@/types/filterType'
 
 type FilterProps = {
   children?: React.ReactNode
-  buttonText:
-    | 'sort'
-    | 'authors'
-    | 'series'
-    | 'genres'
-    | 'tropes'
-    | 'creatures'
-    | 'booktags'
+  buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
 }
 
 export default function Filter({ children, buttonText }: FilterProps) {
@@ -47,22 +41,7 @@ export default function Filter({ children, buttonText }: FilterProps) {
   return (
     <div className={containerClasses} ref={filterRef}>
       <button className={buttonClasses} onClick={() => setIsOpen(!isOpen)}>
-        {/* If buttonText is sort, show the sort value */}
-        {buttonText === 'sort' ? (
-          <span
-            className={styles.buttonText}
-          >{`${buttonText}: ${filterValues.sort}`}</span>
-        ) : (
-          // Otherwise, show the button text and the number of filters applied
-          <span className={styles.buttonText}>
-            {`${buttonText} `}
-            {filterValues[buttonText].length > 0 && (
-              <span className={styles.buttonCount}>
-                ({filterValues[buttonText].length})
-              </span>
-            )}
-          </span>
-        )}
+        <SelectionText buttonText={buttonText as FilterArrayType} />
         {isOpen ? (
           <FontAwesomeIcon icon={faChevronUp} />
         ) : (
@@ -72,4 +51,42 @@ export default function Filter({ children, buttonText }: FilterProps) {
       <div className={contentClasses}>{children}</div>
     </div>
   )
+}
+
+// SELECTION TEXT PROPS/COMPONENT
+type SelectionTextProps = {
+  buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
+}
+
+export function SelectionText({ buttonText }: SelectionTextProps) {
+  const { filterValues } = useFilterValuesContext()
+  const ratingValues = filterValues.rating.map((value) => {
+    return `${value}/10`
+  })
+  const spiceValues = filterValues.spice.map((value) => {
+    return `${value}/5`
+  })
+
+  if (buttonText === 'sort') {
+    return (
+      <span className={styles.buttonText}>
+        {`${buttonText}: ${filterValues.sort}`}
+      </span>
+    )
+  } else if (buttonText === 'rating') {
+    return <span className={styles.buttonText}>{buttonText}</span>
+  } else if (buttonText === 'spice') {
+    return <span className={styles.buttonText}>{buttonText}</span>
+  } else {
+    return (
+      <span className={styles.buttonText}>
+        {`${buttonText} `}
+        {filterValues[buttonText].length > 0 && (
+          <span className={styles.buttonCount}>
+            ({filterValues[buttonText].length})
+          </span>
+        )}
+      </span>
+    )
+  }
 }
