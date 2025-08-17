@@ -28,6 +28,10 @@
     background-color: var(--light);
     border-bottom: 3px solid var(--light);
   }
+  &:focus {
+    outline: 1px solid var(--primary);
+    outline-offset: -1px;
+  }
 }
 
 .buttonText {
@@ -54,6 +58,7 @@
   top: 33px;
   left: 0;
   width: 100%;
+  width: 275px;
   /* box-shadow: var(--box-shadow); */
   &.open {
     display: block;

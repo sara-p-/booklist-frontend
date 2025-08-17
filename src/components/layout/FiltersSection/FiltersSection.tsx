@@ -5,6 +5,7 @@ import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { SORT_OPTIONS } from '@/lib/globals'
 import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
 import BookCountSection from '../BookCountSection/BookCountSection'
+import Range from '@/components/ui/Form/DropdownFilters/Range/Range'
 
 export default function FiltersSection() {
   const { filterValues, setFilterValues } = useFilterValuesContext()
@@ -73,8 +74,12 @@ export default function FiltersSection() {
         <Filter buttonText='booktags'>
           <Multiselect onChange={handleMultiselectChange} filter='booktags' />
         </Filter>
-        <Filter buttonText='rating'></Filter>
-        <Filter buttonText='spice'></Filter>
+        <Filter buttonText='rating'>
+          <Range />
+        </Filter>
+        <Filter buttonText='spice'>
+          <Range />
+        </Filter>
         <Filter buttonText='completed'></Filter>
       </div>
       <BookCountSection />

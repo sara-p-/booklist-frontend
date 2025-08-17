@@ -1,0 +1,85 @@
+.selectionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: var(--border-thin);
+}
+
+.selectionTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  padding: 0px;
+}
+
+.selectionTextValue {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.selectionText {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.clearButton {
+  font-size: 12px;
+  font-weight: 400;
+  appearance: none;
+  border: var(--border-thin);
+  border-radius: 0;
+  padding: 4px 16px;
+  background-color: var(--secondary);
+  color: var(--primary);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+}
+
+.rangeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  padding: 0px;
+  height: 100%;
+  max-height: 200px;
+}
+
+.sliderRoot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  width: 100%;
+  height: 20px;
+  padding: 24px 16px;
+}
+
+.sliderTrack {
+  background-color: var(--primary);
+  position: relative;
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 3px;
+}
+
+.sliderRange {
+  position: absolute;
+  background-color: var(--accent);
+  border-radius: 9999px;
+  height: 100%;
+}
+/* TODO: add focus/hover states */
+.sliderThumb {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-color: var(--primary);
+  /* box-shadow: 0 2px 10px var(--black-a7); */
+  border-radius: 10px;
+}
