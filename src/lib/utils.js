@@ -23,3 +23,11 @@ export function convertStringToDate(ymdString) {
     day: 'numeric',
   })
 }
+
+// Determine if 2 arrays are equal
+export function areArraysEqual(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false // Arrays must have the same length
+  }
+  return arr1.every((element, index) => element === arr2[index])
+}
