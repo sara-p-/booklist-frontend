@@ -7,6 +7,7 @@ import useEscapeKey from '@/hooks/useEscapeKey'
 import useClickOutside from '@/hooks/useClickOutside'
 import { FilterArrayType } from '@/types/filterType'
 import { areArraysEqual } from '@/lib/utils'
+import useFilterStateContext from '@/hooks/useFilterStateContext'
 
 type FilterProps = {
   children?: React.ReactNode
@@ -16,6 +17,8 @@ type FilterProps = {
 export default function Filter({ children, buttonText }: FilterProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { filterValues } = useFilterValuesContext()
+  // Context that defines whether the filter is open or not
+  const { filterState, setFilterState } = useFilterStateContext()
   const filterRef = useRef<HTMLDivElement>(null)
   // Close dropdown when escape key is pressed
   useEscapeKey(() => setIsOpen(false))
@@ -32,9 +35,7 @@ export default function Filter({ children, buttonText }: FilterProps) {
     return parseInt(value)
   })
 
-  console.log(!areArraysEqual(ratingValues, [0, 10]))
-
-  const contentClasses = isOpen
+  const contentClasses = filterState[buttonText]
     ? `${styles.content} ${styles.open}`
     : styles.content
 
@@ -59,11 +60,18 @@ export default function Filter({ children, buttonText }: FilterProps) {
       ? `${styles.container} ${styles.sort}`
       : styles.container
 
+  function handleButtonClick() {
+    setFilterState({
+      ...filterState,
+      [buttonText]: !filterState[buttonText],
+    })
+  }
+
   return (
     <div className={containerClasses} ref={filterRef}>
-      <button className={theButtonClasses} onClick={() => setIsOpen(!isOpen)}>
+      <button className={theButtonClasses} onClick={handleButtonClick}>
         <SelectionText buttonText={buttonText as FilterArrayType} />
-        {isOpen ? (
+        {filterState[buttonText] ? (
           <FontAwesomeIcon icon={faChevronUp} />
         ) : (
           <FontAwesomeIcon icon={faChevronDown} />

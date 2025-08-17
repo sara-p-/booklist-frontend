@@ -30,7 +30,7 @@ export default function Book({ book }: { book: BookType }) {
               <h2 className={styles.bookTitle}>{book.title}</h2>
             </Link>
             <button className={styles.bookInfoButton}>
-              <b>author:</b> <span>{book.author[0].name}</span>
+              <b>author:</b> <span>{book.authors[0].name}</span>
             </button>
             <button className={styles.bookInfoButton}>
               <b>series:</b> <span>{book.series[0].name}</span>

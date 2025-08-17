@@ -1,6 +1,11 @@
 import { BookType } from '@/types/bookType'
-import { filterBooksByArray, sortArrayGroups } from './filtering-utils'
+import {
+  filterBooksByArray,
+  filterBooksByRange,
+  sortArrayGroups,
+} from './filtering-utils'
 import { FilterType } from '@/types/filterType'
+import { areArraysEqual } from './utils'
 
 /**
  * Accepts the booklist and a sort value and returns a sorted booklist.
@@ -78,6 +83,8 @@ export const filterBookList = (
   const tropes = filterValues.tropes
   const creatures = filterValues.creatures
   const booktags = filterValues.booktags
+  const rating = filterValues.rating.map((value) => parseInt(value))
+  const spice = filterValues.spice.map((value) => parseInt(value))
 
   if (authors.length > 0) {
     const authorsArray = authors.map((author) => {
@@ -112,6 +119,16 @@ export const filterBookList = (
   // Booktags
   if (booktags.length > 0) {
     newBooks = filterBooksByArray(newBooks, booktags, 'booktags')
+  }
+
+  // Rating
+  if (!areArraysEqual(rating, [0, 10])) {
+    newBooks = filterBooksByRange(newBooks, rating, 'rating')
+  }
+
+  // Spice
+  if (!areArraysEqual(spice, [0, 5])) {
+    newBooks = filterBooksByRange(newBooks, spice, 'spice')
   }
 
   return newBooks

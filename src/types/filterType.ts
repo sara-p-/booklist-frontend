@@ -28,3 +28,15 @@ export type FilterArrayType =
   | 'tropes'
   | 'creatures'
   | 'booktags'
+
+export type FilterStateType = {
+  sort: boolean
+  authors: boolean
+  series: boolean
+  genres: boolean
+  tropes: boolean
+  creatures: boolean
+  booktags: boolean
+  rating: boolean
+  spice: boolean
+}

@@ -210,3 +210,31 @@ export function filterBooksByArray(
   })
   return newBooksArray
 }
+
+/**
+ * Accepts a list of books and a range of values and returns a list of books that match the range.
+ *
+ * Used in the main filtering function.
+ *
+ * @param {BookType[]} books - The booklist.
+ * @param {string[]} rangeValues - The range values.
+ * @returns {BookType[]} The filtered booklist.
+ */
+export function filterBooksByRange(
+  books: BookType[],
+  filterValue: number[],
+  filterType: 'rating' | 'spice'
+) {
+  const newBooksArray: BookType[] = []
+  books.forEach((book) => {
+    const newBook = { ...book }
+    const bookFilterNumber = parseInt(newBook[filterType])
+    if (
+      bookFilterNumber >= filterValue[0] &&
+      bookFilterNumber <= filterValue[1]
+    ) {
+      newBooksArray.push(newBook)
+    }
+  })
+  return newBooksArray
+}

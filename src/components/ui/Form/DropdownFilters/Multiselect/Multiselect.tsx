@@ -4,6 +4,7 @@ import { getAllFilterItems, getFilterType } from '@/lib/filtering-utils'
 import { FilterArrayType, FilterType } from '@/types/filterType'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useBookListContext } from '@/hooks/useBookListContext'
+import useFilterStateContext from '@/hooks/useFilterStateContext'
 
 type MultiselectProps = {
   filter: FilterArrayType
@@ -12,6 +13,7 @@ type MultiselectProps = {
 export default function Multiselect({ filter }: MultiselectProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { bookList } = useBookListContext()
+  const { filterState, setFilterState } = useFilterStateContext()
   const items = getAllFilterItems(bookList, filter)
 
   // get the length of the array if the filter is of type string[]
@@ -45,6 +47,10 @@ export default function Multiselect({ filter }: MultiselectProps) {
     setFilterValues({
       ...newFilterValues,
       [filter]: defaultFilterValues,
+    })
+    setFilterState({
+      ...filterState,
+      [filter]: false,
     })
   }
 
