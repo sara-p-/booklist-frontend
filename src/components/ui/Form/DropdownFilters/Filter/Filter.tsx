@@ -60,12 +60,6 @@ type SelectionTextProps = {
 
 export function SelectionText({ buttonText }: SelectionTextProps) {
   const { filterValues } = useFilterValuesContext()
-  const ratingValues = filterValues.rating.map((value) => {
-    return `${value}/10`
-  })
-  const spiceValues = filterValues.spice.map((value) => {
-    return `${value}/5`
-  })
 
   if (buttonText === 'sort') {
     return (
@@ -73,9 +67,7 @@ export function SelectionText({ buttonText }: SelectionTextProps) {
         {`${buttonText}: ${filterValues.sort}`}
       </span>
     )
-  } else if (buttonText === 'rating') {
-    return <span className={styles.buttonText}>{buttonText}</span>
-  } else if (buttonText === 'spice') {
+  } else if (buttonText === 'rating' || buttonText === 'spice') {
     return <span className={styles.buttonText}>{buttonText}</span>
   } else {
     return (

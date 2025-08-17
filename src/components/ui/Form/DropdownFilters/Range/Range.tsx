@@ -7,21 +7,30 @@ import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 type RangeProps = {
   max: number
   buttonText: 'rating' | 'spice'
-  onChange: (filter: 'rating' | 'spice', value: string[]) => void
+  // onChange: (filter: 'rating' | 'spice', value: string[]) => void
 }
 
-export default function Range({ max, buttonText, onChange }: RangeProps) {
+export default function Range({ max, buttonText }: RangeProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   // convert the filter values to numbers since the filter values are strings
   const filterValuesNumbers = filterValues[buttonText].map((value) =>
     parseInt(value)
   )
 
-  function handleChange(value: number[]) {
-    // convert the value to a string since the filter values are strings
+  function handleRangeChange(value: number[]) {
+    const newFilterValues = { ...filterValues }
     const valueString = value.map((value) => value.toString())
-    onChange(buttonText as 'rating' | 'spice', valueString)
+    setFilterValues({
+      ...newFilterValues,
+      [buttonText]: valueString,
+    })
   }
+
+  // function handleChange(value: number[]) {
+  //   // convert the value to a string since the filter values are strings
+  //   const valueString = value.map((value) => value.toString())
+  //   onChange(buttonText as 'rating' | 'spice', valueString)
+  // }
 
   function handleClear() {
     const newFilterValues = { ...filterValues }
@@ -51,7 +60,7 @@ export default function Range({ max, buttonText, onChange }: RangeProps) {
           max={max}
           step={1}
           minStepsBetweenThumbs={1}
-          onValueChange={handleChange}
+          onValueChange={handleRangeChange}
           value={filterValuesNumbers}
         >
           <Slider.Track className={styles.sliderTrack}>

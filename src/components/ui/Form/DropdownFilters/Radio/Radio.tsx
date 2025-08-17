@@ -5,11 +5,19 @@ import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 type RadioProps = {
   items: string[]
   groupName: string
-  onChange: (filter: string, value: string) => void
 }
 
-export default function Radio({ items, groupName, onChange }: RadioProps) {
-  const { filterValues } = useFilterValuesContext()
+export default function Radio({ items, groupName }: RadioProps) {
+  const { filterValues, setFilterValues } = useFilterValuesContext()
+
+  function handleRadioChange(filter: string, value: string) {
+    const newFilterValues = { ...filterValues }
+    setFilterValues({
+      ...newFilterValues,
+      [filter]: value,
+    })
+  }
+
   return (
     <fieldset className={styles.filterContainer}>
       {items.map((item, index) => {
@@ -17,16 +25,13 @@ export default function Radio({ items, groupName, onChange }: RadioProps) {
           filterValues[groupName as keyof FilterType] === item
         return (
           <div className={styles.filterItem} key={`${item}-${index}`}>
-            <label
-              // className={isItemChecked ? styles.selected : ''}
-              htmlFor={item}
-            >
+            <label htmlFor={item}>
               <input
                 type='radio'
                 name={groupName}
                 id={item}
                 value={item}
-                onChange={() => onChange(groupName, item)}
+                onChange={() => handleRadioChange(groupName, item)}
                 checked={isItemChecked}
               />
               {item}

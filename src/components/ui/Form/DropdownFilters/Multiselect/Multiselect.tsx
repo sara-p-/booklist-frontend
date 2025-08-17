@@ -6,11 +6,10 @@ import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useBookListContext } from '@/hooks/useBookListContext'
 
 type MultiselectProps = {
-  onChange: (filter: FilterArrayType, value: string) => void
   filter: FilterArrayType
 }
 
-export default function Multiselect({ onChange, filter }: MultiselectProps) {
+export default function Multiselect({ filter }: MultiselectProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { bookList } = useBookListContext()
   const items = getAllFilterItems(bookList, filter)
@@ -21,8 +20,21 @@ export default function Multiselect({ onChange, filter }: MultiselectProps) {
     filterType === 'string[]' ? filterValues[filter].length : 0
 
   // Handle the item change
-  function handleChange(filter: FilterArrayType, value: string) {
-    onChange(filter, value)
+  function handleMultiselectChange(filter: FilterArrayType, value: string) {
+    const newFilterValues = { ...filterValues }
+    const filterValue = newFilterValues[filter]
+
+    if (filterValue.includes(value)) {
+      setFilterValues({
+        ...newFilterValues,
+        [filter]: filterValue.filter((item) => item !== value),
+      })
+    } else {
+      setFilterValues({
+        ...newFilterValues,
+        [filter]: [...filterValue, value],
+      })
+    }
   }
 
   // Handle the clear button click
@@ -59,7 +71,7 @@ export default function Multiselect({ onChange, filter }: MultiselectProps) {
                 <input
                   type='checkbox'
                   id={item.slug}
-                  onChange={() => handleChange(filter, item.name)}
+                  onChange={() => handleMultiselectChange(filter, item.name)}
                   checked={isItemChecked}
                 />
                 {item.name}
