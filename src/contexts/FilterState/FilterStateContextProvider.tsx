@@ -9,6 +9,7 @@ export default function FilterStateContextProvider({
   children: React.ReactNode
 }) {
   const [filterState, setFilterState] = useState<FilterStateType>({
+    sort: false,
     authors: false,
     series: false,
     genres: false,

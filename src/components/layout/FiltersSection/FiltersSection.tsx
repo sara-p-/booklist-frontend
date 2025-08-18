@@ -6,8 +6,12 @@ import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
 import BookCountSection from '../BookCountSection/BookCountSection'
 import Range from '@/components/ui/Form/DropdownFilters/Range/Range'
 import FilterStateContextProvider from '@/contexts/FilterState/FilterStateContextProvider'
+// import useFilterStateContext from '@/hooks/useFilterStateContext'
+// import { useEffect } from 'react'
 
 export default function FiltersSection() {
+  // const { filterState, setFilterState } = useFilterStateContext()
+
   // TODO: Add the 'completed' filter.
 
   return (

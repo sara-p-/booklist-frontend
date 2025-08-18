@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Filter.module.css'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useEscapeKey from '@/hooks/useEscapeKey'
 import useClickOutside from '@/hooks/useClickOutside'
@@ -13,29 +13,27 @@ type FilterProps = {
   children?: React.ReactNode
   buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
 }
-
-export default function Filter({ children, buttonText }: FilterProps) {
+function Filter({ children, buttonText }: FilterProps) {
   // const [isOpen, setIsOpen] = useState(false)
+
   const { filterValues } = useFilterValuesContext()
   // Context that defines whether the filter is open or not
   const { filterState, setFilterState } = useFilterStateContext()
   const filterRef = useRef<HTMLDivElement>(null)
   // Close the filter dropdown for a variety of reasons
-  function handleCloseFilter() {
-    // setIsOpen(false)
-    setFilterState({
-      ...filterState,
-      [buttonText]: false,
-    })
+  function handleCloseFilter(
+    filter: FilterArrayType | 'sort' | 'rating' | 'spice'
+  ) {
+    const newFilterState = { ...filterState }
+    setFilterState({ ...newFilterState, [filter]: false })
   }
   // Close dropdown when escape key is pressed
-  useEscapeKey(() => handleCloseFilter())
+  useEscapeKey(() => handleCloseFilter(buttonText))
   // Close dropdown when clicking outside of dropdown
-  useClickOutside({ callback: handleCloseFilter, elementRef: filterRef })
-
-  useEffect(() => {
-    console.log(filterState)
-  }, [filterState])
+  useClickOutside({
+    callback: () => handleCloseFilter(buttonText),
+    elementRef: filterRef,
+  })
 
   // get the 'rating' and 'spice' filter values as numbers
   const ratingValues = filterValues.rating.map((value) => {
@@ -72,9 +70,10 @@ export default function Filter({ children, buttonText }: FilterProps) {
 
   function handleButtonClick() {
     // setIsOpen(!isOpen)
+    const newFilterState = { ...filterState }
     setFilterState({
-      ...filterState,
-      [buttonText]: !filterState[buttonText],
+      ...newFilterState,
+      [buttonText]: !newFilterState[buttonText],
     })
   }
 
@@ -93,12 +92,16 @@ export default function Filter({ children, buttonText }: FilterProps) {
   )
 }
 
+export default React.memo(Filter)
+
 // SELECTION TEXT PROPS/COMPONENT
 type SelectionTextProps = {
   buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
 }
 
-export function SelectionText({ buttonText }: SelectionTextProps) {
+const SelectionText = React.memo(function SelectionText({
+  buttonText,
+}: SelectionTextProps) {
   const { filterValues } = useFilterValuesContext()
 
   if (buttonText === 'sort') {
@@ -121,4 +124,4 @@ export function SelectionText({ buttonText }: SelectionTextProps) {
       </span>
     )
   }
-}
+})
