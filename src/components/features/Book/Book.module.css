@@ -58,6 +58,7 @@
 .bookInfo {
   display: block;
   text-transform: lowercase;
+  flex: 1;
   & > * {
     margin-bottom: 4px;
   }
@@ -67,14 +68,8 @@
 }
 
 .bookTitle {
-  font-size: 36px;
-  font-weight: 900;
-  margin: 0 0 4px 0;
-}
-
-.bookAuthor {
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 900;
   margin: 0 0 4px 0;
 }
 

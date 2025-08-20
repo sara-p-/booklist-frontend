@@ -37,9 +37,9 @@ export default function BookCountSection() {
           onClick={() => handleBookOrderChange(!bookOrderAsc)}
         >
           {bookOrderAsc ? (
-            <FontAwesomeIcon className={styles.icon} icon={faArrowDownAZ} />
-          ) : (
             <FontAwesomeIcon className={styles.icon} icon={faArrowUpAZ} />
+          ) : (
+            <FontAwesomeIcon className={styles.icon} icon={faArrowDownAZ} />
           )}
         </button>
         <button

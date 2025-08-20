@@ -6,10 +6,11 @@ import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
 import BookCountSection from '../BookCountSection/BookCountSection'
 import Range from '@/components/ui/Form/DropdownFilters/Range/Range'
 import FilterStateContextProvider from '@/contexts/FilterState/FilterStateContextProvider'
+import React from 'react'
 // import useFilterStateContext from '@/hooks/useFilterStateContext'
 // import { useEffect } from 'react'
 
-export default function FiltersSection() {
+function FiltersSection() {
   // const { filterState, setFilterState } = useFilterStateContext()
 
   // TODO: Add the 'completed' filter.
@@ -58,3 +59,5 @@ export default function FiltersSection() {
     </div>
   )
 }
+
+export default React.memo(FiltersSection)
