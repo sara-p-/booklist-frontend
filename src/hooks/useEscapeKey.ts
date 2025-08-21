@@ -1,7 +1,20 @@
+import { FilterArrayType } from '@/types/filterType'
 import { useEffect } from 'react'
+import useFilterStateContext from './useFilterStateContext'
 
-export default function useEscapeKey(callback: () => void) {
+type UseEscapeKeyProps = {
+  callback: () => void
+  buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
+}
+
+export default function useEscapeKey({
+  callback,
+  buttonText,
+}: UseEscapeKeyProps) {
+  const { filterState } = useFilterStateContext()
   useEffect(() => {
+    if (!filterState[buttonText]) return
+    console.log('filterState', filterState[buttonText])
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         callback()
@@ -10,5 +23,5 @@ export default function useEscapeKey(callback: () => void) {
     }
     window.addEventListener('keydown', handleEscape)
     return () => window.removeEventListener('keydown', handleEscape)
-  }, [callback])
+  }, [callback, filterState, buttonText])
 }
