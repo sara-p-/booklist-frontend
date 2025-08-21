@@ -14,7 +14,6 @@ type FilterProps = {
   buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
 }
 function Filter({ children, buttonText }: FilterProps) {
-  const [isOpen, setIsOpen] = useState(false)
   // Context that defines the filter values
   const { filterValues } = useFilterValuesContext()
   // Context that defines whether the filter is open or not
@@ -26,8 +25,6 @@ function Filter({ children, buttonText }: FilterProps) {
   // Close the filter dropdown for a variety of reasons
   const handleCloseFilter = useCallback(
     (filter: FilterArrayType | 'sort' | 'rating' | 'spice') => {
-      setIsOpen(false)
-      // console.log(`Closing filter: ${filter}`)
       const newFilterState = { ...filterState }
       setFilterState({ ...newFilterState, [filter]: false })
     },
@@ -36,7 +33,6 @@ function Filter({ children, buttonText }: FilterProps) {
 
   // handle the filter button click
   function handleButtonClick() {
-    // setIsOpen(!isOpen)
     const newFilterState = { ...filterState }
     setFilterState({
       ...newFilterState,

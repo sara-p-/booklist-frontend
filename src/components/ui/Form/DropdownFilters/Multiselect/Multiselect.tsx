@@ -42,17 +42,19 @@ function Multiselect({ filter }: MultiselectProps) {
 
   // Handle the clear button click
   function handleClear() {
-    const newFilterValues = { ...filterValues }
     const defaultFilterValues =
       DEFAULT_FILTER_VALUES[filter as keyof FilterType]
+    // set the filter values to the default values
     setFilterValues({
-      ...newFilterValues,
+      ...filterValues,
       [filter]: defaultFilterValues,
     })
+    // set the filter state to false to close the filter
     setFilterState({
       ...filterState,
       [filter]: false,
     })
+    console.log('clear button clicked')
   }
 
   return (

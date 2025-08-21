@@ -14,7 +14,6 @@ export default function useEscapeKey({
   const { filterState } = useFilterStateContext()
   useEffect(() => {
     if (!filterState[buttonText]) return
-    console.log('filterState', filterState[buttonText])
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         callback()
