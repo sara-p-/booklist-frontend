@@ -61,7 +61,11 @@ function Multiselect({ filter }: MultiselectProps) {
     <>
       <div className={styles.selectionContainer}>
         <p className={styles.selectionText}>{selectedItems} selected</p>
-        <button className={styles.clearButton} onClick={handleClear}>
+        <button
+          className={styles.clearButton}
+          onClick={handleClear}
+          disabled={selectedItems === 0}
+        >
           clear
         </button>
       </div>

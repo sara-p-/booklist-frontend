@@ -13,13 +13,13 @@ export default function useClickOutside({
   elementRef,
   buttonText,
 }: UseClickOutsideProps) {
-  // const callbackRef = useRef(callback)
-
-  // // Update the callback ref when callback changes
-  // useEffect(() => {
-  //   callbackRef.current = callback
-  // }, [callback])
   const { filterState } = useFilterStateContext()
+  const callbackRef = useRef(callback)
+
+  // Update the callback ref when callback changes
+  useEffect(() => {
+    callbackRef.current = callback
+  }, [callback])
 
   useEffect(() => {
     if (!filterState[buttonText]) return
@@ -29,7 +29,8 @@ export default function useClickOutside({
         elementRef?.current &&
         !elementRef?.current.contains(event.target as Node)
       ) {
-        callback()
+        console.log(elementRef.current)
+        callbackRef.current()
       }
     }
 
