@@ -1,7 +1,7 @@
 'use client'
 import { FilterStateType } from '@/types/filterType'
 import { FilterStateContext } from './FilterStateContext'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 export default function FilterStateContextProvider({
   children,
@@ -19,8 +19,16 @@ export default function FilterStateContextProvider({
     rating: false,
     spice: false,
   })
+
+  const contextValue = useMemo(() => {
+    return {
+      filterState,
+      setFilterState,
+    }
+  }, [filterState])
+
   return (
-    <FilterStateContext.Provider value={{ filterState, setFilterState }}>
+    <FilterStateContext.Provider value={contextValue}>
       {children}
     </FilterStateContext.Provider>
   )

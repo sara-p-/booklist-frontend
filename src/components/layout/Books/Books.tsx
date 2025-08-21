@@ -2,8 +2,9 @@ import { BookType } from '@/types/bookType'
 import styles from './Books.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import Book from '@/components/features/Book/Book'
+import React from 'react'
 
-export default function Books({ bookList }: { bookList: BookType[] }) {
+function Books({ bookList }: { bookList: BookType[] }) {
   const { filterValues } = useFilterValuesContext()
   const viewClass =
     filterValues.view === 'grid' ? styles.bookGrid : styles.bookList
@@ -16,3 +17,5 @@ export default function Books({ bookList }: { bookList: BookType[] }) {
     </ul>
   )
 }
+
+export default React.memo(Books)

@@ -5,12 +5,13 @@ import { FilterArrayType, FilterType } from '@/types/filterType'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useBookListContext } from '@/hooks/useBookListContext'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
+import React from 'react'
 
 type MultiselectProps = {
   filter: FilterArrayType
 }
 
-export default function Multiselect({ filter }: MultiselectProps) {
+function Multiselect({ filter }: MultiselectProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { bookList } = useBookListContext()
   const { filterState, setFilterState } = useFilterStateContext()
@@ -89,3 +90,5 @@ export default function Multiselect({ filter }: MultiselectProps) {
     </>
   )
 }
+
+export default React.memo(Multiselect)

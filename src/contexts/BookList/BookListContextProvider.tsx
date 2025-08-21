@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { BookListContext } from './BookListContext'
 import { BookType } from '@/types/bookType'
 
@@ -13,13 +13,15 @@ export default function BookListContextProvider({
 }) {
   const [bookList, setBookList] = useState<BookType[]>(initialBookList)
 
+  const contextValue = useMemo(() => {
+    return {
+      bookList,
+      setBookList,
+    }
+  }, [bookList])
+
   return (
-    <BookListContext.Provider
-      value={{
-        bookList,
-        setBookList,
-      }}
-    >
+    <BookListContext.Provider value={contextValue}>
       {children}
     </BookListContext.Provider>
   )

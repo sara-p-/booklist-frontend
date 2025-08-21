@@ -2,7 +2,7 @@
 
 import { FilterType } from '@/types/filterType'
 import { FilterValuesContext } from './FilterValuesContext'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 interface FilterValuesContextProviderProps {
   children: React.ReactNode
@@ -15,10 +15,12 @@ export default function FilterValuesContextProvider({
 }: FilterValuesContextProviderProps) {
   const [filterValues, setFilterValues] = useState<FilterType>(newFilterValues)
 
-  const contextValue = {
-    filterValues,
-    setFilterValues,
-  }
+  const contextValue = useMemo(() => {
+    return {
+      filterValues,
+      setFilterValues,
+    }
+  }, [filterValues])
 
   return (
     <FilterValuesContext.Provider value={contextValue}>

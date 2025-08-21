@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   description: "A list of books I've read",
 }
 
+// TODO: Update the API endpoint
+
 export default async function RootLayout({
   children,
 }: Readonly<{
