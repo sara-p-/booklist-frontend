@@ -50,10 +50,10 @@ export const sortBookList = (bookList: BookType[], sort: string) => {
  * This is the main ordering function.
  *
  * @param {BookType[]} bookList - The booklist.
- * @param {string} order - The order value.
+ * @param {'asc' | 'desc'} order - The order value.
  * @returns {BookType[]} The ordered booklist.
  */
-export const orderBookList = (bookList: BookType[], order: string) => {
+export const orderBookList = (bookList: BookType[], order: 'asc' | 'desc') => {
   const books = [...bookList]
   if (order === 'desc') {
     return books.reverse()

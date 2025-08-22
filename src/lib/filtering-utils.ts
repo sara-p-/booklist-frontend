@@ -199,7 +199,7 @@ export function sortArrayGroupsForHeaders(
     })
     const uniqueTypeArray = [...new Set(typeArray)]
     const alphaTypeArray = uniqueTypeArray.sort((a, b) => a.localeCompare(b))
-    // For each Series, make an array of the books in that Series
+    // For each Group, make an array of the books in that Group
     const arrayOfType = alphaTypeArray.map((type) => {
       const newArray = books.filter((book) => book.series[0].name === type)
       newArray.sort((a, b) =>
@@ -218,8 +218,7 @@ export function sortArrayGroupsForHeaders(
   const alphaTypeArray = uniqueTypeArray.sort((a, b) =>
     a.localeCompare(b, undefined, { numeric: true })
   )
-  // For each Rating, make an array of the books in that Rating
-  // TODO: when the 'order' is reversed on the front end, each group of ratings is also in reverse alphabetical order. I probably need to fix this? I dunno, I need to think on what I actually want to do here.
+  // For each Group, make an array of the books in that Group
   const arrayOfType = alphaTypeArray.map((type) => {
     const newArray = books.filter((book) => book[sortType] === type)
     newArray.sort((a, b) => a.title.localeCompare(b.title)).reverse()

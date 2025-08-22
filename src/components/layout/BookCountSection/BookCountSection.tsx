@@ -10,8 +10,7 @@ import {
 import styles from './BookCountSection.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import { useEffect, useState } from 'react'
-import { useBookListContext } from '@/hooks/useBookListContext'
+import { useState } from 'react'
 import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 
 export default function BookCountSection() {
