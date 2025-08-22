@@ -11,7 +11,9 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <FiltersSection />
-      {filteredBooks.length > 0 && <Books bookList={filteredBooks} />}
+      <div className={styles.bookListContainer}>
+        {filteredBooks.length > 0 && <Books />}
+      </div>
     </div>
   )
 }

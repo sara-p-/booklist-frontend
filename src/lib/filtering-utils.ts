@@ -181,6 +181,55 @@ export function sortArrayGroups(
 }
 
 /**
+ * Accepts the list of books the 'sort' setting/type and returns an array of arrays sorted by the setting/type..
+ *
+ * Used in the books component to sort books and add headers to the sort groups.
+ *
+ * @param {BookType[]} books - The booklist.
+ * @param {string} sortType - The sort type.
+ * @returns {BookType[]} The ordered booklist.
+ */
+export function sortArrayGroupsForHeaders(
+  books: BookType[],
+  sortType: 'rating' | 'spice' | 'series'
+) {
+  if (sortType === 'series') {
+    const typeArray = books.map((book) => {
+      return book.series[0].name
+    })
+    const uniqueTypeArray = [...new Set(typeArray)]
+    const alphaTypeArray = uniqueTypeArray.sort((a, b) => a.localeCompare(b))
+    // For each Series, make an array of the books in that Series
+    const arrayOfType = alphaTypeArray.map((type) => {
+      const newArray = books.filter((book) => book.series[0].name === type)
+      newArray.sort((a, b) =>
+        a.bookNumber.localeCompare(b.bookNumber, undefined, { numeric: true })
+      )
+      return newArray
+    })
+    return arrayOfType
+  }
+
+  // Rating or Spice
+  const typeArray = books.map((book) => {
+    return book[sortType]
+  })
+  const uniqueTypeArray = [...new Set(typeArray)]
+  const alphaTypeArray = uniqueTypeArray.sort((a, b) =>
+    a.localeCompare(b, undefined, { numeric: true })
+  )
+  // For each Rating, make an array of the books in that Rating
+  // TODO: when the 'order' is reversed on the front end, each group of ratings is also in reverse alphabetical order. I probably need to fix this? I dunno, I need to think on what I actually want to do here.
+  const arrayOfType = alphaTypeArray.map((type) => {
+    const newArray = books.filter((book) => book[sortType] === type)
+    newArray.sort((a, b) => a.title.localeCompare(b.title)).reverse()
+    return newArray
+  })
+
+  return arrayOfType
+}
+
+/**
  * Accepts a list of books and a series of filter values and returns a list of books that match the filter values.
  *
  * Used in the main filtering function.

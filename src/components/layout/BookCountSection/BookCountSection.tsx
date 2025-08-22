@@ -2,6 +2,8 @@
 import {
   faArrowDownAZ,
   faArrowUpAZ,
+  faArrowUp19,
+  faArrowDown19,
   faList,
   faTableCells,
 } from '@fortawesome/free-solid-svg-icons'
@@ -28,6 +30,13 @@ export default function BookCountSection() {
     setFilterValues({ ...filterValues, view: bookViewList ? 'list' : 'grid' })
   }
 
+  const sort = filterValues.sort
+
+  let alphaIcons = true
+  if (sort !== 'series' && sort !== 'title') {
+    alphaIcons = false
+  }
+
   return (
     <div className={styles.container}>
       <h4 className={styles.bookCount}>{newBooks.length} books</h4>
@@ -37,9 +46,15 @@ export default function BookCountSection() {
           onClick={() => handleBookOrderChange(!bookOrderAsc)}
         >
           {bookOrderAsc ? (
-            <FontAwesomeIcon className={styles.icon} icon={faArrowUpAZ} />
-          ) : (
+            alphaIcons ? (
+              <FontAwesomeIcon className={styles.icon} icon={faArrowUpAZ} />
+            ) : (
+              <FontAwesomeIcon className={styles.icon} icon={faArrowUp19} />
+            )
+          ) : alphaIcons ? (
             <FontAwesomeIcon className={styles.icon} icon={faArrowDownAZ} />
+          ) : (
+            <FontAwesomeIcon className={styles.icon} icon={faArrowDown19} />
           )}
         </button>
         <button

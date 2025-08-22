@@ -1,14 +1,15 @@
 'use client'
 
 import { useBookListContext } from './useBookListContext'
-import { sortBookList, orderBookList, filterBookList } from '@/lib/filtering'
+import { sortBookList, filterBookList, orderBookList } from '@/lib/filtering'
 import { useFilterValuesContext } from './useFilterValuesContext'
 import { useEffect, useState } from 'react'
+import { BookType } from '@/types/bookType'
 
 export function useFilteredBooks() {
   const { bookList } = useBookListContext()
   const { filterValues } = useFilterValuesContext()
-  const [newBooks, setNewBooks] = useState(bookList)
+  const [newBooks, setNewBooks] = useState<BookType[]>(bookList)
 
   useEffect(() => {
     const filteredBooks = filterBookList(bookList, filterValues)
