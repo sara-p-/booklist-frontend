@@ -28,12 +28,6 @@ export default function Range({ max, buttonText }: RangeProps) {
     })
   }
 
-  // function handleChange(value: number[]) {
-  //   // convert the value to a string since the filter values are strings
-  //   const valueString = value.map((value) => value.toString())
-  //   onChange(buttonText as 'rating' | 'spice', valueString)
-  // }
-
   function handleClear() {
     const newFilterValues = { ...filterValues }
     setFilterValues({
@@ -55,7 +49,13 @@ export default function Range({ max, buttonText }: RangeProps) {
             {filterValuesNumbers[0]}/{max} - {filterValuesNumbers[1]}/{max}
           </span>
         </p>
-        <button className={styles.clearButton} onClick={handleClear}>
+        <button
+          className={styles.clearButton}
+          onClick={handleClear}
+          disabled={
+            filterValuesNumbers[0] === 0 && filterValuesNumbers[1] === max
+          }
+        >
           clear
         </button>
       </div>

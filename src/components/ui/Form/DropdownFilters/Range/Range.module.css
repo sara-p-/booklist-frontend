@@ -38,6 +38,14 @@
     background-color: var(--primary);
     color: var(--secondary);
   }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover {
+      background-color: var(--secondary);
+      color: var(--primary);
+    }
+  }
 }
 
 .rangeContainer {

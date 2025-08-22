@@ -29,18 +29,17 @@ export default function useClickOutside({
         elementRef?.current &&
         !elementRef?.current.contains(event.target as Node)
       ) {
-        console.log(elementRef.current)
         callbackRef.current()
       }
     }
 
     // Try both mousedown and click events
-    // document.addEventListener('mousedown', handleClickOutside)
-    document.addEventListener('click', handleClickOutside)
+    document.addEventListener('mousedown', handleClickOutside)
+    // document.addEventListener('click', handleClickOutside)
 
     return () => {
-      // document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('click', handleClickOutside)
+      document.removeEventListener('mousedown', handleClickOutside)
+      // document.removeEventListener('click', handleClickOutside)
     }
   }, [elementRef, filterState, buttonText]) // Remove callback from dependencies
 }

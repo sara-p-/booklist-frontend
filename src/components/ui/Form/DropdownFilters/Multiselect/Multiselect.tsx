@@ -54,7 +54,6 @@ function Multiselect({ filter }: MultiselectProps) {
       ...filterState,
       [filter]: false,
     })
-    console.log('clear button clicked')
   }
 
   return (

@@ -17,7 +17,6 @@ export default function useEscapeKey({
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         callback()
-        console.log('Escape key pressed')
       }
     }
     window.addEventListener('keydown', handleEscape)
