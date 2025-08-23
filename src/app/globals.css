@@ -46,6 +46,7 @@ body {
   overflow-x: hidden;
   font-size: var(--font-size);
   font-weight: 400;
+  height: 100%;
 }
 
 body {
