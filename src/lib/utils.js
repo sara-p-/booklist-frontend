@@ -31,3 +31,10 @@ export function areArraysEqual(arr1, arr2) {
   }
   return arr1.every((element, index) => element === arr2[index])
 }
+
+// Remove duplicate objects from an array of objects
+export function uniqueArray(originalArray, key) {
+  return originalArray.filter(
+    (obj, index, self) => self.findIndex((t) => t[key] === obj[key]) === index
+  )
+}

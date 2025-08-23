@@ -7,8 +7,10 @@ import BookCountSection from '../BookCountSection/BookCountSection'
 import Range from '@/components/ui/Form/DropdownFilters/Range/Range'
 import FilterStateContextProvider from '@/contexts/FilterState/FilterStateContextProvider'
 import React from 'react'
+import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 
 function FiltersSection() {
+  const { filterValues } = useFilterValuesContext()
   // TODO: Add the 'completed' filter.
 
   return (
@@ -51,7 +53,7 @@ function FiltersSection() {
           />
         </Filter> */}
       </div>
-      <BookCountSection />
+      {filterValues.search === '' && <BookCountSection />}
     </div>
   )
 }

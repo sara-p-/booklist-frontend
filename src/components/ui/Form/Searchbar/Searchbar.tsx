@@ -9,6 +9,10 @@ export default function Searchbar() {
   const [searchValue, setSearchValue] = useState('')
   let typingTimer: NodeJS.Timeout
 
+  useEffect(() => {
+    setSearchValue(filterValues.search)
+  }, [filterValues.search])
+
   // Handle typing in the searchbar by waiting for 750ms before updating the filterValues
   function handleTyping(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchValue(e.target.value)
@@ -18,10 +22,6 @@ export default function Searchbar() {
       }, 750)
     }
   }
-
-  useEffect(() => {
-    console.log('filterValues.search: ', filterValues.search)
-  }, [filterValues.search])
 
   return (
     <div className={styles.searchbar}>
@@ -36,6 +36,7 @@ export default function Searchbar() {
         className={styles.input}
         onChange={handleTyping}
         value={searchValue}
+        autoComplete='off'
       />
     </div>
   )
