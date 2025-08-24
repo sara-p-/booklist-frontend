@@ -2,4 +2,154 @@
   width: 100%;
   max-width: var(--max-width);
   margin: calc(var(--header-height) + 48px) auto;
+  padding: 0 16px;
+  display: flex;
+  gap: 2rem;
+}
+
+.mainContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 2.6;
+}
+
+.bookImageandTitle {
+  display: flex;
+  gap: 16px;
+}
+
+.bookImageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 311px;
+  height: auto;
+  &::after {
+    content: '';
+    display: block;
+    padding-top: 66.67%;
+  }
+}
+
+.bookImageContainer {
+  aspect-ratio: 2/3; /* Modern property, overrides padding-top if supported */
+}
+
+.bookInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bookTitleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: var(--border-thick);
+}
+
+.bookTitle {
+  margin: 0;
+}
+
+.bookAuthor {
+  margin-bottom: 16px;
+}
+
+.bookInfoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bookInfoItem {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  line-height: 1.2;
+  p {
+    margin: 0;
+  }
+}
+
+.bookSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.bookTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bookLinksContainer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.bookLink {
+  text-decoration: none;
+  padding: 12px 48px;
+  border: var(--border-medium);
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+  background-color: var(--secondary);
+  &:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+}
+
+/* Sidebar Container */
+.sidebarContainer {
+  flex: 1;
+}
+
+.sidebarSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebarTitle {
+  margin: 0;
+  width: 100%;
+  border-bottom: var(--border-thick);
+}
+
+.bookStatsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bookStatsItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1.2;
+}
+
+.bookIndividualStatsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.bookIndividualStatsItem {
 }
