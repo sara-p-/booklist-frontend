@@ -12,7 +12,7 @@ export const DEFAULT_FILTER_VALUES: FilterType = {
   booktags: [],
   rating: ['0', '10'],
   spice: ['0', '5'],
-  finished: true,
+  // finished: true,
   search: '',
 }
 

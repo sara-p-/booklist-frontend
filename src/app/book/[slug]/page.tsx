@@ -4,6 +4,10 @@ import { convertStringToDate } from '@/lib/utils'
 import parse from 'html-react-parser'
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
+import LinkList from '@/components/features/SingleBook/LinkList/LinkList'
+import SidebarSection from '@/components/features/SingleBook/SidebarSection/SidebarSection'
+import TimelineItem from '@/components/features/SingleBook/TimelineItem/Timeline'
 
 export default async function BookPage({
   params,
@@ -89,7 +93,7 @@ export default async function BookPage({
         </div>
         <div className={styles.bookSection}>
           <div className={styles.bookTextContainer}>
-            <h4 className={styles.bookTextTitle}>Description</h4>
+            <h3 className={styles.bookTextTitle}>Description</h3>
             <div className={styles.bookText}>{parse(book.description)}</div>
           </div>
           <div className={styles.bookTextContainer}>
@@ -126,83 +130,16 @@ export default async function BookPage({
         </div>
       </div>
       <div className={styles.sidebarContainer}>
-        <div className={styles.sidebarSection}>
-          <p className={`${styles.sidebarTitle} h3`}>Stats</p>
-          <ul className={styles.bookStatsList}>
-            <li className={styles.bookStatsItem}>
-              <span className={`${styles.bookStatsLabel} h4`}>Genres:</span>
-              <ul className={styles.bookIndividualStatsList}>
-                {book.genres.map(
-                  (genre: { id: number; name: string }, index: number) => (
-                    <li
-                      className={styles.bookIndividualStatsItem}
-                      key={genre.id}
-                    >
-                      {genre.name}
-                      {book.genres.length > 1 &&
-                        index < book.genres.length - 1 &&
-                        ','}
-                    </li>
-                  )
-                )}
-              </ul>
-            </li>
-            <li className={styles.bookStatsItem}>
-              <span className={`${styles.bookStatsLabel} h4`}>Tropes:</span>
-              <ul className={styles.bookIndividualStatsList}>
-                {book.tropes.map(
-                  (trope: { id: number; name: string }, index: number) => (
-                    <li
-                      className={styles.bookIndividualStatsItem}
-                      key={trope.id}
-                    >
-                      {trope.name}
-                      {book.tropes.length > 1 &&
-                        index < book.tropes.length - 1 &&
-                        ','}
-                    </li>
-                  )
-                )}
-              </ul>
-            </li>
-            <li className={styles.bookStatsItem}>
-              <span className={`${styles.bookStatsLabel} h4`}>Creatures:</span>
-              <ul className={styles.bookIndividualStatsList}>
-                {book.creatures.map(
-                  (creature: { id: number; name: string }, index: number) => (
-                    <li
-                      className={styles.bookIndividualStatsItem}
-                      key={creature.id}
-                    >
-                      {creature.name}
-                      {book.creatures.length > 1 &&
-                        index < book.creatures.length - 1 &&
-                        ','}
-                    </li>
-                  )
-                )}
-              </ul>
-            </li>
-            <li className={styles.bookStatsItem}>
-              <span className={`${styles.bookStatsLabel} h4`}>Booktags:</span>
-              <ul className={styles.bookIndividualStatsList}>
-                {book.booktags.map(
-                  (booktag: { id: number; name: string }, index: number) => (
-                    <li
-                      className={styles.bookIndividualStatsItem}
-                      key={booktag.id}
-                    >
-                      {booktag.name}
-                      {book.booktags.length > 1 &&
-                        index < book.booktags.length - 1 &&
-                        ','}
-                    </li>
-                  )
-                )}
-              </ul>
-            </li>
-          </ul>
-        </div>
+        <SidebarSection title='stats'>
+          <LinkList items={book.genres} itemLabel='genres' />
+          <LinkList items={book.tropes} itemLabel='tropes' />
+          <LinkList items={book.creatures} itemLabel='creatures' />
+          <LinkList items={book.booktags} itemLabel='booktags' />
+        </SidebarSection>
+        <SidebarSection title='timeline'>
+          <TimelineItem title='started' date={book.startDate} />
+          <TimelineItem title='finished' date={book.finishDate} />
+        </SidebarSection>
       </div>
     </div>
   )

@@ -17,7 +17,7 @@ export type FilterType = {
   booktags: string[]
   rating: string[]
   spice: string[]
-  finished: boolean
+  // finished: boolean
   search: string
 }
 

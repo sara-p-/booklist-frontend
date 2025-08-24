@@ -1,0 +1,14 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1.2;
+}
+
+.label {
+  margin: 0;
+}
+
+.date {
+  margin: 0;
+}

@@ -1,0 +1,25 @@
+.parentItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  margin: 0;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 4px; */
+  line-height: 1.2;
+}
