@@ -1,26 +1,9 @@
 .container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: calc(var(--header-height) + 48px) auto;
-  padding: 0 16px;
-  display: flex;
-  gap: 2rem;
-}
-
-.mainContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  flex: 2.6;
-}
-
-.bookImageandTitle {
   display: flex;
   gap: 16px;
 }
 
-.bookImageContainer {
+.imageContainer {
   position: relative;
   width: 100%;
   max-width: 311px;
@@ -32,33 +15,33 @@
   }
 }
 
-.bookImageContainer {
+.imageContainer {
   aspect-ratio: 2/3; /* Modern property, overrides padding-top if supported */
 }
 
-.bookInfo {
+.infoContainer {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 }
 
-.bookTitleContainer {
+.titleContainer {
   display: flex;
   flex-direction: column;
   gap: 8px;
   border-bottom: var(--border-thick);
 }
 
-.bookTitle {
+.title {
   margin: 0;
 }
 
-.bookAuthor {
+.author {
   margin-bottom: 8px;
 }
 
-.bookInfoList {
+.list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -67,7 +50,7 @@
   gap: 8px;
 }
 
-.bookInfoItem {
+.item {
   display: flex;
   align-items: baseline;
   gap: 4px;
@@ -75,18 +58,4 @@
   p {
     margin: 0;
   }
-}
-
-.bookSection {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* Sidebar Container */
-.sidebarContainer {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
 }

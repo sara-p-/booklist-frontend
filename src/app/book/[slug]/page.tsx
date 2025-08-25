@@ -1,14 +1,13 @@
 import styles from './page.module.css'
-import Image from 'next/image'
-import { convertStringToDate } from '@/lib/utils'
 import parse from 'html-react-parser'
-import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from 'next/link'
 import LinkList from '@/components/features/SingleBook/LinkList/LinkList'
 import SidebarSection from '@/components/features/SingleBook/SidebarSection/SidebarSection'
 import TimelineItem from '@/components/features/SingleBook/TimelineItem/Timeline'
+import BookText from '@/components/features/SingleBook/BookText/BookText'
+import ExternalLink from '@/components/features/SingleBook/ExternalLink/ExternalLink'
+import BookInfo from '@/components/features/SingleBook/BookInfo/BookInfo'
 
+// TODO: work on the fetch function. Might be able to forego it completely if I can pull the book through the bookContext
 export default async function BookPage({
   params,
 }: {
@@ -24,109 +23,15 @@ export default async function BookPage({
   return (
     <div className={styles.container}>
       <div className={styles.mainContainer}>
-        <div className={styles.bookImageandTitle}>
-          <div className={styles.bookImageContainer}>
-            <Image
-              src={book.image}
-              alt={book.title}
-              fill={true}
-              sizes='311px, 467px'
-            />
-          </div>
-
-          <div className={styles.bookInfo}>
-            <div className={styles.bookTitleContainer}>
-              <h1 className={styles.bookTitle}>{book.title}</h1>
-              <h2 className={styles.bookAuthor}>{book.authors[0].name}</h2>
-            </div>
-            <ul className={styles.bookInfoList}>
-              <li className={styles.bookInfoItem}>
-                <p>
-                  <span className={`${styles.bookInfoLabel} h4`}>series:</span>{' '}
-                  {book.series[0].name}
-                </p>
-              </li>
-              <li className={styles.bookInfoItem}>
-                <p>
-                  <span className={`${styles.bookInfoLabel} h4`}>
-                    book number:
-                  </span>{' '}
-                  {book.bookNumber}
-                </p>
-              </li>
-              <li className={styles.bookInfoItem}>
-                <p>
-                  <span className={`${styles.bookInfoLabel} h4`}>
-                    published:
-                  </span>{' '}
-                  {convertStringToDate(book.publishDate)}
-                </p>
-              </li>
-              <li className={styles.bookInfoItem}>
-                <p>
-                  <span className={`${styles.bookInfoLabel} h4`}>length:</span>{' '}
-                  {book.length} pages
-                </p>
-              </li>
-              <li className={styles.bookInfoItem}>
-                <p>
-                  <span className={`${styles.bookInfoLabel} h4`}>rating:</span>{' '}
-                  {book.rating}/10
-                </p>
-              </li>
-              <li className={styles.bookInfoItem}>
-                <p>
-                  <span className={`${styles.bookInfoLabel} h4`}>spice:</span>{' '}
-                  {book.spice}/5
-                </p>
-              </li>
-              <li className={styles.bookInfoItem}>
-                <p>
-                  <span className={`${styles.bookInfoLabel} h4`}>
-                    amount completed:
-                  </span>{' '}
-                  {book.amountCompleted}%
-                </p>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <BookInfo book={book} />
         <div className={styles.bookSection}>
-          <div className={styles.bookTextContainer}>
-            <h3 className={styles.bookTextTitle}>Description</h3>
-            <div className={styles.bookText}>{parse(book.description)}</div>
-          </div>
-          <div className={styles.bookTextContainer}>
-            <h4 className={styles.bookTextTitle}>Notes</h4>
-            <div className={styles.bookText}>{parse(book.notes)}</div>
-          </div>
-          <div className={styles.bookTextContainer}>
-            <h4 className={styles.bookTextTitle}>Smell</h4>
-            <div className={styles.bookText}>
-              <p>{book.smell}</p>
-            </div>
-          </div>
-          <div className={styles.bookTextContainer}>
-            <h4 className={styles.bookTextTitle}>Links</h4>
-            <div className={styles.bookLinksContainer}>
-              <a
-                className={styles.bookLink}
-                href={book.goodreadsLink}
-                target='_blank'
-              >
-                Goodreads{` `}
-                <FontAwesomeIcon icon={faUpRightFromSquare} />
-              </a>
-              <a
-                className={styles.bookLink}
-                href={book.amazonLink}
-                target='_blank'
-              >
-                Amazon{` `}
-                <FontAwesomeIcon icon={faUpRightFromSquare} />
-              </a>
-            </div>
-          </div>
+          <BookText title='description'>{parse(book.description)}</BookText>
+          <BookText title='notes'>{parse(book.notes)}</BookText>
+          <BookText title='smell'>{book.smell}</BookText>
+          <BookText title='links' cname='linksContainer'>
+            <ExternalLink href={book.goodreadsLink} title='Goodreads' />
+            <ExternalLink href={book.amazonLink} title='Amazon' />
+          </BookText>
         </div>
       </div>
       <div className={styles.sidebarContainer}>
