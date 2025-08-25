@@ -15,68 +15,6 @@
   flex: 2.6;
 }
 
-.bookImageandTitle {
-  display: flex;
-  gap: 16px;
-}
-
-.bookImageContainer {
-  position: relative;
-  width: 100%;
-  max-width: 311px;
-  height: auto;
-  &::after {
-    content: '';
-    display: block;
-    padding-top: 66.67%;
-  }
-}
-
-.bookImageContainer {
-  aspect-ratio: 2/3; /* Modern property, overrides padding-top if supported */
-}
-
-.bookInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
-
-.bookTitleContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border-bottom: var(--border-thick);
-}
-
-.bookTitle {
-  margin: 0;
-}
-
-.bookAuthor {
-  margin-bottom: 8px;
-}
-
-.bookInfoList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.bookInfoItem {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  line-height: 1.2;
-  p {
-    margin: 0;
-  }
-}
-
 .bookSection {
   display: flex;
   flex-direction: column;

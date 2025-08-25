@@ -3,8 +3,9 @@
 import { useBookListContext } from './useBookListContext'
 import { sortBookList, filterBookList, orderBookList } from '@/lib/filtering'
 import { useFilterValuesContext } from './useFilterValuesContext'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { BookType } from '@/types/bookType'
+import parse from 'html-react-parser'
 // import { searchBookList } from '@/lib/searching'
 
 export function useFilteredBooks() {
@@ -12,13 +13,28 @@ export function useFilteredBooks() {
   const { filterValues } = useFilterValuesContext()
   const [newBooks, setNewBooks] = useState<BookType[]>(bookList)
 
+  // Parsing the bookList to remove the HTML tags from the title and series name.
+  const parsedBookList = useMemo(() => {
+    return bookList.map((book) => ({
+      ...book,
+      title: parse(book.title) as string,
+      series: book.series.map((series) => ({
+        name: parse(series.name) as string,
+        id: series.id,
+        slug: series.slug,
+      })),
+    }))
+  }, [bookList])
+
+  console.log(parsedBookList)
+
   useEffect(() => {
-    const filteredBooks = filterBookList(bookList, filterValues)
+    const filteredBooks = filterBookList(parsedBookList, filterValues)
     // const searchedBooks = searchBookList(filteredBooks, filterValues.search)
     const sortedBooks = sortBookList(filteredBooks, filterValues.sort)
     const orderedBooks = orderBookList(sortedBooks, filterValues.order)
     setNewBooks(orderedBooks)
-  }, [filterValues, bookList])
+  }, [filterValues, parsedBookList])
 
   return newBooks
 }

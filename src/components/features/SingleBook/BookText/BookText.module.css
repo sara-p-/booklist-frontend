@@ -8,6 +8,7 @@
   width: 100%;
   border-bottom: var(--border-thick);
   margin-bottom: 8px;
+  padding-bottom: 4px;
 }
 
 .linksContainer {

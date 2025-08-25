@@ -2,14 +2,18 @@ import styles from './BookInfo.module.css'
 import Image from 'next/image'
 import { BookType } from '@/types/bookType'
 import { convertStringToDate } from '@/lib/utils'
+import parse from 'html-react-parser'
 
 export default function BookInfo({ book }: { book: BookType }) {
+  const bookTitle = parse(book.title) as string
+  const bookSeries = parse(book.series[0].name) as string
+
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
         <Image
           src={book.image}
-          alt={book.title}
+          alt={bookTitle}
           fill={true}
           sizes='311px, 467px'
         />
@@ -17,14 +21,13 @@ export default function BookInfo({ book }: { book: BookType }) {
 
       <div className={styles.infoContainer}>
         <div className={styles.titleContainer}>
-          <h1 className={styles.title}>{book.title}</h1>
+          <h1 className={styles.title}>{bookTitle}</h1>
           <h2 className={styles.author}>{book.authors[0].name}</h2>
         </div>
         <ul className={styles.list}>
           <li className={styles.item}>
             <p>
-              <span className={`${styles.label} h4`}>series:</span>{' '}
-              {book.series[0].name}
+              <span className={`${styles.label} h4`}>series:</span> {bookSeries}
             </p>
           </li>
           <li className={styles.item}>
