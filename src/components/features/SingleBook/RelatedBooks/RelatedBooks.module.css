@@ -1,0 +1,33 @@
+.item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 50px;
+  height: auto;
+  &::after {
+    content: '';
+    display: block;
+    padding-top: 66.67%;
+  }
+}
+
+.imageContainer {
+  aspect-ratio: 2/3; /* Modern property, overrides padding-top if supported */
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bookNumber {
+  font-size: 14px;
+}

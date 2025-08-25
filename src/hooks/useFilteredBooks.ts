@@ -26,8 +26,6 @@ export function useFilteredBooks() {
     }))
   }, [bookList])
 
-  console.log(parsedBookList)
-
   useEffect(() => {
     const filteredBooks = filterBookList(parsedBookList, filterValues)
     // const searchedBooks = searchBookList(filteredBooks, filterValues.search)

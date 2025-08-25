@@ -9,8 +9,8 @@ import BookInfo from '@/components/features/SingleBook/BookInfo/BookInfo'
 import { fetchData } from '@/lib/fetch'
 import { BookType, BookItem } from '@/types/bookType'
 import Pagination from '@/components/features/SingleBook/Pagination/Pagination'
+import RelatedBooks from '@/components/features/SingleBook/RelatedBooks/RelatedBooks'
 
-// TODO: work on the fetch function.
 export default async function BookPage({
   params,
 }: {
@@ -33,8 +33,6 @@ export default async function BookPage({
     notes: parse(book.notes) as string,
     smell: parse(book.smell) as string,
   }
-
-  console.log('smell:', parsedBook.smell)
 
   return (
     <>
@@ -70,6 +68,7 @@ export default async function BookPage({
             <TimelineItem title='started' date={parsedBook.startDate} />
             <TimelineItem title='finished' date={parsedBook.finishDate} />
           </SidebarSection>
+          <RelatedBooks slug={slug} />
         </div>
       </div>
       <Pagination slug={slug} />
