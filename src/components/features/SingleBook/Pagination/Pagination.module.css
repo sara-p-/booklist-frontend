@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 16px;
+  margin: auto;
+}
+
+.buttons {
+  width: auto;
+  padding: 1rem 0;
+  margin: 2rem auto 3rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-top: var(--border-thick);
+}
+
+.button {
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 600;
+  &:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+}

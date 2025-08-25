@@ -8,6 +8,7 @@ import ExternalLink from '@/components/features/SingleBook/ExternalLink/External
 import BookInfo from '@/components/features/SingleBook/BookInfo/BookInfo'
 import { fetchData } from '@/lib/fetch'
 import { BookType, BookItem } from '@/types/bookType'
+import Pagination from '@/components/features/SingleBook/Pagination/Pagination'
 
 // TODO: work on the fetch function.
 export default async function BookPage({
@@ -36,39 +37,42 @@ export default async function BookPage({
   console.log('smell:', parsedBook.smell)
 
   return (
-    <div className={styles.container}>
-      <div className={styles.mainContainer}>
-        <BookInfo book={parsedBook} />
-        <div className={styles.bookSection}>
-          <BookText title='description'>{parsedBook.description}</BookText>
-          {parsedBook.notes.length > 0 &&
-            parsedBook.notes !== 'null' &&
-            parsedBook.notes !== '' && (
-              <BookText title='notes'>{parsedBook.notes}</BookText>
-            )}
-          {parsedBook.smell.length > 0 &&
-            parsedBook.smell !== 'null' &&
-            parsedBook.smell !== '' && (
-              <BookText title='smell'>{parsedBook.smell}</BookText>
-            )}
-          <BookText title='links' cname='linksContainer'>
-            <ExternalLink href={parsedBook.goodreadsLink} title='Goodreads' />
-            <ExternalLink href={parsedBook.amazonLink} title='Amazon' />
-          </BookText>
+    <>
+      <div className={styles.container}>
+        <div className={styles.mainContainer}>
+          <BookInfo book={parsedBook} />
+          <div className={styles.bookSection}>
+            <BookText title='description'>{parsedBook.description}</BookText>
+            {parsedBook.notes.length > 0 &&
+              parsedBook.notes !== 'null' &&
+              parsedBook.notes !== '' && (
+                <BookText title='notes'>{parsedBook.notes}</BookText>
+              )}
+            {parsedBook.smell.length > 0 &&
+              parsedBook.smell !== 'null' &&
+              parsedBook.smell !== '' && (
+                <BookText title='smell'>{parsedBook.smell}</BookText>
+              )}
+            <BookText title='links' cname='linksContainer'>
+              <ExternalLink href={parsedBook.goodreadsLink} title='Goodreads' />
+              <ExternalLink href={parsedBook.amazonLink} title='Amazon' />
+            </BookText>
+          </div>
+        </div>
+        <div className={styles.sidebarContainer}>
+          <SidebarSection title='stats'>
+            <LinkList items={parsedBook.genres} itemLabel='genres' />
+            <LinkList items={parsedBook.tropes} itemLabel='tropes' />
+            <LinkList items={parsedBook.creatures} itemLabel='creatures' />
+            <LinkList items={parsedBook.booktags} itemLabel='booktags' />
+          </SidebarSection>
+          <SidebarSection title='timeline'>
+            <TimelineItem title='started' date={parsedBook.startDate} />
+            <TimelineItem title='finished' date={parsedBook.finishDate} />
+          </SidebarSection>
         </div>
       </div>
-      <div className={styles.sidebarContainer}>
-        <SidebarSection title='stats'>
-          <LinkList items={parsedBook.genres} itemLabel='genres' />
-          <LinkList items={parsedBook.tropes} itemLabel='tropes' />
-          <LinkList items={parsedBook.creatures} itemLabel='creatures' />
-          <LinkList items={parsedBook.booktags} itemLabel='booktags' />
-        </SidebarSection>
-        <SidebarSection title='timeline'>
-          <TimelineItem title='started' date={parsedBook.startDate} />
-          <TimelineItem title='finished' date={parsedBook.finishDate} />
-        </SidebarSection>
-      </div>
-    </div>
+      <Pagination slug={slug} />
+    </>
   )
 }

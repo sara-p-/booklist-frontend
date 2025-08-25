@@ -40,7 +40,7 @@ export default function Header() {
               <h1 className={styles.title}>BookList</h1>
             </div>
           </Link>
-          <div className={styles.menuContainer}>
+          {/* <div className={styles.menuContainer}>
             <MenuButton
               href='/'
               label='books'
@@ -53,7 +53,7 @@ export default function Header() {
               isActive={activeButton === 'timeline'}
               onClick={handleButtonClick}
             />
-          </div>
+          </div> */}
           <Searchbar />
         </div>
         <div className={styles.column}>
