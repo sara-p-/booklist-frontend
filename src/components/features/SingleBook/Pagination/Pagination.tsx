@@ -12,21 +12,38 @@ import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 export default function Pagination({ slug }: { slug: string }) {
   const filteredBooks = useFilteredBooks()
   const currentBookIndex = filteredBooks.findIndex((book) => book.slug === slug)
-  const previousBook = filteredBooks[currentBookIndex - 1].slug
-  const nextBook = filteredBooks[currentBookIndex + 1].slug
+  const previousBook =
+    filteredBooks.length > 0 && currentBookIndex > 0
+      ? filteredBooks[currentBookIndex - 1].slug
+      : null
+  const nextBook =
+    filteredBooks.length > 0 && currentBookIndex < filteredBooks.length - 1
+      ? filteredBooks[currentBookIndex + 1].slug
+      : null
 
   return (
     <div className={styles.container}>
       <div className={styles.buttons}>
-        <Link className={styles.button} href={`/book/${previousBook}`}>
-          <FontAwesomeIcon icon={faChevronLeft} size='sm' /> {'previous book'}
-        </Link>
-        <Link className={styles.button} href={`/`}>
-          {'all books'}
-        </Link>
-        <Link className={styles.button} href={`/book/${nextBook}`}>
-          {'next book'} <FontAwesomeIcon icon={faChevronRight} size='sm' />
-        </Link>
+        <div className={styles.buttonContainer}>
+          {previousBook && (
+            <Link className={styles.button} href={`/book/${previousBook}`}>
+              <FontAwesomeIcon icon={faChevronLeft} size='sm' />{' '}
+              {'previous book'}
+            </Link>
+          )}
+        </div>
+        <div className={styles.buttonContainer}>
+          <Link className={styles.button} href={`/`}>
+            {'all books'}
+          </Link>
+        </div>
+        <div className={styles.buttonContainer}>
+          {nextBook && (
+            <Link className={styles.button} href={`/book/${nextBook}`}>
+              {'next book'} <FontAwesomeIcon icon={faChevronRight} size='sm' />
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   )

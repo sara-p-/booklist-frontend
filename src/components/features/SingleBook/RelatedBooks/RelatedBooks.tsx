@@ -21,8 +21,6 @@ export default function RelatedBooks({ slug }: { slug: string }) {
 
   if (relatedBooks.length === 0) return null
 
-  console.log('relatedBooks:', relatedBooks)
-
   const relatedBooksList = relatedBooks.sort((a, b) =>
     a.bookNumber.localeCompare(b.bookNumber, undefined, { numeric: true })
   )

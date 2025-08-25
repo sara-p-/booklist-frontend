@@ -1,12 +1,25 @@
+'use client'
 import styles from './BookInfo.module.css'
 import Image from 'next/image'
 import { BookType } from '@/types/bookType'
 import { convertStringToDate } from '@/lib/utils'
 import parse from 'html-react-parser'
+import Link from 'next/link'
+import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
+import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
 export default function BookInfo({ book }: { book: BookType }) {
+  const { filterValues, setFilterValues } = useFilterValuesContext()
   const bookTitle = parse(book.title) as string
   const bookSeries = parse(book.series[0].name) as string
+
+  function handleSeriesClick() {
+    setFilterValues({
+      ...filterValues,
+      ...DEFAULT_FILTER_VALUES,
+      series: [bookSeries],
+    })
+  }
 
   return (
     <div className={styles.container}>
@@ -27,7 +40,10 @@ export default function BookInfo({ book }: { book: BookType }) {
         <ul className={styles.list}>
           <li className={styles.item}>
             <p>
-              <span className={`${styles.label} h4`}>series:</span> {bookSeries}
+              <span className={`${styles.label} h4`}>series: </span>
+              <Link onNavigate={handleSeriesClick} href='/'>
+                {bookSeries}
+              </Link>
             </p>
           </li>
           <li className={styles.item}>
