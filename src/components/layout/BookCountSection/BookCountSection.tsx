@@ -38,7 +38,7 @@ export default function BookCountSection() {
 
   return (
     <div className={styles.container}>
-      <h4 className={styles.bookCount}>{newBooks.length} books</h4>
+      <h4 className={styles.bookCount}>{newBooks && newBooks.length} books</h4>
       <div className={styles.bookOrderContainer}>
         <button
           className={`${styles.bookOrderButton} ${styles.bookView}`}

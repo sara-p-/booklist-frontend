@@ -10,6 +10,8 @@ import { fetchData } from '@/lib/fetch'
 import BookListContextProvider from '@/contexts/BookList/BookListContextProvider'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import FilterValuesContextProvider from '@/contexts/FilterValues/FilterValuesContextProvider'
+import Loading from './loading'
+import { Suspense } from 'react'
 config.autoAddCss = false
 
 const inter = Inter({

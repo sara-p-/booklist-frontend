@@ -3,9 +3,18 @@ import styles from './SearchResults.module.css'
 import Link from 'next/link'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { useSearch } from '@/hooks/useSearch'
+import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
 export default function SearchResults() {
   const { books, authors, series } = useSearch()
+  const { filterValues, setFilterValues } = useFilterValuesContext()
+
+  const onLinkClick = () => {
+    setFilterValues({
+      ...filterValues,
+      ...DEFAULT_FILTER_VALUES,
+    })
+  }
 
   return (
     <div className={styles.resultsContainer}>
@@ -14,7 +23,9 @@ export default function SearchResults() {
         <ul className={styles.resultsList}>
           {books.map((book) => (
             <li key={book.id}>
-              <Link href={`/book/${book.slug}`}>{book.title}</Link>
+              <Link onNavigate={onLinkClick} href={`/book/${book.slug}`}>
+                {book.title}
+              </Link>
             </li>
           ))}
         </ul>
@@ -52,12 +63,15 @@ export function LinkButton({
 }) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
 
-  function handleClick() {
-    setFilterValues({ ...filterValues, [linkType]: [linkText], search: '' })
+  const onLinkClick = () => {
+    setFilterValues({
+      ...filterValues,
+      ...DEFAULT_FILTER_VALUES,
+    })
   }
 
   return (
-    <button className={styles.linkButton} onClick={handleClick}>
+    <button className={styles.linkButton} onClick={onLinkClick}>
       {linkText}
     </button>
   )

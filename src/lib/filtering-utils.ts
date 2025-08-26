@@ -51,8 +51,8 @@ export const getAllFilterItems = (
   bookList: BookType[],
   type: FilterArrayType
 ): BookItem[] => {
+  if (!bookList) return []
   // Get a list of all of the current options (depending on the selected filters)
-
   // pull out the objects from the bookList array that match the type
   const items = bookList.map((book) => book[type]).flat()
   // remove the duplicate objects from the array by authorName
@@ -80,6 +80,7 @@ export function getTheFilteredItems(
   filteredBookList: BookType[],
   type: FilterArrayType
 ) {
+  if (!bookList) return []
   // Get a list of all of the current options (depending on the selected filters)
   const allFilterItems = getAllFilterItems(bookList, type)
   // Loop through each filter item and check if it is in the filtered bookList
@@ -111,6 +112,7 @@ export function getTheFilteredItemsWithAmount(
   filteredBookList: BookType[],
   type: FilterArrayType
 ) {
+  if (!bookList) return []
   // Get a list of all of the current options (depending on the selected filters)
   const allFilterItems = getAllFilterItems(bookList, type)
   // Loop through each filter item and check if it is in the filtered bookList
@@ -140,6 +142,7 @@ export function sortArrayGroups(
   books: BookType[],
   sortType: 'rating' | 'spice' | 'series'
 ) {
+  if (!books) return []
   if (sortType === 'series') {
     const typeArray = books.map((book) => {
       return book.series[0].name
@@ -193,6 +196,7 @@ export function sortArrayGroupsForHeaders(
   books: BookType[],
   sortType: 'rating' | 'spice' | 'series'
 ) {
+  if (!books) return []
   if (sortType === 'series') {
     const typeArray = books.map((book) => {
       return book.series[0].name
@@ -242,6 +246,7 @@ export function filterBooksByArray(
   filterValuesArray: string[],
   filterType: 'genres' | 'tropes' | 'creatures' | 'booktags'
 ) {
+  if (!books) return []
   // Create a new array to store the filtered books
   const newBooksArray: BookType[] = []
   // Loop through each book
@@ -273,6 +278,7 @@ export function filterBooksByRange(
   filterValue: number[],
   filterType: 'rating' | 'spice'
 ) {
+  if (!books) return []
   const newBooksArray: BookType[] = []
   books.forEach((book) => {
     const newBook = { ...book }
