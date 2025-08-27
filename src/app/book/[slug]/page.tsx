@@ -10,7 +10,6 @@ import { fetchData } from '@/lib/fetch'
 import { BookType, BookItem } from '@/types/bookType'
 import Pagination from '@/components/features/SingleBook/Pagination/Pagination'
 import RelatedBooks from '@/components/features/SingleBook/RelatedBooks/RelatedBooks'
-import Loading from './loading'
 
 export default async function BookPage({
   params,

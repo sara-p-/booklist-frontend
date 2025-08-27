@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import styles from './LinkList.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
+import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
 export default function LinkList({
   items,
@@ -17,6 +18,7 @@ export default function LinkList({
   function handleNavigation(item: { id: number; name: string; slug: string }) {
     setFilterValues({
       ...filterValues,
+      ...DEFAULT_FILTER_VALUES,
       [itemLabel.toLowerCase()]: [item.name],
     })
   }
