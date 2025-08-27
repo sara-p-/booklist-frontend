@@ -1,6 +1,87 @@
-.loading {
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 100%;
+  & > * {
+    font-family: var(--font-redacted-script);
+  }
+}
+
+.filtersContainer {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 0 16px 0;
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--secondary);
+}
+
+.filtersWrapper {
+  width: 100%;
+  max-width: var(--medium-width);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(186px, 1fr));
+  gap: 36px 16px;
+  margin: 0 auto;
+  padding: 36px 0 36px 0;
+}
+
+.filter {
+  width: 100%;
+  position: relative;
+  /* opacity: 0.1; */
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  padding: 8px;
+  border-bottom: 3px solid var(--loading-dark);
+  &:first-child {
+    background-color: var(--loading-light);
+  }
+}
+
+.filterText {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--loading-dark);
+}
+
+.filterIcon {
+  color: var(--loading-dark);
+}
+
+.bookListContainer {
+  padding-top: calc(var(--header-height) + var(--filters-height) + 16px);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: var(--loading-light);
+  /* opacity: 0.1; */
+  &::after {
+    content: '';
+    display: block;
+    padding-top: 66.67%;
+  }
+}
+
+.item {
+  aspect-ratio: 2/3; /* Modern property, overrides padding-top if supported */
 }

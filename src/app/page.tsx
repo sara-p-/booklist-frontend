@@ -6,7 +6,6 @@ import Books from '@/components/layout/Books/Books'
 import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import SearchResults from '@/components/layout/SearchResults/SearchResults'
-import { Suspense } from 'react'
 import Loading from './loading'
 
 export default function Home() {
@@ -16,6 +15,7 @@ export default function Home() {
   if (!filteredBooks) return <Loading />
 
   return (
+    // <Loading />
     <div className={styles.container}>
       <FiltersSection />
       <div className={styles.bookListContainer}>

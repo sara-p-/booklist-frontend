@@ -11,6 +11,7 @@ import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 
 export default function Pagination({ slug }: { slug: string }) {
   const filteredBooks = useFilteredBooks()
+  if (!filteredBooks) return null
   const currentBookIndex = filteredBooks.findIndex((book) => book.slug === slug)
   const previousBook =
     filteredBooks.length > 0 && currentBookIndex > 0

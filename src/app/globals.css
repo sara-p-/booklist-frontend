@@ -5,6 +5,9 @@
   --medium: #858585;
   --dark: #545454;
   --accent: var(--dark);
+  --accent-light: var(--light);
+  --loading-light: rgba(182, 182, 182, 0.5);
+  --loading-dark: rgba(36, 36, 36, 0.5);
 
   [data-theme='dark'] {
     --primary: #e6e6e6;

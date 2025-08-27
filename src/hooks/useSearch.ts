@@ -27,6 +27,7 @@ export function useSearch() {
       return
     }
     // search through titles
+    if (!bookList) return
     const bookResults: { slug: string; title: string; id: number }[] = bookList
       .filter((book) =>
         book.title.toLowerCase().includes(filterValues.search.toLowerCase())

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Redacted_Script } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header/Header'
 
@@ -16,6 +16,12 @@ config.autoAddCss = false
 
 const inter = Inter({
   variable: '--font-inter',
+  subsets: ['latin'],
+})
+
+const redactedScript = Redacted_Script({
+  variable: '--font-redacted-script',
+  weight: ['300', '400', '700'],
   subsets: ['latin'],
 })
 
@@ -37,7 +43,7 @@ export default async function RootLayout({
 
   return (
     <html lang='en'>
-      <body className={`${inter.variable}`}>
+      <body className={`${inter.variable} ${redactedScript.variable}`}>
         <FilterValuesContextProvider newFilterValues={DEFAULT_FILTER_VALUES}>
           <BookListContextProvider initialBookList={data}>
             <Header />

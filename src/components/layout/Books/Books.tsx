@@ -2,9 +2,8 @@ import { BookType } from '@/types/bookType'
 import styles from './Books.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import Book from '@/components/features/Book/Book'
-import React, { Suspense } from 'react'
+import React from 'react'
 import { useFilteredBooks } from '@/hooks/useFilteredBooks'
-import Loading from '@/app/loading'
 
 function Books() {
   const { filterValues } = useFilterValuesContext()
@@ -14,12 +13,10 @@ function Books() {
 
   return (
     <ul className={viewClass}>
-      <Suspense fallback={<Loading />}>
-        {filteredBooks &&
-          filteredBooks.map((book: BookType) => (
-            <Book key={book.bookId} book={book} />
-          ))}
-      </Suspense>
+      {filteredBooks &&
+        filteredBooks.map((book: BookType) => (
+          <Book key={book.bookId} book={book} />
+        ))}
     </ul>
   )
 }
