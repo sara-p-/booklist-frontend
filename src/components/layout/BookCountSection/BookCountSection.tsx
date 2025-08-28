@@ -29,33 +29,10 @@ export default function BookCountSection() {
     setFilterValues({ ...filterValues, view: bookViewList ? 'list' : 'grid' })
   }
 
-  const sort = filterValues.sort
-
-  let alphaIcons = true
-  if (sort !== 'series' && sort !== 'title') {
-    alphaIcons = false
-  }
-
   return (
     <div className={styles.container}>
       <h4 className={styles.bookCount}>{newBooks && newBooks.length} books</h4>
       <div className={styles.bookOrderContainer}>
-        <button
-          className={`${styles.bookOrderButton} ${styles.bookView}`}
-          onClick={() => handleBookOrderChange(!bookOrderAsc)}
-        >
-          {bookOrderAsc ? (
-            alphaIcons ? (
-              <FontAwesomeIcon className={styles.icon} icon={faArrowUpAZ} />
-            ) : (
-              <FontAwesomeIcon className={styles.icon} icon={faArrowUp19} />
-            )
-          ) : alphaIcons ? (
-            <FontAwesomeIcon className={styles.icon} icon={faArrowDownAZ} />
-          ) : (
-            <FontAwesomeIcon className={styles.icon} icon={faArrowDown19} />
-          )}
-        </button>
         <button
           className={`${styles.bookOrderButton} ${styles.bookOrder}`}
           onClick={() => handleBookViewChange(!bookViewList)}
