@@ -1,32 +1,20 @@
 'use client'
-import {
-  faArrowDownAZ,
-  faArrowUpAZ,
-  faArrowUp19,
-  faArrowDown19,
-  faList,
-  faTableCells,
-} from '@fortawesome/free-solid-svg-icons'
+import { faList, faTableCells } from '@fortawesome/free-solid-svg-icons'
 import styles from './BookCountSection.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import { useState } from 'react'
 import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 
 export default function BookCountSection() {
   const newBooks = useFilteredBooks()
   const { filterValues, setFilterValues } = useFilterValuesContext()
-  const [bookOrderAsc, setBookOrderAsc] = useState(false)
-  const [bookViewList, setBookViewList] = useState(false)
 
-  function handleBookOrderChange(bookOrderAsc: boolean) {
-    setBookOrderAsc(bookOrderAsc)
-    setFilterValues({ ...filterValues, order: bookOrderAsc ? 'asc' : 'desc' })
-  }
-
-  function handleBookViewChange(bookViewList: boolean) {
-    setBookViewList(bookViewList)
-    setFilterValues({ ...filterValues, view: bookViewList ? 'list' : 'grid' })
+  function handleBookViewChange() {
+    if (filterValues.view === 'list') {
+      setFilterValues({ ...filterValues, view: 'grid' })
+    } else {
+      setFilterValues({ ...filterValues, view: 'list' })
+    }
   }
 
   return (
@@ -35,9 +23,9 @@ export default function BookCountSection() {
       <div className={styles.bookOrderContainer}>
         <button
           className={`${styles.bookOrderButton} ${styles.bookOrder}`}
-          onClick={() => handleBookViewChange(!bookViewList)}
+          onClick={() => handleBookViewChange()}
         >
-          {bookViewList ? (
+          {filterValues.view === 'list' ? (
             <FontAwesomeIcon className={styles.icon} icon={faTableCells} />
           ) : (
             <FontAwesomeIcon className={styles.icon} icon={faList} />

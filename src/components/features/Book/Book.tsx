@@ -6,14 +6,12 @@ import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { convertStringToDate } from '@/lib/utils'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
-// TODO: Add links to the different book information that reset the filters
-// TODO: Add a link to the book page that resets the filters
-
 export default function Book({ book }: { book: BookType }) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const isList = filterValues.view === 'list'
   const itemClass = isList ? styles.bookListItem : styles.bookGridItem
 
+  // TODO: when the user clicks on the book, the filters should be reset. Because the reset is happening before the book is loaded, the screen flashes the book grid before the user is navigated away.
   function handleHomeNavigation() {
     // setFilterValues({
     //   ...filterValues,
