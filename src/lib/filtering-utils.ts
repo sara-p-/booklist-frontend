@@ -343,3 +343,32 @@ export function getOrderLabel(orderValue: string, sortValue: string) {
     }
   }
 }
+
+/**
+ * Sets the 'order' filter value based on the 'sort' filter value.
+ *
+ * Used in the Filter component .
+ *
+ * @param {string} sortValue - The sort value.
+ * @returns {string} The order value.
+ */
+export function setOrderValue(sortValue: string) {
+  switch (sortValue) {
+    case 'series':
+      return 'asc'
+    case 'title':
+      return 'asc'
+    case 'rating':
+      return 'desc'
+    case 'spice':
+      return 'desc'
+    case 'length':
+      return 'desc'
+    case 'published':
+      return 'desc'
+    case 'reading order':
+      return 'desc'
+    default:
+      return 'desc'
+  }
+}

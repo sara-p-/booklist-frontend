@@ -2,7 +2,7 @@ import { FilterType } from '@/types/filterType'
 import styles from './Radio.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
-import { getOrderLabel } from '@/lib/filtering-utils'
+import { getOrderLabel, setOrderValue } from '@/lib/filtering-utils'
 
 type RadioProps = {
   items: string[]
@@ -12,12 +12,23 @@ type RadioProps = {
 export default function Radio({ items, groupName }: RadioProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { filterState, setFilterState } = useFilterStateContext()
+
   function handleRadioChange(filter: string, value: string) {
     const newFilterValues = { ...filterValues }
-    setFilterValues({
-      ...newFilterValues,
-      [filter]: value,
-    })
+    // If the filter is 'sort', set the 'order filter based on the 'sort' value
+    if (filter === 'sort') {
+      setFilterValues({
+        ...newFilterValues,
+        sort: value as FilterType['sort'],
+        order: setOrderValue(value),
+      })
+    } else {
+      setFilterValues({
+        ...newFilterValues,
+        [filter]: value,
+      })
+    }
+
     setFilterState({
       ...filterState,
       [groupName]: false,
