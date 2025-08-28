@@ -38,6 +38,13 @@ function Multiselect({ filter }: MultiselectProps) {
         [filter]: [...filterValue, value],
       })
     }
+
+    // change the filter state to close the filter when the user selected an item
+    // set the filter state to false to close the filter
+    setFilterState({
+      ...filterState,
+      [filter]: false,
+    })
   }
 
   // Handle the clear button click
