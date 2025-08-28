@@ -5,7 +5,7 @@ import { FilterArrayType } from '@/types/filterType'
 type UseClickOutsideProps = {
   callback: () => void
   elementRef: React.RefObject<HTMLElement | null>
-  buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
+  buttonText: FilterArrayType | 'sort' | 'order' | 'rating' | 'spice'
 }
 
 export default function useClickOutside({

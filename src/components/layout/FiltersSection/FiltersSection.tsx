@@ -1,7 +1,7 @@
 import Filter from '@/components/ui/Form/DropdownFilters/Filter/Filter'
 import styles from './FiltersSection.module.css'
 import Multiselect from '@/components/ui/Form/DropdownFilters/Multiselect/Multiselect'
-import { SORT_OPTIONS } from '@/lib/globals'
+import { ORDER_OPTIONS, SORT_OPTIONS } from '@/lib/globals'
 import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
 import BookCountSection from '../BookCountSection/BookCountSection'
 import Range from '@/components/ui/Form/DropdownFilters/Range/Range'
@@ -19,6 +19,9 @@ function FiltersSection() {
         <FilterStateContextProvider>
           <Filter buttonText='sort'>
             <Radio items={SORT_OPTIONS} groupName='sort' />
+          </Filter>
+          <Filter buttonText='order'>
+            <Radio items={ORDER_OPTIONS} groupName='order' />
           </Filter>
           <Filter buttonText='authors'>
             <Multiselect filter='authors' />

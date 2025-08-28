@@ -26,7 +26,7 @@ export const SORT_OPTIONS = [
   'spice',
 ]
 
-export const ORDER_OPTIONS = ['asc', 'desc']
+export const ORDER_OPTIONS = ['desc', 'asc']
 
 export const VIEW_OPTIONS = ['list', 'grid']
 

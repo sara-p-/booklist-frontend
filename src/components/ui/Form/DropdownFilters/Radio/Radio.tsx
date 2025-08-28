@@ -2,6 +2,7 @@ import { FilterType } from '@/types/filterType'
 import styles from './Radio.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
+import { getOrderLabel } from '@/lib/filtering-utils'
 
 type RadioProps = {
   items: string[]
@@ -23,6 +24,11 @@ export default function Radio({ items, groupName }: RadioProps) {
     })
   }
 
+  // If this is the 'order' filter, change the label based on the 'sort' filter value
+  // All of this is to make the order options make more sense to the user
+  const orderLabelAsc = getOrderLabel('asc', filterValues.sort)
+  const orderLabelDesc = getOrderLabel('desc', filterValues.sort)
+
   return (
     <fieldset className={styles.filterContainer}>
       {items.map((item, index) => {
@@ -39,7 +45,11 @@ export default function Radio({ items, groupName }: RadioProps) {
                 onChange={() => handleRadioChange(groupName, item)}
                 checked={isItemChecked}
               />
-              {item}
+              {groupName === 'order'
+                ? item === 'asc'
+                  ? `${item} (${orderLabelAsc})`
+                  : `${item} (${orderLabelDesc})`
+                : item}
             </label>
           </div>
         )

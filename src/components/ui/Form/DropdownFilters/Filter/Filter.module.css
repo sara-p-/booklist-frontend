@@ -47,6 +47,23 @@
   font-weight: 600;
 }
 
+.buttonTextContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.buttonTextLabel {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.buttonTextValue {
+  font-size: 14px;
+  font-weight: 400;
+}
+
 .buttonCount {
   font-size: 12px;
   font-weight: 400;

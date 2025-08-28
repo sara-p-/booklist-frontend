@@ -292,3 +292,54 @@ export function filterBooksByRange(
   })
   return newBooksArray
 }
+
+/**
+ * Accepts the order value and the value of the sort filter and returns a string that will be used in the filter label (for the order setting)
+ *
+ * Used in the Filter component.
+ *
+ * @param {string} orderValue - The order value.
+ * @param {string} sortValue - The sort value.
+ * @returns {string} The order label.
+ */
+export function getOrderLabel(orderValue: string, sortValue: string) {
+  if (orderValue === 'asc') {
+    switch (sortValue) {
+      case 'series':
+        return 'A-Z'
+      case 'title':
+        return 'A-Z'
+      case 'rating':
+        return '1-10'
+      case 'spice':
+        return '1-5'
+      case 'length':
+        return 'shortest to longest'
+      case 'published':
+        return 'oldest to newest'
+      case 'reading order':
+        return 'oldest to newest'
+      default:
+        return 'A-Z'
+    }
+  } else {
+    switch (sortValue) {
+      case 'series':
+        return 'Z-A'
+      case 'title':
+        return 'Z-A'
+      case 'rating':
+        return '10-1'
+      case 'spice':
+        return '5-1'
+      case 'length':
+        return 'longest to shortest'
+      case 'published':
+        return 'newest to oldest'
+      case 'reading order':
+        return 'newest to oldest'
+      default:
+        return 'Z-A'
+    }
+  }
+}

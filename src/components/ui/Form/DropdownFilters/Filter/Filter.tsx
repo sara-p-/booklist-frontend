@@ -5,13 +5,18 @@ import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useEscapeKey from '@/hooks/useEscapeKey'
 import useClickOutside from '@/hooks/useClickOutside'
-import { FilterArrayType, FilterType } from '@/types/filterType'
+import {
+  FilterArrayType,
+  FilterType,
+  VisibleFilterType,
+} from '@/types/filterType'
 import { areArraysEqual } from '@/lib/utils'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
+import { getOrderLabel } from '@/lib/filtering-utils'
 
 type FilterProps = {
   children?: React.ReactNode
-  buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
+  buttonText: VisibleFilterType
 }
 function Filter({ children, buttonText }: FilterProps) {
   // Context that defines the filter values
@@ -24,7 +29,7 @@ function Filter({ children, buttonText }: FilterProps) {
   /* HANDLERS */
   // Close the filter dropdown for a variety of reasons
   const handleCloseFilter = useCallback(
-    (filter: FilterArrayType | 'sort' | 'rating' | 'spice') => {
+    (filter: VisibleFilterType) => {
       const newFilterState = { ...filterState }
       setFilterState({ ...newFilterState, [filter]: false })
     },
@@ -67,7 +72,7 @@ function Filter({ children, buttonText }: FilterProps) {
   const buttonClasses = getFilterButtonClasses(buttonText, filterValues)
   // get the container classes based on the button text
   const containerClasses =
-    buttonText === 'sort'
+    buttonText === 'sort' || buttonText === 'order'
       ? `${styles.container} ${styles.sort}`
       : styles.container
 
@@ -90,18 +95,27 @@ export default Filter
 
 // SELECTION TEXT PROPS/COMPONENT
 type SelectionTextProps = {
-  buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
+  buttonText: VisibleFilterType
 }
 
 const SelectionText = React.memo(function SelectionText({
   buttonText,
 }: SelectionTextProps) {
   const { filterValues } = useFilterValuesContext()
+  const orderLabel = getOrderLabel(filterValues.order, filterValues.sort)
 
   if (buttonText === 'sort') {
     return (
-      <span className={styles.buttonText}>
-        {`${buttonText}: ${filterValues.sort}`}
+      <span className={styles.buttonTextContainer}>
+        <span className={styles.buttonTextLabel}>{`${buttonText}: `}</span>
+        <span className={styles.buttonTextValue}>{filterValues.sort}</span>
+      </span>
+    )
+  } else if (buttonText === 'order') {
+    return (
+      <span className={styles.buttonTextContainer}>
+        <span className={styles.buttonTextLabel}>{`${buttonText}: `}</span>
+        <span className={styles.buttonTextValue}>{orderLabel}</span>
       </span>
     )
   } else if (buttonText === 'rating' || buttonText === 'spice') {
@@ -130,7 +144,7 @@ const SelectionText = React.memo(function SelectionText({
  * @returns {string} The button classes.
  */
 function getFilterButtonClasses(
-  buttonText: FilterArrayType | 'sort' | 'rating' | 'spice',
+  buttonText: VisibleFilterType,
   filterValues: FilterType
 ) {
   let theButtonClasses = styles.button

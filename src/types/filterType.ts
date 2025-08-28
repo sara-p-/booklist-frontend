@@ -28,9 +28,24 @@ export type FilterArrayType =
   | 'tropes'
   | 'creatures'
   | 'booktags'
+  | 'rating'
+  | 'spice'
+
+export type VisibleFilterType =
+  | 'sort'
+  | 'order'
+  | 'authors'
+  | 'series'
+  | 'genres'
+  | 'tropes'
+  | 'creatures'
+  | 'booktags'
+  | 'rating'
+  | 'spice'
 
 export type FilterStateType = {
   sort: boolean
+  order: boolean
   authors: boolean
   series: boolean
   genres: boolean

@@ -11,6 +11,7 @@ type FilterStateContextType = {
 export const FilterStateContext = createContext<FilterStateContextType>({
   filterState: {
     sort: false,
+    order: false,
     authors: false,
     series: false,
     genres: false,

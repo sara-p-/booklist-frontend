@@ -1,10 +1,10 @@
-import { FilterArrayType } from '@/types/filterType'
+import { VisibleFilterType } from '@/types/filterType'
 import { useEffect } from 'react'
 import useFilterStateContext from './useFilterStateContext'
 
 type UseEscapeKeyProps = {
   callback: () => void
-  buttonText: FilterArrayType | 'sort' | 'rating' | 'spice'
+  buttonText: VisibleFilterType
 }
 
 export default function useEscapeKey({
