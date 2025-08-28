@@ -28,8 +28,6 @@ export type FilterArrayType =
   | 'tropes'
   | 'creatures'
   | 'booktags'
-  | 'rating'
-  | 'spice'
 
 export type VisibleFilterType =
   | 'sort'
