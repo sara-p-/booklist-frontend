@@ -45,13 +45,21 @@
 .buttonText {
   font-size: 14px;
   font-weight: 600;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .buttonTextContainer {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 4px;
+  gap: 4px; */
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .buttonTextLabel {
@@ -62,6 +70,9 @@
 .buttonTextValue {
   font-size: 14px;
   font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .buttonCount {
