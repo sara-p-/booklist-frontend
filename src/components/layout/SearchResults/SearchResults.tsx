@@ -22,8 +22,12 @@ export default function SearchResults() {
         <h2 className={styles.resultsTitle}>Books ({books.length})</h2>
         <ul className={styles.resultsList}>
           {books.map((book) => (
-            <li key={book.id}>
-              <Link onNavigate={onLinkClick} href={`/book/${book.slug}`}>
+            <li key={book.id} className={styles.resultItem}>
+              <Link
+                className={styles.resultLink}
+                onNavigate={onLinkClick}
+                href={`/book/${book.slug}`}
+              >
                 {book.title}
               </Link>
             </li>
@@ -34,7 +38,7 @@ export default function SearchResults() {
         <h2 className={styles.resultsTitle}>Authors ({authors.length})</h2>
         <ul className={styles.resultsList}>
           {authors.map((author) => (
-            <li key={author.id}>
+            <li key={author.id} className={styles.resultItem}>
               <LinkButton linkType='authors' linkText={author.name} />
             </li>
           ))}
@@ -44,7 +48,7 @@ export default function SearchResults() {
         <h2 className={styles.resultsTitle}>Series ({series.length})</h2>
         <ul className={styles.resultsList}>
           {series.map((series) => (
-            <li key={series.id}>
+            <li key={series.id} className={styles.resultItem}>
               <LinkButton linkType='series' linkText={series.name} />
             </li>
           ))}

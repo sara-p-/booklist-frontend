@@ -10,28 +10,31 @@
 .resultsGroup {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  /* gap: 1rem; */
   flex: 1;
 }
 
 .resultsTitle {
   border-bottom: var(--border-thick);
   width: 100%;
+  padding: 0 0 8px 8px;
 }
 
 .resultsList {
+  border: var(--border-thin);
   list-style: none;
   padding: 0;
   margin: 0;
+  height: 100%;
   max-height: 400px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-
-  ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
+  /* gap: 0.35rem; */
+  /* Scrollbar */
+  /* Style the entire scrollbar */
+  &::-webkit-scrollbar {
+    width: 12px; /* Width of vertical scrollbar */
   }
 
   /* Style the scrollbar track */
@@ -53,7 +56,47 @@
   }
 }
 
+.resultItem {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+
+  & > * {
+    cursor: pointer;
+    width: 100%;
+    padding: 8px;
+    margin: 0;
+    border-bottom: var(--border-thin);
+    text-decoration: none;
+    &:hover {
+      color: var(--secondary);
+      background-color: var(--primary);
+    }
+  }
+}
+
 .linkButton {
+  background-color: transparent;
+  border: none;
+  color: var(--primary);
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  margin: 0;
+  border-bottom: var(--border-thin);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  &:hover {
+    color: var(--secondary);
+    background-color: var(--primary);
+  }
+}
+
+/* .linkButton {
   background-color: transparent;
   border: none;
   color: var(--primary);
@@ -67,4 +110,4 @@
   &:hover {
     color: var(--accent);
   }
-}
+} */

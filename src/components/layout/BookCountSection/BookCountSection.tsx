@@ -10,10 +10,11 @@ export default function BookCountSection() {
   const { filterValues, setFilterValues } = useFilterValuesContext()
 
   function handleBookViewChange() {
-    if (filterValues.view === 'list') {
-      setFilterValues({ ...filterValues, view: 'grid' })
+    const newValues = { ...filterValues }
+    if (newValues.view === 'list') {
+      setFilterValues({ ...newValues, view: 'grid' })
     } else {
-      setFilterValues({ ...filterValues, view: 'list' })
+      setFilterValues({ ...newValues, view: 'list' })
     }
   }
 
