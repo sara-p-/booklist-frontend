@@ -16,16 +16,12 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 48px;
+  &:first-child {
+    margin-top: 24px;
+  }
 }
 
-/* Book Series View */
-.bookGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.bookArrayList {
+.groupName {
   margin-bottom: 16px;
 }

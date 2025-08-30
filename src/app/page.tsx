@@ -7,9 +7,11 @@ import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import SearchResults from '@/components/layout/SearchResults/SearchResults'
 import Loading from './loading'
+import BooksList from '@/components/layout/Books/BooksList'
 
 export default function Home() {
   const { filterValues } = useFilterValuesContext()
+  const view = filterValues.view
   const filteredBooks = useFilteredBooks()
 
   if (!filteredBooks) return <Loading />

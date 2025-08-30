@@ -233,6 +233,36 @@ export function sortArrayGroupsForHeaders(
 }
 
 /**
+ * Accepts the list of books and sorts them by length, then returns an array of objects. The first value is the header for that array group, and the second value is the array group itself.
+ *
+ * Used in the BooksList component.
+ *
+ * @param {BookType[]} books - The booklist.
+ * @returns {Array<string, BookType[]>} The ordered booklist.
+ */
+export function sortArrayGroupsForHeadersByLength(books: BookType[]) {
+  if (!books) return []
+
+  // loop through the bookList and find the shortest and longest books
+  const shortestBook = books.sort((a, b) =>
+    a.length.localeCompare(b.length, undefined, { numeric: true })
+  )[0]
+  const longestBook = books.sort((a, b) =>
+    b.length.localeCompare(a.length, undefined, { numeric: true })
+  )[books.length - 1]
+
+  const bookLengths = books.sort((a, b) =>
+    a.length.localeCompare(b.length, undefined, { numeric: true })
+  )
+
+  const justLengths = bookLengths.map((book) => {
+    return { book: book.title, length: book.length }
+  })
+
+  return justLengths
+}
+
+/**
  * Accepts a list of books and a series of filter values and returns a list of books that match the filter values.
  *
  * Used in the main filtering function.
