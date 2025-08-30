@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 export default function Searchbar() {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const [searchValue, setSearchValue] = useState('')
-  let typingTimer: NodeJS.Timeout
+  // let typingTimer: NodeJS.Timeout
 
   useEffect(() => {
     setSearchValue(filterValues.search)
@@ -17,9 +17,12 @@ export default function Searchbar() {
   function handleTyping(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchValue(e.target.value)
     if (e.target.value !== '') {
-      typingTimer = setTimeout(() => {
+      const typingTimer = setTimeout(() => {
         setFilterValues({ ...filterValues, search: e.target.value })
       }, 750)
+      return () => clearTimeout(typingTimer)
+    } else {
+      setFilterValues({ ...filterValues, search: '' })
     }
   }
 

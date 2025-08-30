@@ -18,6 +18,7 @@ export function useSearch() {
   })
 
   useEffect(() => {
+    // If the search is empty, set the search results to empty and return
     if (filterValues.search === '') {
       setSearchResults({
         books: [],
@@ -26,8 +27,10 @@ export function useSearch() {
       })
       return
     }
-    // search through titles
+    // if no bookList, return
     if (!bookList) return
+
+    // search through titles
     const bookResults: { slug: string; title: string; id: number }[] = bookList
       .filter((book) =>
         book.title.toLowerCase().includes(filterValues.search.toLowerCase())
