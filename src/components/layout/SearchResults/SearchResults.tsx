@@ -7,7 +7,7 @@ import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
 export default function SearchResults() {
   const { books, authors, series } = useSearch()
-  const { filterValues, setFilterValues } = useFilterValuesContext()
+  const { setFilterValues } = useFilterValuesContext()
 
   const onTitleClick = () => {
     setFilterValues({

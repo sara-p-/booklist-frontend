@@ -8,6 +8,29 @@
   border: none;
   appearance: none;
   outline: none;
+  /* Scrollbar */
+  /* Style the entire scrollbar */
+  &::-webkit-scrollbar {
+    width: 12px; /* Width of vertical scrollbar */
+  }
+
+  /* Style the scrollbar track */
+  &::-webkit-scrollbar-track {
+    background: var(--light);
+    border-left: var(--border-thin);
+    /* border-radius: 10px; */
+  }
+
+  /* Style the scrollbar thumb */
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+  }
+
+  /* Style the scrollbar thumb on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--dark);
+  }
 }
 
 .filterItem {
