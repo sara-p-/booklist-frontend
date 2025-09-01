@@ -2,10 +2,7 @@
 
 import Link from 'next/link'
 import styles from './Pagination.module.css'
-import {
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 
@@ -28,8 +25,7 @@ export default function Pagination({ slug }: { slug: string }) {
         <div className={styles.buttonContainer}>
           {previousBook && (
             <Link className={styles.button} href={`/book/${previousBook}`}>
-              <FontAwesomeIcon icon={faChevronLeft} size='sm' />{' '}
-              {'previous book'}
+              <FontAwesomeIcon icon={faArrowLeft} size='sm' /> {'previous book'}
             </Link>
           )}
         </div>
@@ -41,7 +37,7 @@ export default function Pagination({ slug }: { slug: string }) {
         <div className={styles.buttonContainer}>
           {nextBook && (
             <Link className={styles.button} href={`/book/${nextBook}`}>
-              {'next book'} <FontAwesomeIcon icon={faChevronRight} size='sm' />
+              {'next book'} <FontAwesomeIcon icon={faArrowRight} size='sm' />
             </Link>
           )}
         </div>

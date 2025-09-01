@@ -7,13 +7,25 @@ import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import SearchResults from '@/components/layout/SearchResults/SearchResults'
 import Loading from './loading'
-import BooksList from '@/components/layout/Books/BooksList'
+import ScrollToTop from '@/components/features/ScrollToTop/ScrollToTop'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const { filterValues } = useFilterValuesContext()
-  const view = filterValues.view
   const filteredBooks = useFilteredBooks()
+  const [showScrollToTop, setShowScrollToTop] = useState(false)
 
+  // Show scroll to top button when user scrolls down
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollToTop(window.scrollY > 300)
+    }
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // If the book list is not loaded, show the loading component
   if (!filteredBooks) return <Loading />
 
   return (
@@ -25,6 +37,7 @@ export default function Home() {
           <SearchResults />
         )}
       </div>
+      {showScrollToTop && <ScrollToTop />}
     </div>
   )
 }

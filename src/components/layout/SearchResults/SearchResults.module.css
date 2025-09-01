@@ -32,7 +32,6 @@
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  /* gap: 0.35rem; */
   /* Scrollbar */
   /* Style the entire scrollbar */
   &::-webkit-scrollbar {
