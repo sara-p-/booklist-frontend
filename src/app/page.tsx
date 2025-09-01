@@ -17,7 +17,6 @@ export default function Home() {
   if (!filteredBooks) return <Loading />
 
   return (
-    // <Loading />
     <div className={styles.container}>
       <FiltersSection />
       <div className={styles.bookListContainer}>

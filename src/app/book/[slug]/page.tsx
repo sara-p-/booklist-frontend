@@ -10,8 +10,12 @@ import { fetchData } from '@/lib/fetch'
 import { BookType, BookItem } from '@/types/bookType'
 import Pagination from '@/components/features/SingleBook/Pagination/Pagination'
 import RelatedBooks from '@/components/features/SingleBook/RelatedBooks/RelatedBooks'
+import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
+import SearchResults from '@/components/layout/SearchResults/SearchResults'
+import FiltersSection from '@/components/layout/FiltersSection/FiltersSection'
+import BookPage from '@/components/features/SingleBook/BookPage/BookPage'
 
-export default async function BookPage({
+export default async function BookPageRoute({
   params,
 }: {
   params: Promise<{ slug: string }>
@@ -35,44 +39,45 @@ export default async function BookPage({
   }
 
   return (
+    <BookPage parsedBook={parsedBook} slug={slug} />
     // <Loading />
-    <>
-      <div className={styles.container}>
-        <div className={styles.mainContainer}>
-          <BookInfo book={parsedBook} />
-          <div className={styles.bookSection}>
-            <BookText title='description'>{parsedBook.description}</BookText>
-            {parsedBook.notes.length > 0 &&
-              parsedBook.notes !== 'null' &&
-              parsedBook.notes !== '' && (
-                <BookText title='notes'>{parsedBook.notes}</BookText>
-              )}
-            {parsedBook.smell.length > 0 &&
-              parsedBook.smell !== 'null' &&
-              parsedBook.smell !== '' && (
-                <BookText title='smell'>{parsedBook.smell}</BookText>
-              )}
-            <BookText title='links' cname='linksContainer'>
-              <ExternalLink href={parsedBook.goodreadsLink} title='Goodreads' />
-              <ExternalLink href={parsedBook.amazonLink} title='Amazon' />
-            </BookText>
-          </div>
-        </div>
-        <div className={styles.sidebarContainer}>
-          <SidebarSection title='stats'>
-            <LinkList items={parsedBook.genres} itemLabel='genres' />
-            <LinkList items={parsedBook.tropes} itemLabel='tropes' />
-            <LinkList items={parsedBook.creatures} itemLabel='creatures' />
-            <LinkList items={parsedBook.booktags} itemLabel='booktags' />
-          </SidebarSection>
-          <SidebarSection title='timeline'>
-            <TimelineItem title='started' date={parsedBook.startDate} />
-            <TimelineItem title='finished' date={parsedBook.finishDate} />
-          </SidebarSection>
-          <RelatedBooks slug={slug} />
-        </div>
-      </div>
-      <Pagination slug={slug} />
-    </>
+    // <>
+    //   <div className={styles.container}>
+    //     <div className={styles.mainContainer}>
+    //       <BookInfo book={parsedBook} />
+    //       <div className={styles.bookSection}>
+    //         <BookText title='description'>{parsedBook.description}</BookText>
+    //         {parsedBook.notes.length > 0 &&
+    //           parsedBook.notes !== 'null' &&
+    //           parsedBook.notes !== '' && (
+    //             <BookText title='notes'>{parsedBook.notes}</BookText>
+    //           )}
+    //         {parsedBook.smell.length > 0 &&
+    //           parsedBook.smell !== 'null' &&
+    //           parsedBook.smell !== '' && (
+    //             <BookText title='smell'>{parsedBook.smell}</BookText>
+    //           )}
+    //         <BookText title='links' cname='linksContainer'>
+    //           <ExternalLink href={parsedBook.goodreadsLink} title='Goodreads' />
+    //           <ExternalLink href={parsedBook.amazonLink} title='Amazon' />
+    //         </BookText>
+    //       </div>
+    //     </div>
+    //     <div className={styles.sidebarContainer}>
+    //       <SidebarSection title='stats'>
+    //         <LinkList items={parsedBook.genres} itemLabel='genres' />
+    //         <LinkList items={parsedBook.tropes} itemLabel='tropes' />
+    //         <LinkList items={parsedBook.creatures} itemLabel='creatures' />
+    //         <LinkList items={parsedBook.booktags} itemLabel='booktags' />
+    //       </SidebarSection>
+    //       <SidebarSection title='timeline'>
+    //         <TimelineItem title='started' date={parsedBook.startDate} />
+    //         <TimelineItem title='finished' date={parsedBook.finishDate} />
+    //       </SidebarSection>
+    //       <RelatedBooks slug={slug} />
+    //     </div>
+    //   </div>
+    //   <Pagination slug={slug} />
+    // </>
   )
 }

@@ -9,10 +9,16 @@ export default function SearchResults() {
   const { books, authors, series } = useSearch()
   const { filterValues, setFilterValues } = useFilterValuesContext()
 
-  const onLinkClick = () => {
+  const onTitleClick = () => {
     setFilterValues({
-      ...filterValues,
       ...DEFAULT_FILTER_VALUES,
+    })
+  }
+
+  function handleLinkClick(linkType: string, linkText: string) {
+    setFilterValues({
+      ...DEFAULT_FILTER_VALUES,
+      [linkType]: [linkText],
     })
   }
 
@@ -25,7 +31,7 @@ export default function SearchResults() {
             <li key={book.id} className={styles.resultItem}>
               <Link
                 className={styles.resultLink}
-                onNavigate={onLinkClick}
+                onNavigate={onTitleClick}
                 href={`/book/${book.slug}`}
               >
                 {book.title}
@@ -39,7 +45,13 @@ export default function SearchResults() {
         <ul className={styles.resultsList}>
           {authors.map((author) => (
             <li key={author.id} className={styles.resultItem}>
-              <LinkButton linkType='authors' linkText={author.name} />
+              <Link
+                className={styles.resultLink}
+                href={`/`}
+                onNavigate={() => handleLinkClick('authors', author.name)}
+              >
+                {author.name}
+              </Link>
             </li>
           ))}
         </ul>
@@ -49,34 +61,18 @@ export default function SearchResults() {
         <ul className={styles.resultsList}>
           {series.map((series) => (
             <li key={series.id} className={styles.resultItem}>
-              <LinkButton linkType='series' linkText={series.name} />
+              <Link
+                prefetch={false}
+                className={styles.resultLink}
+                href={`/`}
+                onNavigate={() => handleLinkClick('series', series.name)}
+              >
+                {series.name}
+              </Link>
             </li>
           ))}
         </ul>
       </div>
     </div>
-  )
-}
-
-export function LinkButton({
-  linkType,
-  linkText,
-}: {
-  linkType: string
-  linkText: string
-}) {
-  const { filterValues, setFilterValues } = useFilterValuesContext()
-
-  const onLinkClick = () => {
-    setFilterValues({
-      ...filterValues,
-      ...DEFAULT_FILTER_VALUES,
-    })
-  }
-
-  return (
-    <button className={styles.linkButton} onClick={onLinkClick}>
-      {linkText}
-    </button>
   )
 }
