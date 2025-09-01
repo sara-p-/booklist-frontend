@@ -13,6 +13,7 @@ import SearchResults from '@/components/layout/SearchResults/SearchResults'
 import FiltersSection from '@/components/layout/FiltersSection/FiltersSection'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { BookType } from '@/types/bookType'
+// import { useEffect } from 'react'
 
 export default function BookPage({
   parsedBook,

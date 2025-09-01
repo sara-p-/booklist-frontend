@@ -13,6 +13,10 @@ export default function Book({ book }: { book: BookType }) {
 
   // TODO: when the user clicks on the book, the filters should be reset. Because the reset is happening before the book is loaded, the screen flashes the book grid before the user is navigated away.
   function handleHomeNavigation() {
+    window.scrollTo({
+      top: 0,
+      // behavior: 'smooth',
+    })
     // setFilterValues({
     //   ...filterValues,
     //   ...DEFAULT_FILTER_VALUES,
@@ -33,6 +37,7 @@ export default function Book({ book }: { book: BookType }) {
         href={`/book/${book.slug}`}
         className={styles.bookLink}
         onNavigate={handleHomeNavigation}
+        // scroll={false}
       >
         <Image
           className={styles.bookImage}
