@@ -1,4 +1,4 @@
-import { FilterType } from '@/types/filterType'
+import { ExcludeValuesType, FilterType } from '@/types/filterType'
 
 export const DEFAULT_FILTER_VALUES: FilterType = {
   view: 'grid',
@@ -30,4 +30,11 @@ export const ORDER_OPTIONS = ['desc', 'asc']
 
 export const VIEW_OPTIONS = ['list', 'grid']
 
-export const FINISHED_OPTIONS = ['all', 'completed', 'not completed']
+export const DEFAULT_EXCLUDE_VALUES: ExcludeValuesType = {
+  authors: [],
+  series: [],
+  genres: [],
+  tropes: [],
+  creatures: [],
+  booktags: [],
+}

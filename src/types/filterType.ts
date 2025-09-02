@@ -21,6 +21,15 @@ export type FilterType = {
   search: string
 }
 
+export type ExcludeValuesType = {
+  authors: string[]
+  series: string[]
+  genres: string[]
+  tropes: string[]
+  creatures: string[]
+  booktags: string[]
+}
+
 export type FilterArrayType =
   | 'authors'
   | 'series'

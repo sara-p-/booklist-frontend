@@ -6,11 +6,13 @@ import { useFilterValuesContext } from './useFilterValuesContext'
 import { useEffect, useMemo, useState } from 'react'
 import { BookType } from '@/types/bookType'
 import parse from 'html-react-parser'
+import { useExcludeValuesContext } from './useExcludeValuesContext'
 // import { searchBookList } from '@/lib/searching'
 
 export function useFilteredBooks() {
   const { bookList } = useBookListContext()
   const { filterValues } = useFilterValuesContext()
+  const { excludeValues } = useExcludeValuesContext()
   const [newBooks, setNewBooks] = useState<BookType[] | null>(null)
 
   // Parsing the bookList to remove the HTML tags from the title and series name.
@@ -28,9 +30,7 @@ export function useFilteredBooks() {
   }, [bookList])
 
   useEffect(() => {
-    // const displayBooks = parsedBookList.filter((book) => book.display)
     const filteredBooks = filterBookList(parsedBookList, filterValues)
-    // const searchedBooks = searchBookList(filteredBooks, filterValues.search)
     const sortedBooks = sortBookList(filteredBooks, filterValues.sort)
     const orderedBooks = orderBookList(sortedBooks, filterValues.order)
     setNewBooks(orderedBooks)
