@@ -30,11 +30,15 @@ export function useFilteredBooks() {
   }, [bookList])
 
   useEffect(() => {
-    const filteredBooks = filterBookList(parsedBookList, filterValues)
+    const filteredBooks = filterBookList(
+      parsedBookList,
+      filterValues,
+      excludeValues
+    )
     const sortedBooks = sortBookList(filteredBooks, filterValues.sort)
     const orderedBooks = orderBookList(sortedBooks, filterValues.order)
     setNewBooks(orderedBooks)
-  }, [filterValues, parsedBookList])
+  }, [filterValues, parsedBookList, excludeValues])
 
   return newBooks
 }

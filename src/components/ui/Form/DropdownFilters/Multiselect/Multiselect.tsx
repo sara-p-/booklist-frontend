@@ -5,7 +5,7 @@ import { FilterArrayType, FilterType } from '@/types/filterType'
 import { DEFAULT_EXCLUDE_VALUES, DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useBookListContext } from '@/hooks/useBookListContext'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
 
 type MultiselectProps = {
@@ -28,8 +28,24 @@ function Multiselect({ filter }: MultiselectProps) {
   // Handle the item change
   function handleMultiselectChange(filter: FilterArrayType, value: string) {
     const newFilterValues = { ...filterValues }
+    const newExcludeValues = { ...excludeValues }
     const filterValue = newFilterValues[filter]
 
+    // if the 'exclude' button is selected, add the new value to excludeValues:
+    if (exclude) {
+      if (newExcludeValues[filter].includes(value)) {
+        setExcludeValues({
+          ...newExcludeValues,
+          [filter]: newExcludeValues[filter].filter((item) => item !== value),
+        })
+      } else {
+        setExcludeValues({
+          ...newExcludeValues,
+          [filter]: [...newExcludeValues[filter], value],
+        })
+      }
+    }
+    // If the 'exclude' button is NOT selected, add the new value to filterValues:
     if (filterValue.includes(value)) {
       setFilterValues({
         ...newFilterValues,
@@ -69,10 +85,6 @@ function Multiselect({ filter }: MultiselectProps) {
     setExclude(!exclude)
   }
 
-  useEffect(() => {
-    console.log(excludeValues.authors)
-  }, [excludeValues])
-
   // Handle the clear button click
   function handleClear() {
     const defaultFilterValues =
@@ -92,6 +104,7 @@ function Multiselect({ filter }: MultiselectProps) {
       ...excludeValues,
       [filter]: DEFAULT_EXCLUDE_VALUES[filter],
     })
+    setExclude(false)
   }
 
   return (

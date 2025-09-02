@@ -269,12 +269,15 @@ export function sortArrayGroupsForHeadersByLength(books: BookType[]) {
  *
  * @param {BookType[]} books - The booklist.
  * @param {string[]} filterValuesArray - The filter values.
+ * @param {string[]} excludeValuesArray - The exclude values.
+ * @param {string} filterType - The filter type.
  * @returns {BookType[]} The filtered booklist.
  */
 export function filterBooksByArray(
   books: BookType[],
   filterValuesArray: string[],
-  filterType: 'genres' | 'tropes' | 'creatures' | 'booktags'
+  filterType: 'genres' | 'tropes' | 'creatures' | 'booktags',
+  excludeValuesArray: string[]
 ) {
   if (!books) return []
   // Create a new array to store the filtered books
@@ -283,14 +286,26 @@ export function filterBooksByArray(
   books.forEach((book) => {
     // Grab the book's category array and pull out the 'name' values
     const bookFilterCategoryArray = book[filterType].map((value) => value.name)
-    // Check to see if the book's genres contain every Filter Value genre. If so, add that book to the new array
-    const allValuesPresent = filterValuesArray.every((value) => {
-      return bookFilterCategoryArray.includes(value)
-    })
-    if (allValuesPresent) {
-      newBooksArray.push(book)
+    // if the exclude values array is not empty, leave out the books that include the exclude values
+    if (excludeValuesArray.length > 0) {
+      if (
+        !excludeValuesArray.some((value) =>
+          bookFilterCategoryArray.includes(value)
+        )
+      ) {
+        newBooksArray.push(book)
+      }
+    } else {
+      // Check to see if the book's genres contain every Filter Value genre. If so, add that book to the new array
+      const allValuesPresent = filterValuesArray.every((value) => {
+        return bookFilterCategoryArray.includes(value)
+      })
+      if (allValuesPresent) {
+        newBooksArray.push(book)
+      }
     }
   })
+
   return newBooksArray
 }
 

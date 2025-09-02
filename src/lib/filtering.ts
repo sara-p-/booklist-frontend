@@ -4,7 +4,7 @@ import {
   filterBooksByRange,
   sortArrayGroups,
 } from './filtering-utils'
-import { FilterType } from '@/types/filterType'
+import { ExcludeValuesType, FilterType } from '@/types/filterType'
 import { areArraysEqual } from './utils'
 
 /**
@@ -68,11 +68,13 @@ export const orderBookList = (bookList: BookType[], order: 'asc' | 'desc') => {
  *
  * @param {BookType[]} bookList - The booklist.
  * @param {FilterType} filterValues - The filter values.
+ * @param {ExcludeValuesType} excludeValues - The exclude values.
  * @returns {BookType[]} The filtered booklist.
  */
 export const filterBookList = (
   bookList: BookType[],
-  filterValues: FilterType
+  filterValues: FilterType,
+  excludeValues: ExcludeValuesType
 ) => {
   const books = [...bookList]
   let newBooks: BookType[] = books
@@ -87,38 +89,70 @@ export const filterBookList = (
   const spice = filterValues.spice.map((value) => parseInt(value))
 
   if (authors.length > 0) {
-    const authorsArray = authors.map((author) => {
-      return newBooks.filter((book) => book.authors[0].name === author)
-    })
-    newBooks = authorsArray.flat()
+    if (excludeValues.authors.length === 0) {
+      const authorsArray = authors.map((author) => {
+        return newBooks.filter((book) => book.authors[0].name === author)
+      })
+      newBooks = authorsArray.flat()
+    } else {
+      newBooks = newBooks.filter(
+        (book) => !excludeValues.authors.includes(book.authors[0].name)
+      )
+    }
   }
 
   // Series
   if (series.length > 0) {
-    const seriesArray = series.map((series) => {
-      return newBooks.filter((book) => book.series[0].name === series)
-    })
-    newBooks = seriesArray.flat()
+    if (excludeValues.series.length === 0) {
+      const seriesArray = series.map((series) => {
+        return newBooks.filter((book) => book.series[0].name === series)
+      })
+      newBooks = seriesArray.flat()
+    } else {
+      newBooks = newBooks.filter(
+        (book) => !excludeValues.series.includes(book.series[0].name)
+      )
+    }
   }
 
   // Genres
   if (genres.length > 0) {
-    newBooks = filterBooksByArray(newBooks, genres, 'genres')
+    newBooks = filterBooksByArray(
+      newBooks,
+      genres,
+      'genres',
+      excludeValues.genres
+    )
   }
 
   // Tropes
   if (tropes.length > 0) {
-    newBooks = filterBooksByArray(newBooks, tropes, 'tropes')
+    newBooks = filterBooksByArray(
+      newBooks,
+      tropes,
+      'tropes',
+      excludeValues.tropes
+    )
   }
 
   // Creatures
   if (creatures.length > 0) {
-    newBooks = filterBooksByArray(newBooks, creatures, 'creatures')
+    newBooks = filterBooksByArray(
+      newBooks,
+      creatures,
+      'creatures',
+      excludeValues.creatures
+    )
   }
 
   // Booktags
   if (booktags.length > 0) {
-    newBooks = filterBooksByArray(newBooks, booktags, 'booktags')
+    newBooks = filterBooksByArray(
+      newBooks,
+      booktags,
+      'booktags',
+      excludeValues.booktags
+    )
   }
 
   // Rating
