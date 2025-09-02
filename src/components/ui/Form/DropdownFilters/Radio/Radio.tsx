@@ -58,8 +58,8 @@ export default function Radio({ items, groupName }: RadioProps) {
               />
               {groupName === 'order'
                 ? item === 'asc'
-                  ? `${item} (${orderLabelAsc})`
-                  : `${item} (${orderLabelDesc})`
+                  ? orderLabelAsc
+                  : orderLabelDesc
                 : item}
             </label>
           </div>

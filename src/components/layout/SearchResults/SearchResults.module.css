@@ -48,7 +48,7 @@
   /* Style the scrollbar thumb */
   &::-webkit-scrollbar-thumb {
     background: var(--primary);
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
 
   /* Style the scrollbar thumb on hover */

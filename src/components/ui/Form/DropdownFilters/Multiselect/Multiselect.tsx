@@ -5,7 +5,7 @@ import { FilterArrayType, FilterType } from '@/types/filterType'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useBookListContext } from '@/hooks/useBookListContext'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
-import React from 'react'
+import React, { useState } from 'react'
 
 type MultiselectProps = {
   filter: FilterArrayType
@@ -15,6 +15,7 @@ function Multiselect({ filter }: MultiselectProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { bookList } = useBookListContext()
   const { filterState, setFilterState } = useFilterStateContext()
+  const [exclude, setExclude] = useState(false)
   const items = getAllFilterItems(bookList, filter)
 
   // get the length of the array if the filter is of type string[]
@@ -47,6 +48,23 @@ function Multiselect({ filter }: MultiselectProps) {
     })
   }
 
+  // // Handle the 'exclude' button click
+  // function handleExclude() {
+  //   const newFilterValues = { ...filterValues }
+  //   // make an array of the current selections
+  //   const currentSelections = newFilterValues[filter]
+  //   const allItems = items.map((item) => item.name)
+  //   // loop through array and select all of the items that are not the current selections
+  //   const newSelections = allItems.filter(
+  //     (item) => !currentSelections.includes(item)
+  //   )
+  //   setFilterValues({
+  //     ...newFilterValues,
+  //     [filter]: newSelections,
+  //   })
+  //   setExclude(!exclude)
+  // }
+
   // Handle the clear button click
   function handleClear() {
     const defaultFilterValues =
@@ -66,9 +84,16 @@ function Multiselect({ filter }: MultiselectProps) {
   return (
     <>
       <div className={styles.selectionContainer}>
-        <p className={styles.selectionText}>{selectedItems} selected</p>
+        {/* <p className={styles.selectionText}>{selectedItems} selected</p> */}
+        {/* <button
+          className={styles.button}
+          onClick={() => handleExclude()}
+          disabled={selectedItems === 0}
+        >
+          {exclude ? 'include' : 'exclude'}
+        </button> */}
         <button
-          className={styles.clearButton}
+          className={styles.button}
           onClick={handleClear}
           disabled={selectedItems === 0}
         >

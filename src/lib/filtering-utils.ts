@@ -340,9 +340,9 @@ export function getOrderLabel(orderValue: string, sortValue: string) {
       case 'title':
         return 'A-Z'
       case 'rating':
-        return '1-10'
+        return 'lowest to highest'
       case 'spice':
-        return '1-5'
+        return 'lowest to highest'
       case 'length':
         return 'shortest to longest'
       case 'published':
@@ -359,9 +359,9 @@ export function getOrderLabel(orderValue: string, sortValue: string) {
       case 'title':
         return 'Z-A'
       case 'rating':
-        return '10-1'
+        return 'highest to lowest'
       case 'spice':
-        return '5-1'
+        return 'highest to lowest'
       case 'length':
         return 'longest to shortest'
       case 'published':

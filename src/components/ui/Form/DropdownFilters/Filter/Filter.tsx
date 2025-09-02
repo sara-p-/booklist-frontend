@@ -115,9 +115,7 @@ const SelectionText = React.memo(function SelectionText({
     return (
       <span className={styles.buttonTextContainer}>
         <span className={styles.buttonTextLabel}>{`${buttonText}: `}</span>
-        <span
-          className={styles.buttonTextValue}
-        >{`${filterValues.order} (${orderLabel})`}</span>
+        <span className={styles.buttonTextValue}>{orderLabel}</span>
       </span>
     )
   } else if (buttonText === 'rating' || buttonText === 'spice') {

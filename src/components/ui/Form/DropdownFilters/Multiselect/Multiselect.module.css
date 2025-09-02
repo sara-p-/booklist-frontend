@@ -1,6 +1,6 @@
 .selectionContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 8px;
   border-bottom: var(--border-thin);
@@ -12,7 +12,7 @@
   margin: 0;
 }
 
-.clearButton {
+.button {
   font-size: 12px;
   font-weight: 400;
   appearance: none;
@@ -60,7 +60,7 @@
   /* Style the scrollbar thumb */
   &::-webkit-scrollbar-thumb {
     background: var(--primary);
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
 
   /* Style the scrollbar thumb on hover */
