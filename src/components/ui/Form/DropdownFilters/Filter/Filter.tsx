@@ -8,11 +8,13 @@ import useClickOutside from '@/hooks/useClickOutside'
 import {
   FilterArrayType,
   FilterType,
+  ExcludeValuesType,
   VisibleFilterType,
 } from '@/types/filterType'
 import { areArraysEqual } from '@/lib/utils'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
 import { getOrderLabel } from '@/lib/filtering-utils'
+import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
 
 type FilterProps = {
   children?: React.ReactNode
@@ -21,6 +23,8 @@ type FilterProps = {
 function Filter({ children, buttonText }: FilterProps) {
   // Context that defines the filter values
   const { filterValues } = useFilterValuesContext()
+  // Context that defines the exclude values
+  const { excludeValues } = useExcludeValuesContext()
   // Context that defines whether the filter is open or not
   const { filterState, setFilterState } = useFilterStateContext()
   // Ref to the filter element
@@ -102,6 +106,8 @@ const SelectionText = React.memo(function SelectionText({
   buttonText,
 }: SelectionTextProps) {
   const { filterValues } = useFilterValuesContext()
+  const { excludeValues } = useExcludeValuesContext()
+  // console.log(excludeValues.genres)
   const orderLabel = getOrderLabel(filterValues.order, filterValues.sort)
 
   if (buttonText === 'sort') {
@@ -123,12 +129,17 @@ const SelectionText = React.memo(function SelectionText({
   } else {
     return (
       <span className={styles.buttonText}>
-        {`${buttonText} `}
-        {filterValues[buttonText].length > 0 && (
+        {buttonText}{' '}
+        {/* if the exclude values are not empty, show the exclude count */}
+        {excludeValues[buttonText].length > 0 ? (
+          <span className={styles.buttonCount}>
+            (-{excludeValues[buttonText].length})
+          </span>
+        ) : filterValues[buttonText].length > 0 ? (
           <span className={styles.buttonCount}>
             ({filterValues[buttonText].length})
           </span>
-        )}
+        ) : null}
       </span>
     )
   }
