@@ -2,10 +2,11 @@ import styles from './Multiselect.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { getAllFilterItems, getFilterType } from '@/lib/filtering-utils'
 import { FilterArrayType, FilterType } from '@/types/filterType'
-import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
+import { DEFAULT_EXCLUDE_VALUES, DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useBookListContext } from '@/hooks/useBookListContext'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
 
 type MultiselectProps = {
   filter: FilterArrayType
@@ -15,6 +16,7 @@ function Multiselect({ filter }: MultiselectProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { bookList } = useBookListContext()
   const { filterState, setFilterState } = useFilterStateContext()
+  const { excludeValues, setExcludeValues } = useExcludeValuesContext()
   const [exclude, setExclude] = useState(false)
   const items = getAllFilterItems(bookList, filter)
 
@@ -48,22 +50,28 @@ function Multiselect({ filter }: MultiselectProps) {
     })
   }
 
-  // // Handle the 'exclude' button click
-  // function handleExclude() {
-  //   const newFilterValues = { ...filterValues }
-  //   // make an array of the current selections
-  //   const currentSelections = newFilterValues[filter]
-  //   const allItems = items.map((item) => item.name)
-  //   // loop through array and select all of the items that are not the current selections
-  //   const newSelections = allItems.filter(
-  //     (item) => !currentSelections.includes(item)
-  //   )
-  //   setFilterValues({
-  //     ...newFilterValues,
-  //     [filter]: newSelections,
-  //   })
-  //   setExclude(!exclude)
-  // }
+  // Handle the 'exclude' button click
+  function handleExclude() {
+    const newExcludeValues = { ...excludeValues }
+    const newFilterValues = { ...filterValues }
+    if (!exclude) {
+      // newExcludeValues[filter] = [...filterValues[filter]]
+      setExcludeValues({
+        ...newExcludeValues,
+        [filter]: newFilterValues[filter],
+      })
+    } else {
+      setExcludeValues({
+        ...newExcludeValues,
+        [filter]: DEFAULT_EXCLUDE_VALUES[filter],
+      })
+    }
+    setExclude(!exclude)
+  }
+
+  useEffect(() => {
+    console.log(excludeValues.authors)
+  }, [excludeValues])
 
   // Handle the clear button click
   function handleClear() {
@@ -79,19 +87,24 @@ function Multiselect({ filter }: MultiselectProps) {
       ...filterState,
       [filter]: false,
     })
+    // set the exclude values to the default values
+    setExcludeValues({
+      ...excludeValues,
+      [filter]: DEFAULT_EXCLUDE_VALUES[filter],
+    })
   }
 
   return (
     <>
       <div className={styles.selectionContainer}>
         {/* <p className={styles.selectionText}>{selectedItems} selected</p> */}
-        {/* <button
+        <button
           className={styles.button}
           onClick={() => handleExclude()}
           disabled={selectedItems === 0}
         >
-          {exclude ? 'include' : 'exclude'}
-        </button> */}
+          {exclude ? 'include selected' : 'exclude selected'}
+        </button>
         <button
           className={styles.button}
           onClick={handleClear}
