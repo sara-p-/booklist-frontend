@@ -34,7 +34,7 @@ export default function Searchbar() {
 
   return (
     <div className={styles.searchbar}>
-      <label htmlFor='search' className={`visually-hidden`}>
+      <label htmlFor='search' className='visually-hidden'>
         Search
       </label>
       <FontAwesomeIcon className={styles.icon} icon={faSearch} />
@@ -48,7 +48,7 @@ export default function Searchbar() {
         autoComplete='off'
       />
       <button className={styles.button} onClick={handleClearButton}>
-        <span className={`visually-hidden`}>Clear Search</span>
+        <span className='visually-hidden'>Clear Search</span>
         <FontAwesomeIcon className={styles.icon} icon={faTimes} />
       </button>
     </div>

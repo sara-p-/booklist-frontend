@@ -19,6 +19,9 @@ export default function RelatedBooks({ slug }: { slug: string }) {
 
   if (!bookSeries) return null
 
+  // If the 'series' is 'none' (for books that don't have a series) return null
+  if (bookSeries.toLowerCase() === 'none') return null
+
   if (relatedBooks.length === 0) return null
 
   const relatedBooksList = relatedBooks.sort((a, b) =>
