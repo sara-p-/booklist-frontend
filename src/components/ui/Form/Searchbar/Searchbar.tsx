@@ -1,6 +1,6 @@
 import styles from './Searchbar.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { useEffect, useState } from 'react'
 
@@ -26,6 +26,12 @@ export default function Searchbar() {
     }
   }
 
+  // Handle the clear button
+  function handleClearButton() {
+    setSearchValue('')
+    setFilterValues({ ...filterValues, search: '' })
+  }
+
   return (
     <div className={styles.searchbar}>
       <label htmlFor='search' className={`visually-hidden`}>
@@ -41,6 +47,10 @@ export default function Searchbar() {
         value={searchValue}
         autoComplete='off'
       />
+      <button className={styles.button} onClick={handleClearButton}>
+        <span className={`visually-hidden`}>Clear Search</span>
+        <FontAwesomeIcon className={styles.icon} icon={faTimes} />
+      </button>
     </div>
   )
 }
