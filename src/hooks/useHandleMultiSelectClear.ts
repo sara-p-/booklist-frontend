@@ -1,3 +1,5 @@
+'use client'
+
 import { DEFAULT_EXCLUDE_VALUES, DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { FilterArrayType, FilterType } from '@/types/filterType'
 import { useFilterValuesContext } from './useFilterValuesContext'

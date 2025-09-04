@@ -1,3 +1,5 @@
+'use client'
+
 import { FilterArrayType } from '@/types/filterType'
 import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'

@@ -9,6 +9,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
 import useHandleMultiSelectClear from '@/hooks/useHandleMultiSelectClear'
 import useHandleExclude from '@/hooks/useHandleExclude'
+import useHandleMultiSelectChange from '@/hooks/useHandleMultiSelectChange'
 
 type MultiselectProps = {
   filter: FilterArrayType
@@ -24,53 +25,14 @@ function Multiselect({ filter }: MultiselectProps) {
   const items = getAllFilterItems(bookList, filter)
   const { handleClear } = useHandleMultiSelectClear(filter)
   const { handleExclude } = useHandleExclude(filter, exclude)
+  const { handleMultiselectChange } = useHandleMultiSelectChange()
 
   // get the length of the array if the filter is of type string[]
   const filterType = getFilterType(filter)
   const selectedItems =
     filterType === 'string[]' ? filterValues[filter].length : 0
 
-  // Handle the item change
-  function handleMultiselectChange(filter: FilterArrayType, value: string) {
-    const newFilterValues = { ...filterValues }
-    const newExcludeValues = { ...excludeValues }
-    const filterValue = newFilterValues[filter]
-
-    // if the 'exclude' button is selected, add the new value to excludeValues:
-    if (exclude) {
-      if (newExcludeValues[filter].includes(value)) {
-        setExcludeValues({
-          ...newExcludeValues,
-          [filter]: newExcludeValues[filter].filter((item) => item !== value),
-        })
-      } else {
-        setExcludeValues({
-          ...newExcludeValues,
-          [filter]: [...newExcludeValues[filter], value],
-        })
-      }
-    }
-    // If the 'exclude' button is NOT selected, add the new value to filterValues:
-    if (filterValue.includes(value)) {
-      setFilterValues({
-        ...newFilterValues,
-        [filter]: filterValue.filter((item) => item !== value),
-      })
-    } else {
-      setFilterValues({
-        ...newFilterValues,
-        [filter]: [...filterValue, value],
-      })
-    }
-
-    // change the filter state to close the filter when the user selected an item
-    // set the filter state to false to close the filter
-    setFilterState({
-      ...filterState,
-      [filter]: false,
-    })
-  }
-
+  // Handle the exclude button click
   function handleTheExcludeButton() {
     // call the function from the custom hook
     // this will set all of the Context Values to the default values
@@ -124,7 +86,9 @@ function Multiselect({ filter }: MultiselectProps) {
                 <input
                   type='checkbox'
                   id={item.slug}
-                  onChange={() => handleMultiselectChange(filter, item.name)}
+                  onChange={() =>
+                    handleMultiselectChange(filter, item.name, exclude)
+                  }
                   checked={isItemChecked}
                 />
                 {item.name}
