@@ -8,6 +8,7 @@ import useFilterStateContext from '@/hooks/useFilterStateContext'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
 import useHandleMultiSelectClear from '@/hooks/useHandleMultiSelectClear'
+import useHandleExclude from '@/hooks/useHandleExclude'
 
 type MultiselectProps = {
   filter: FilterArrayType
@@ -22,6 +23,7 @@ function Multiselect({ filter }: MultiselectProps) {
   const dropdownRef = useRef<HTMLDivElement>(null)
   const items = getAllFilterItems(bookList, filter)
   const { handleClear } = useHandleMultiSelectClear(filter)
+  const { handleExclude } = useHandleExclude(filter, exclude)
 
   // get the length of the array if the filter is of type string[]
   const filterType = getFilterType(filter)
@@ -69,22 +71,11 @@ function Multiselect({ filter }: MultiselectProps) {
     })
   }
 
-  // Handle the 'exclude' button click
-  function handleExclude() {
-    const newExcludeValues = { ...excludeValues }
-    const newFilterValues = { ...filterValues }
-    if (!exclude) {
-      // newExcludeValues[filter] = [...filterValues[filter]]
-      setExcludeValues({
-        ...newExcludeValues,
-        [filter]: newFilterValues[filter],
-      })
-    } else {
-      setExcludeValues({
-        ...newExcludeValues,
-        [filter]: DEFAULT_EXCLUDE_VALUES[filter],
-      })
-    }
+  function handleTheExcludeButton() {
+    // call the function from the custom hook
+    // this will set all of the Context Values to the default values
+    handleExclude()
+    // set the exclude state to the opposite of what it is
     setExclude(!exclude)
   }
 
@@ -105,7 +96,7 @@ function Multiselect({ filter }: MultiselectProps) {
         {/* <p className={styles.selectionText}>{selectedItems} selected</p> */}
         <button
           className={styles.button}
-          onClick={() => handleExclude()}
+          onClick={() => handleTheExcludeButton()}
           disabled={selectedItems === 0}
         >
           {exclude ? 'include selected' : 'exclude selected'}
