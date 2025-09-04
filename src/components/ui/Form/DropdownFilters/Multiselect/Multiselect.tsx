@@ -7,6 +7,7 @@ import { useBookListContext } from '@/hooks/useBookListContext'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
+import useHandleMultiSelectClear from '@/hooks/useHandleMultiSelectClear'
 
 type MultiselectProps = {
   filter: FilterArrayType
@@ -20,6 +21,7 @@ function Multiselect({ filter }: MultiselectProps) {
   const [exclude, setExclude] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const items = getAllFilterItems(bookList, filter)
+  const { handleClear } = useHandleMultiSelectClear(filter)
 
   // get the length of the array if the filter is of type string[]
   const filterType = getFilterType(filter)
@@ -87,24 +89,11 @@ function Multiselect({ filter }: MultiselectProps) {
   }
 
   // Handle the clear button click
-  function handleClear() {
-    const defaultFilterValues =
-      DEFAULT_FILTER_VALUES[filter as keyof FilterType]
-    // set the filter values to the default values
-    setFilterValues({
-      ...filterValues,
-      [filter]: defaultFilterValues,
-    })
-    // set the filter state to false to close the filter
-    setFilterState({
-      ...filterState,
-      [filter]: false,
-    })
-    // set the exclude values to the default values
-    setExcludeValues({
-      ...excludeValues,
-      [filter]: DEFAULT_EXCLUDE_VALUES[filter],
-    })
+  function handleTheClearButton() {
+    // call the function from the custom hook
+    // this will set all of the Context Values to the default values
+    handleClear()
+    // set the exclude state to false
     setExclude(false)
     // scroll to the top of the dropdown when the clear button is clicked
     dropdownRef.current?.scrollTo(0, 0)
@@ -123,7 +112,7 @@ function Multiselect({ filter }: MultiselectProps) {
         </button>
         <button
           className={styles.button}
-          onClick={handleClear}
+          onClick={handleTheClearButton}
           disabled={selectedItems === 0}
         >
           clear
