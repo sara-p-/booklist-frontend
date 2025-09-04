@@ -17,7 +17,6 @@ export type FilterType = {
   booktags: string[]
   rating: string[]
   spice: string[]
-  // finished: boolean
   search: string
 }
 
@@ -37,6 +36,10 @@ export type FilterArrayType =
   | 'tropes'
   | 'creatures'
   | 'booktags'
+
+export type FilterRadioType = 'sort' | 'order'
+
+export type FilterRangeType = 'rating' | 'spice'
 
 export type VisibleFilterType =
   | 'sort'

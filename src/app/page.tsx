@@ -9,6 +9,7 @@ import SearchResults from '@/components/layout/SearchResults/SearchResults'
 import Loading from './loading'
 import ScrollToTop from '@/components/features/ScrollToTop/ScrollToTop'
 import { useEffect, useState } from 'react'
+import MobileMenu from '@/components/layout/MobileMenu/MobileMenu'
 
 export default function Home() {
   const { filterValues } = useFilterValuesContext()
@@ -29,15 +30,18 @@ export default function Home() {
   if (!filteredBooks) return <Loading />
 
   return (
-    <div className={styles.container}>
-      <FiltersSection />
-      <div className={styles.bookListContainer}>
-        {filteredBooks.length > 0 && filterValues.search === '' && <Books />}
-        {filteredBooks.length > 0 && filterValues.search !== '' && (
-          <SearchResults />
-        )}
+    <>
+      <div className={styles.container}>
+        <FiltersSection />
+        <div className={styles.bookListContainer}>
+          {filteredBooks.length > 0 && filterValues.search === '' && <Books />}
+          {filteredBooks.length > 0 && filterValues.search !== '' && (
+            <SearchResults />
+          )}
+        </div>
+        {showScrollToTop && <ScrollToTop />}
       </div>
-      {showScrollToTop && <ScrollToTop />}
-    </div>
+      {/* <MobileMenu /> */}
+    </>
   )
 }

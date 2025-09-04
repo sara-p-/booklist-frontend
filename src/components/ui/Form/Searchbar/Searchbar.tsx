@@ -4,7 +4,11 @@ import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { useEffect, useState } from 'react'
 
-export default function Searchbar() {
+type SearchbarProps = {
+  mobile?: boolean
+}
+
+export default function Searchbar({ mobile }: SearchbarProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const [searchValue, setSearchValue] = useState('')
   // let typingTimer: NodeJS.Timeout
@@ -33,7 +37,7 @@ export default function Searchbar() {
   }
 
   return (
-    <div className={styles.searchbar}>
+    <div className={`${styles.searchbar} ${mobile ? styles.mobile : ''}`}>
       <label htmlFor='search' className='visually-hidden'>
         Search
       </label>

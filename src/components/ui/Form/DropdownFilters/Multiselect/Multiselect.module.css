@@ -38,6 +38,9 @@
 }
 
 .filterContainer {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 0px;
@@ -70,9 +73,11 @@
 }
 
 .filterItem {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   align-items: center;
-  padding: 0;
   border-bottom: var(--border-thin);
 }
 
@@ -103,4 +108,22 @@
   opacity: 0;
   width: 0;
   height: 0;
+}
+
+/* Mobile */
+.mobile {
+  &.selectionContainer {
+    border-bottom: var(--border-thick);
+    padding: 16px;
+    width: 100%;
+  }
+  &.filterContainer {
+    max-height: 100%;
+  }
+  .filterItem {
+  }
+  .filterItem label {
+    font-size: 20px;
+    font-weight: 500;
+  }
 }

@@ -8,6 +8,9 @@
   right: 0;
   z-index: 100;
   background-color: var(--secondary);
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .filtersWrapper {

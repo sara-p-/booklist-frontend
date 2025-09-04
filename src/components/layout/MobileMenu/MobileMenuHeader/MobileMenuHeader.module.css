@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: var(--border-thick);
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.icon {
+  font-size: 24px;
+  color: var(--primary);
+}
+
+.title {
+  font-size: 30px;
+}

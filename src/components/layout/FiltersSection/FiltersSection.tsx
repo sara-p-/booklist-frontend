@@ -48,13 +48,6 @@ function FiltersSection() {
             <Range max={5} buttonText='spice' />
           </Filter>
         </FilterStateContextProvider>
-        {/* <Filter buttonText='finished'>
-          <Radio
-            items={FINISHED_OPTIONS}
-            groupName='completed'
-            onChange={handleRadioChange}
-          />
-        </Filter> */}
       </div>
       {filterValues.search === '' && <BookCountSection />}
     </div>

@@ -1,27 +1,23 @@
 import styles from './Multiselect.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { getAllFilterItems, getFilterType } from '@/lib/filtering-utils'
-import { FilterArrayType, FilterType } from '@/types/filterType'
-import { DEFAULT_EXCLUDE_VALUES, DEFAULT_FILTER_VALUES } from '@/lib/globals'
+import { FilterArrayType } from '@/types/filterType'
 import { useBookListContext } from '@/hooks/useBookListContext'
-import useFilterStateContext from '@/hooks/useFilterStateContext'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
+import React, { useRef, useState } from 'react'
 import useHandleMultiSelectClear from '@/hooks/useHandleMultiSelectClear'
 import useHandleExclude from '@/hooks/useHandleExclude'
 import useHandleMultiSelectChange from '@/hooks/useHandleMultiSelectChange'
 
 type MultiselectProps = {
   filter: FilterArrayType
+  mobile?: boolean
 }
 
-function Multiselect({ filter }: MultiselectProps) {
-  const { filterValues, setFilterValues } = useFilterValuesContext()
+function Multiselect({ filter, mobile }: MultiselectProps) {
+  const { filterValues } = useFilterValuesContext()
   const { bookList } = useBookListContext()
-  const { filterState, setFilterState } = useFilterStateContext()
-  const { excludeValues, setExcludeValues } = useExcludeValuesContext()
-  const [exclude, setExclude] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const [exclude, setExclude] = useState(false) // state for the exclude button
+  const dropdownRef = useRef<HTMLUListElement>(null)
   const items = getAllFilterItems(bookList, filter)
   const { handleClear } = useHandleMultiSelectClear(filter)
   const { handleExclude } = useHandleExclude(filter, exclude)
@@ -54,8 +50,11 @@ function Multiselect({ filter }: MultiselectProps) {
 
   return (
     <>
-      <div className={styles.selectionContainer}>
-        {/* <p className={styles.selectionText}>{selectedItems} selected</p> */}
+      <div
+        className={`${styles.selectionContainer} ${
+          mobile ? styles.mobile : ''
+        }`}
+      >
         <button
           className={styles.button}
           onClick={() => handleTheExcludeButton()}
@@ -71,14 +70,17 @@ function Multiselect({ filter }: MultiselectProps) {
           clear
         </button>
       </div>
-      <div className={styles.filterContainer} ref={dropdownRef}>
+      <ul
+        className={`${styles.filterContainer} ${mobile ? styles.mobile : ''}`}
+        ref={dropdownRef as React.RefObject<HTMLUListElement>}
+      >
         {items.map((item) => {
           // If the filter is selected, add the class name styles.selected and checked={true}
           const isItemChecked =
             filterValues[filter].includes(item.name) || false
 
           return (
-            <div className={styles.filterItem} key={item.id}>
+            <li className={styles.filterItem} key={item.id}>
               <label
                 className={isItemChecked ? styles.selected : ''}
                 htmlFor={item.slug}
@@ -93,10 +95,10 @@ function Multiselect({ filter }: MultiselectProps) {
                 />
                 {item.name}
               </label>
-            </div>
+            </li>
           )
         })}
-      </div>
+      </ul>
     </>
   )
 }
