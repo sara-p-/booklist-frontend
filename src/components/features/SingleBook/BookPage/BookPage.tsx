@@ -13,7 +13,6 @@ import SearchResults from '@/components/layout/SearchResults/SearchResults'
 import FiltersSection from '@/components/layout/FiltersSection/FiltersSection'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { BookType } from '@/types/bookType'
-// import { useEffect } from 'react'
 
 export default function BookPage({
   parsedBook,
@@ -40,6 +39,20 @@ export default function BookPage({
       <div className={styles.container}>
         <div className={styles.mainContainer}>
           <BookInfo book={parsedBook} />
+          {/* I want element order to change on mobile so I'm throwing the a copy of the sidebar here, that will only show on mobile */}
+          <div className={styles.mobileSidebarContainer}>
+            <SidebarSection title='stats'>
+              <LinkList items={parsedBook.genres} itemLabel='genres' />
+              <LinkList items={parsedBook.tropes} itemLabel='tropes' />
+              <LinkList items={parsedBook.creatures} itemLabel='creatures' />
+              <LinkList items={parsedBook.booktags} itemLabel='booktags' />
+            </SidebarSection>
+            <SidebarSection title='timeline'>
+              <TimelineItem title='started' date={parsedBook.startDate} />
+              <TimelineItem title='finished' date={parsedBook.finishDate} />
+            </SidebarSection>
+            <RelatedBooks slug={slug} />
+          </div>
           <div className={styles.bookSection}>
             <BookText title='description'>{parsedBook.description}</BookText>
             {parsedBook.notes.length > 0 &&
