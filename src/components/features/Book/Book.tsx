@@ -44,7 +44,7 @@ export default function Book({ book }: { book: BookType }) {
           src={book.image}
           alt={`Book cover of ${book.title}`}
           fill={true}
-          sizes='208px, 310px'
+          sizes='(max-width: 768px) 150px, 208px'
         />
       </Link>
       {isList && (
@@ -90,6 +90,11 @@ export default function Book({ book }: { book: BookType }) {
             <li>
               <p className={styles.bookLength}>
                 <b>length:</b> {book.length} pages
+              </p>
+            </li>
+            <li>
+              <p className={styles.bookMobileRating}>
+                <b>rating:</b> {book.rating}/10
               </p>
             </li>
             <li>

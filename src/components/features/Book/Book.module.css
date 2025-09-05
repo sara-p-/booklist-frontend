@@ -29,7 +29,11 @@
   justify-content: space-between;
   gap: 8px;
   padding-bottom: 16px;
-  /* border-bottom: var(--border-thick); */
+  @media (max-width: 768px) {
+    height: auto;
+    justify-content: flex-start;
+    padding: 0 16px 16px;
+  }
   .bookLink {
     position: relative;
     height: 100%;
@@ -37,6 +41,10 @@
       content: '';
       display: block;
       padding-top: 66.67%;
+    }
+    @media (max-width: 768px) {
+      width: 75px;
+      height: 112px;
     }
   }
   .bookImage {
@@ -47,25 +55,16 @@
     &:hover {
       transform: scale(1.05);
     }
+    @media (max-width: 768px) {
+      width: 50px;
+      height: auto;
+    }
   }
 }
 
 .bookListItem .bookLink {
   aspect-ratio: 2/3; /* Modern property, overrides padding-top if supported */
   overflow: hidden;
-}
-
-.bookInfoList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.bookInfoList li p {
-  margin: 0;
 }
 
 .bookTitleLink {
@@ -76,29 +75,57 @@
   font-size: 24px;
   font-weight: 900;
   margin: 0 0 4px 0;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    letter-spacing: 0px;
+  }
 }
 
-/* .bookInfoButton {
-  background-color: transparent;
-  border: none;
-  outline: none;
+.bookInfoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 4px;
-  padding: 2px 0;
-  margin: 0 0 4px 0;
-  height: auto;
-  font-size: 16px;
-  line-height: 1;
-  cursor: pointer;
-
-  & > span {
-    text-decoration: underline;
-    &:hover {
-      color: var(--accent);
+  @media (max-width: 768px) {
+    flex: 1;
+  }
+  li:has(.bookPublished) {
+    @media (max-width: 768px) {
+      display: none;
     }
   }
-} */
+  li:has(.bookLength) {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  li:has(.bookSpice) {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+.bookInfoList li {
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  p {
+    margin: 0;
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+}
+
+.bookMobileRating {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
 
 .bookRating {
   display: flex;
@@ -109,6 +136,9 @@
   margin-left: auto;
   .bookRatingValue {
     font-weight: 900;
+  }
+  @media (max-width: 768px) {
+    display: none;
   }
 }
 
