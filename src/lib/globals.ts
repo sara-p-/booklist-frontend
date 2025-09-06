@@ -1,4 +1,8 @@
-import { ExcludeValuesType, FilterType } from '@/types/filterType'
+import {
+  ExcludeValuesType,
+  FilterType,
+  MobileFilterStateType,
+} from '@/types/filterType'
 
 export const DEFAULT_FILTER_VALUES: FilterType = {
   view: 'grid',
@@ -37,4 +41,18 @@ export const DEFAULT_EXCLUDE_VALUES: ExcludeValuesType = {
   tropes: [],
   creatures: [],
   booktags: [],
+}
+
+export const DEFAULT_MOBILE_FILTER_STATE_VALUES: MobileFilterStateType = {
+  menu: false,
+  sort: false,
+  order: false,
+  authors: false,
+  series: false,
+  genres: false,
+  tropes: false,
+  creatures: false,
+  booktags: false,
+  rating: false,
+  spice: false,
 }

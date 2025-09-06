@@ -53,7 +53,7 @@ export type VisibleFilterType =
   | 'rating'
   | 'spice'
 
-export type FilterStateType = {
+export interface FilterStateType {
   sort: boolean
   order: boolean
   authors: boolean
@@ -64,4 +64,8 @@ export type FilterStateType = {
   booktags: boolean
   rating: boolean
   spice: boolean
+}
+
+export interface MobileFilterStateType extends FilterStateType {
+  menu: boolean
 }

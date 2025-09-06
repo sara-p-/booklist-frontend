@@ -11,6 +11,7 @@ import BookListContextProvider from '@/contexts/BookList/BookListContextProvider
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import FilterValuesContextProvider from '@/contexts/FilterValues/FilterValuesContextProvider'
 import ExcludeValuesContextProvider from '@/contexts/ExcludeState/ExcludeValuesContextProvider'
+import MobileFilterStateContextProvider from '@/contexts/MobileFilterState/MobileFilterStateContextProvider'
 config.autoAddCss = false
 
 const inter = Inter({
@@ -47,7 +48,9 @@ export default async function RootLayout({
           <FilterValuesContextProvider newFilterValues={DEFAULT_FILTER_VALUES}>
             <BookListContextProvider initialBookList={data}>
               <Header />
-              {children}
+              <MobileFilterStateContextProvider>
+                {children}
+              </MobileFilterStateContextProvider>
             </BookListContextProvider>
           </FilterValuesContextProvider>
         </ExcludeValuesContextProvider>
