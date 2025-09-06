@@ -13,7 +13,7 @@ export default function MobileMenuHeader({ title }: MobileMenuHeaderProps) {
     useMobileFilterStateContext()
 
   function handleCloseMenu() {
-    setMobileFilterState({ ...mobileFilterState, filters: false })
+    setMobileFilterState({ ...mobileFilterState, [title]: false })
   }
   return (
     <div className={styles.header}>
@@ -23,7 +23,7 @@ export default function MobileMenuHeader({ title }: MobileMenuHeaderProps) {
           <FontAwesomeIcon className={styles.icon} icon={faTimes} />
         </button>
       ) : (
-        <button className={styles.button}>
+        <button className={styles.button} onClick={handleCloseMenu}>
           <span className='visually-hidden'>Back to filters</span>
           <FontAwesomeIcon className={styles.icon} icon={faChevronLeft} />
         </button>

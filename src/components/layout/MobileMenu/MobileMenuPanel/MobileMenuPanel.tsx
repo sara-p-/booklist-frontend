@@ -10,7 +10,7 @@ import Multiselect from '@/components/ui/Form/DropdownFilters/Multiselect/Multis
 import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
 import { MOBILE_FILTERS } from '@/lib/globals'
 import MobileMenuButton from '@/components/ui/MobileMenuButton/MobileMenuButton'
-import { useEffect } from 'react'
+import MobileMenuCloseButton from '@/components/features/Mobile/MobileMenuCloseButton/MobileMenuCloseButton'
 
 type MobileMenuPanelProps = {
   filterType: MobileVisibleFilterType
@@ -25,28 +25,17 @@ export default function MobileMenuPanel({
   filterRadio,
   filterRange,
 }: MobileMenuPanelProps) {
-  const { mobileFilterState, setMobileFilterState } =
-    useMobileFilterStateContext()
-
-  useEffect(() => {
-    console.log('mobileFilterState', mobileFilterState)
-  }, [mobileFilterState])
-
-  if (filterType === 'filters') {
-    return (
-      <div className={styles.panel} data-open={mobileFilterState[filterType]}>
-        <MobileMenuHeader title={filterType} />
-        {MOBILE_FILTERS.map((filter) => (
-          <MobileMenuButton filterName={filter} key={filter} />
-        ))}
-      </div>
-    )
-  }
+  const { mobileFilterState } = useMobileFilterStateContext()
 
   return (
     <div className={styles.panel} data-open={mobileFilterState[filterType]}>
       <MobileMenuHeader title={filterType} />
-      {filterArray && <Multiselect filter={filterArray} mobile={true} />}
+      {filterType === 'filters'
+        ? MOBILE_FILTERS.map((filter) => (
+            <MobileMenuButton filterName={filter} key={filter} />
+          ))
+        : filterArray && <Multiselect filter={filterArray} mobile={true} />}
+      <MobileMenuCloseButton />
     </div>
   )
 }

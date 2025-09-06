@@ -11,11 +11,26 @@ import ScrollToTop from '@/components/features/ScrollToTop/ScrollToTop'
 import { useEffect, useState } from 'react'
 import MobileMenu from '@/components/layout/MobileMenu/MobileMenu'
 import MobileFiltersContainer from '@/components/layout/MobileFiltersContainer/MobileFiltersContainer'
+import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
+import MobileMenuCloseButton from '@/components/features/Mobile/MobileMenuCloseButton/MobileMenuCloseButton'
 
 export default function Home() {
   const { filterValues } = useFilterValuesContext()
   const filteredBooks = useFilteredBooks()
   const [showScrollToTop, setShowScrollToTop] = useState(false)
+  const { mobileFilterState } = useMobileFilterStateContext()
+
+  // Do a few things when the mobile menu is open or closed
+  useEffect(() => {
+    const isAnyMobileFilterOpen = Object.values(mobileFilterState).some(
+      (filter) => filter
+    )
+    if (isAnyMobileFilterOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [mobileFilterState])
 
   // Show scroll to top button when user scrolls down
   useEffect(() => {

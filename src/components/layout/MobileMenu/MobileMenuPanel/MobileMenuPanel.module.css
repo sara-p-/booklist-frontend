@@ -8,6 +8,10 @@
   z-index: 101;
   transform: translateX(0);
   transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-bottom: var(--header-height);
   &[data-open='true'] {
     transform: translateX(-100%);
   }
