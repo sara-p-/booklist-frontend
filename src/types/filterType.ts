@@ -53,6 +53,19 @@ export type VisibleFilterType =
   | 'rating'
   | 'spice'
 
+export type MobileVisibleFilterType =
+  | 'sort'
+  | 'order'
+  | 'authors'
+  | 'series'
+  | 'genres'
+  | 'tropes'
+  | 'creatures'
+  | 'booktags'
+  | 'rating'
+  | 'spice'
+  | 'filters'
+
 export interface FilterStateType {
   sort: boolean
   order: boolean
@@ -67,5 +80,5 @@ export interface FilterStateType {
 }
 
 export interface MobileFilterStateType extends FilterStateType {
-  menu: boolean
+  filters: boolean
 }

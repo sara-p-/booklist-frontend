@@ -1,16 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './MobileMenuHeader.module.css'
 import { faChevronLeft, faTimes } from '@fortawesome/free-solid-svg-icons'
+import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
+import { MobileVisibleFilterType } from '@/types/filterType'
 
 type MobileMenuHeaderProps = {
-  title: string
+  title: MobileVisibleFilterType
 }
 
 export default function MobileMenuHeader({ title }: MobileMenuHeaderProps) {
+  const { mobileFilterState, setMobileFilterState } =
+    useMobileFilterStateContext()
+
+  function handleCloseMenu() {
+    setMobileFilterState({ ...mobileFilterState, filters: false })
+  }
   return (
     <div className={styles.header}>
-      {title === 'options' ? (
-        <button className={styles.button}>
+      {title === 'filters' ? (
+        <button className={styles.button} onClick={handleCloseMenu}>
           <span className='visually-hidden'>Close mobile menu</span>
           <FontAwesomeIcon className={styles.icon} icon={faTimes} />
         </button>

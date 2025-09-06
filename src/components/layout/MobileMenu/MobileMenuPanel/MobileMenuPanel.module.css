@@ -3,8 +3,12 @@
   height: 100%;
   background-color: var(--secondary);
   position: fixed;
-  top: var(--header-height);
+  top: 0;
   left: 0;
-  right: 0;
-  z-index: 100;
+  z-index: 101;
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+  &[data-open='true'] {
+    transform: translateX(-100%);
+  }
 }

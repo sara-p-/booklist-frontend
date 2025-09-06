@@ -2,6 +2,7 @@ import {
   ExcludeValuesType,
   FilterType,
   MobileFilterStateType,
+  VisibleFilterType,
 } from '@/types/filterType'
 
 export const DEFAULT_FILTER_VALUES: FilterType = {
@@ -19,6 +20,19 @@ export const DEFAULT_FILTER_VALUES: FilterType = {
   // finished: true,
   search: '',
 }
+
+export const MOBILE_FILTERS: VisibleFilterType[] = [
+  'sort',
+  'order',
+  'authors',
+  'series',
+  'genres',
+  'tropes',
+  'creatures',
+  'booktags',
+  'rating',
+  'spice',
+]
 
 export const SORT_OPTIONS = [
   'series',
@@ -44,7 +58,7 @@ export const DEFAULT_EXCLUDE_VALUES: ExcludeValuesType = {
 }
 
 export const DEFAULT_MOBILE_FILTER_STATE_VALUES: MobileFilterStateType = {
-  menu: false,
+  filters: false,
   sort: false,
   order: false,
   authors: false,

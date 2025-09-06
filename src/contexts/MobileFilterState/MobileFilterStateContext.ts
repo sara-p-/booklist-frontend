@@ -11,7 +11,7 @@ type MobileFilterStateContextType = {
 export const MobileFilterStateContext =
   createContext<MobileFilterStateContextType>({
     mobileFilterState: {
-      menu: false,
+      filters: false,
       sort: false,
       order: false,
       authors: false,
