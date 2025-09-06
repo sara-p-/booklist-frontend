@@ -8,36 +8,57 @@ import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 
 export default function Pagination({ slug }: { slug: string }) {
   const filteredBooks = useFilteredBooks()
+
   if (!filteredBooks) return null
+
   const currentBookIndex = filteredBooks.findIndex((book) => book.slug === slug)
   const previousBook =
     filteredBooks.length > 0 && currentBookIndex > 0
       ? filteredBooks[currentBookIndex - 1].slug
+      : currentBookIndex === 0
+      ? filteredBooks[filteredBooks.length - 1].slug
       : null
   const nextBook =
     filteredBooks.length > 0 && currentBookIndex < filteredBooks.length - 1
       ? filteredBooks[currentBookIndex + 1].slug
+      : currentBookIndex === filteredBooks.length - 1
+      ? filteredBooks[0].slug
       : null
+
+  function handleClick() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.buttons}>
         <div className={styles.buttonContainer}>
           {previousBook && (
-            <Link className={styles.button} href={`/book/${previousBook}`}>
-              <FontAwesomeIcon icon={faArrowLeft} size='sm' /> {'previous book'}
+            <Link
+              onNavigate={handleClick}
+              className={styles.button}
+              href={`/book/${previousBook}`}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} size='sm' /> {'prev'}
             </Link>
           )}
         </div>
         <div className={styles.buttonContainer}>
-          <Link className={styles.button} href={`/`}>
+          <Link onNavigate={handleClick} className={styles.button} href={`/`}>
             {'all books'}
           </Link>
         </div>
         <div className={styles.buttonContainer}>
           {nextBook && (
-            <Link className={styles.button} href={`/book/${nextBook}`}>
-              {'next book'} <FontAwesomeIcon icon={faArrowRight} size='sm' />
+            <Link
+              onNavigate={handleClick}
+              className={styles.button}
+              href={`/book/${nextBook}`}
+            >
+              {'next'} <FontAwesomeIcon icon={faArrowRight} size='sm' />
             </Link>
           )}
         </div>
