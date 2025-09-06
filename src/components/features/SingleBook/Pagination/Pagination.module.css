@@ -12,7 +12,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* gap: 1rem; */
   border-top: var(--border-thick);
   @media (max-width: 768px) {
     padding: 8px 0 2rem 0;

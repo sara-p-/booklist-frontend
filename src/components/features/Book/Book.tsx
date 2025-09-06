@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from './Book.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import { convertStringToDate } from '@/lib/utils'
+import { convertStringToDate, scrollToTop } from '@/lib/utils'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
 export default function Book({ book }: { book: BookType }) {
@@ -13,10 +13,8 @@ export default function Book({ book }: { book: BookType }) {
 
   // TODO: when the user clicks on the book, the filters should be reset. Because the reset is happening before the book is loaded, the screen flashes the book grid before the user is navigated away.
   function handleHomeNavigation() {
-    window.scrollTo({
-      top: 0,
-      // behavior: 'smooth',
-    })
+    scrollToTop()
+
     // setFilterValues({
     //   ...filterValues,
     //   ...DEFAULT_FILTER_VALUES,

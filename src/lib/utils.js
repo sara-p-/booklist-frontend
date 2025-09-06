@@ -38,3 +38,11 @@ export function uniqueArray(originalArray, key) {
     (obj, index, self) => self.findIndex((t) => t[key] === obj[key]) === index
   )
 }
+
+// Scroll to top
+export function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  })
+}

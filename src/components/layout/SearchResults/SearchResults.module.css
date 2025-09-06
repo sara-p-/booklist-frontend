@@ -7,6 +7,12 @@
   padding: 0 16px;
   height: auto;
   max-height: 400px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+    max-height: none;
+    padding-bottom: 32px;
+  }
 }
 
 .resultsGroup {
@@ -32,6 +38,9 @@
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  @media (max-width: 768px) {
+    max-height: 300px;
+  }
   /* Scrollbar */
   /* Style the entire scrollbar */
   &::-webkit-scrollbar {
