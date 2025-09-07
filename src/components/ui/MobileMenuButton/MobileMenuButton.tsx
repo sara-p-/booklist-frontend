@@ -1,67 +1,60 @@
 'use client'
-import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
+
+import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 import styles from './MobileMenuButton.module.css'
-import { VisibleFilterType } from '@/types/filterType'
-import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
 import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
+import {
+  DEFAULT_FILTER_VALUES,
+  DEFAULT_MOBILE_FILTER_STATE_VALUES,
+} from '@/lib/globals'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 
 type MobileMenuButtonProps = {
-  filterName: VisibleFilterType
+  type: 'closeFilters' | 'clearFilters'
 }
 
-export default function MobileMenuButton({
-  filterName,
-}: MobileMenuButtonProps) {
+export default function MobileMenuButton({ type }: MobileMenuButtonProps) {
+  const filteredBooks = useFilteredBooks()
+  const { filterValues, setFilterValues } = useFilterValuesContext()
   const { mobileFilterState, setMobileFilterState } =
     useMobileFilterStateContext()
 
-  function handleClick() {
-    const newMobileFilterState = { ...mobileFilterState }
-    setMobileFilterState({ ...newMobileFilterState, [filterName]: true })
+  if (!filteredBooks) return null
+
+  function handleCloseFiltersClick() {
+    setMobileFilterState({
+      ...mobileFilterState,
+      ...DEFAULT_MOBILE_FILTER_STATE_VALUES,
+    })
+  }
+
+  function handleClearFiltersClick() {
+    handleCloseFiltersClick()
+    setFilterValues({
+      ...filterValues,
+      ...DEFAULT_FILTER_VALUES,
+    })
+  }
+
+  if (type === 'closeFilters') {
+    return (
+      <button
+        className={`${styles.button} ${styles.closeFilters}`}
+        onClick={handleCloseFiltersClick}
+      >
+        <FontAwesomeIcon icon={faArrowLeft} /> view {filteredBooks.length} books
+      </button>
+    )
   }
 
   return (
-    <button className={styles.mobileMenuButton} onClick={handleClick}>
-      <span className={styles.filterName}>{filterName}</span>
-      <FilterValue filterName={filterName} />
+    <button
+      className={`${styles.button} ${styles.clearFilters}`}
+      onClick={handleClearFiltersClick}
+    >
+      reset filters
     </button>
-  )
-}
-
-function FilterValue({ filterName }: { filterName: VisibleFilterType }) {
-  const { filterValues } = useFilterValuesContext()
-  const { excludeValues } = useExcludeValuesContext()
-  const filterValue = filterValues[filterName]
-  const filterCount =
-    filterValues[filterName].length > 0 ? filterValues[filterName].length : 0
-
-  let excludedCount = 0
-  if (
-    filterName === 'authors' ||
-    filterName === 'series' ||
-    filterName === 'genres' ||
-    filterName === 'tropes' ||
-    filterName === 'creatures' ||
-    filterName === 'booktags'
-  ) {
-    excludedCount =
-      excludeValues[filterName].length > 0
-        ? excludeValues[filterName].length
-        : 0
-  }
-
-  if (filterName === 'sort' || filterName === 'order') {
-    return <span className={styles.filterValue}>{filterValue}</span>
-  }
-
-  if (filterName === 'rating' || filterName === 'spice') {
-    return <span className={styles.filterValue}>{filterValue}</span>
-  }
-
-  return (
-    <span className={styles.filterValue}>
-      {excludedCount === 0 && filterCount}
-      {excludedCount > 0 && `-${excludedCount}`} selected
-    </span>
   )
 }

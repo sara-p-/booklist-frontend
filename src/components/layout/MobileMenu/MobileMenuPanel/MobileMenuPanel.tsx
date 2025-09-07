@@ -8,9 +8,14 @@ import MobileMenuHeader from '../MobileMenuHeader/MobileMenuHeader'
 import styles from './MobileMenuPanel.module.css'
 import Multiselect from '@/components/ui/Form/DropdownFilters/Multiselect/Multiselect'
 import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
-import { MOBILE_FILTERS } from '@/lib/globals'
+import {
+  DEFAULT_MOBILE_FILTER_STATE_VALUES,
+  MOBILE_FILTERS,
+} from '@/lib/globals'
+import MobileMenuListButton from '@/components/ui/MobileMenuListButton/MobileMenuListButton'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import MobileMenuButton from '@/components/ui/MobileMenuButton/MobileMenuButton'
-import MobileMenuCloseButton from '@/components/features/Mobile/MobileMenuCloseButton/MobileMenuCloseButton'
+import MobileMenuOptionsList from '@/components/features/Mobile/MobileMenuOptionsList/MobileMenuOptionsList'
 
 type MobileMenuPanelProps = {
   filterType: MobileVisibleFilterType
@@ -25,17 +30,26 @@ export default function MobileMenuPanel({
   filterRadio,
   filterRange,
 }: MobileMenuPanelProps) {
-  const { mobileFilterState } = useMobileFilterStateContext()
+  const { mobileFilterState, setMobileFilterState } =
+    useMobileFilterStateContext()
+
+  // function handleCloseMobileMenu() {
+  //   setMobileFilterState({
+  //     ...mobileFilterState,
+  //     ...DEFAULT_MOBILE_FILTER_STATE_VALUES,
+  //   })
+  // }
 
   return (
     <div className={styles.panel} data-open={mobileFilterState[filterType]}>
       <MobileMenuHeader title={filterType} />
-      {filterType === 'filters'
-        ? MOBILE_FILTERS.map((filter) => (
-            <MobileMenuButton filterName={filter} key={filter} />
-          ))
-        : filterArray && <Multiselect filter={filterArray} mobile={true} />}
-      <MobileMenuCloseButton />
+      {/* {filterType === 'filters' && <MobileMenuButton type='clearFilters' />} */}
+      {filterType === 'filters' ? (
+        <MobileMenuOptionsList />
+      ) : (
+        filterArray && <Multiselect filter={filterArray} mobile={true} />
+      )}
+      <MobileMenuButton type='closeFilters' />
     </div>
   )
 }

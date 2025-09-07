@@ -1,6 +1,6 @@
 import styles from './Multiselect.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import { getAllFilterItems, getFilterType } from '@/lib/filtering-utils'
+import { getAllFilterItems } from '@/lib/filtering-utils'
 import { FilterArrayType } from '@/types/filterType'
 import { useBookListContext } from '@/hooks/useBookListContext'
 import React, { useRef, useState } from 'react'
@@ -23,10 +23,8 @@ function Multiselect({ filter, mobile }: MultiselectProps) {
   const { handleExclude } = useHandleExclude(filter, exclude)
   const { handleMultiselectChange } = useHandleMultiSelectChange()
 
-  // get the length of the array if the filter is of type string[]
-  const filterType = getFilterType(filter)
-  const selectedItems =
-    filterType === 'string[]' ? filterValues[filter].length : 0
+  // get the length of the array
+  const selectedItems = filterValues[filter].length
 
   // Handle the exclude button click
   function handleTheExcludeButton() {

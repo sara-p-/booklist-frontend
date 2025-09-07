@@ -1,0 +1,28 @@
+.mobileMenuButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--secondary);
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  color: var(--primary);
+  width: 100%;
+  border-bottom: var(--border-medium);
+  font-family: inherit;
+  &:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+}
+
+.filterName {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.filterValue {
+  font-size: 14px;
+  font-weight: 400;
+}
