@@ -32,6 +32,7 @@
   --header-height: 56px;
   --filters-height: 204.5px;
   --mobile-filters-height: 179px;
+  --mobile-menu-close-button-height: 64px;
 }
 
 /* @media (prefers-color-scheme: dark) {

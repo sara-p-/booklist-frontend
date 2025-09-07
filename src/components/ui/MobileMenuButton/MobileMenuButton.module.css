@@ -10,6 +10,7 @@
   color: var(--primary);
   width: 100%;
   border-bottom: var(--border-medium);
+  font-family: inherit;
   &:hover {
     background-color: var(--primary);
     color: var(--secondary);

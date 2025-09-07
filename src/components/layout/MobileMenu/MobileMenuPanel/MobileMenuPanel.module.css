@@ -11,7 +11,9 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding-bottom: var(--header-height);
+  padding-bottom: calc(
+    var(--header-height) + var(--mobile-menu-close-button-height)
+  );
   &[data-open='true'] {
     transform: translateX(-100%);
   }
