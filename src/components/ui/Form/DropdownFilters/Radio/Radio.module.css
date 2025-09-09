@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 0px;
   padding: 0px;
+  height: 100%;
   max-height: 200px;
   overflow-y: scroll;
   border: none;
@@ -11,30 +12,28 @@
   &.mobile {
     max-height: 100%;
   }
-  &.scrollBar {
-    /* Scrollbar */
-    /* Style the entire scrollbar */
-    &::-webkit-scrollbar {
-      width: 12px; /* Width of vertical scrollbar */
-    }
+  /* Scrollbar */
+  /* Style the entire scrollbar */
+  &::-webkit-scrollbar {
+    width: 12px; /* Width of vertical scrollbar */
+  }
 
-    /* Style the scrollbar track */
-    &::-webkit-scrollbar-track {
-      background: var(--light);
-      border-left: var(--border-thin);
-      /* border-radius: 10px; */
-    }
+  /* Style the scrollbar track */
+  &::-webkit-scrollbar-track {
+    background: var(--light);
+    border-left: var(--border-thin);
+    /* border-radius: 10px; */
+  }
 
-    /* Style the scrollbar thumb */
-    &::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      /* border-radius: 10px; */
-    }
+  /* Style the scrollbar thumb */
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    /* border-radius: 10px; */
+  }
 
-    /* Style the scrollbar thumb on hover */
-    &::-webkit-scrollbar-thumb:hover {
-      background: var(--dark);
-    }
+  /* Style the scrollbar thumb on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--dark);
   }
 }
 
@@ -43,6 +42,7 @@
   align-items: center;
   padding: 0;
   border-bottom: var(--border-thin);
+  width: 100%;
   label {
     font-size: 12px;
     font-weight: 500;
@@ -60,36 +60,15 @@
       background-color: var(--light);
     }
   }
-  &.mobile label {
-    font-size: 20px;
-    font-weight: 500;
-    padding: 12px 16px;
+  &.mobile {
+    border-bottom: var(--border-medium);
+    label {
+      font-size: 20px;
+      font-weight: 500;
+      padding: 12px 16px;
+    }
   }
 }
-
-/* .filterItem label {
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  width: 100%;
-  padding: 8px;
-  &:has(input:checked) {
-    background-color: var(--primary);
-    color: var(--secondary);
-  }
-  &:hover {
-    background-color: var(--light);
-  }
-  &:focus {
-    background-color: var(--light);
-  }
-}
-
-.filterItem.mobile label {
-  font-size: 20px;
-  font-weight: 500;
-  padding: 12px 16px;
-} */
 
 .filterItem input {
   opacity: 0;

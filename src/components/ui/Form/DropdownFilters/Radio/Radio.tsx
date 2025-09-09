@@ -3,8 +3,6 @@ import styles from './Radio.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
 import { getOrderLabel, setOrderValue } from '@/lib/filtering-utils'
-import { useRef } from 'react'
-import useScrollBar from '@/hooks/useScrollBar'
 
 type RadioProps = {
   items: string[]
@@ -15,11 +13,6 @@ type RadioProps = {
 export default function Radio({ items, groupName, mobile }: RadioProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { filterState, setFilterState } = useFilterStateContext()
-  const containerRef = useRef<HTMLFieldSetElement>(null)
-  const itemRef = useRef<HTMLDivElement>(null)
-  // custom hook that determines if a scrollbar is needed
-  // I'm using this because getting the scrollbars to look the way I want means that they are always visible, but this is a hack to only show them when needed
-  const { scrollBar } = useScrollBar(containerRef, itemRef, items)
 
   function handleRadioChange(filter: string, value: string) {
     const newFilterValues = { ...filterValues }
@@ -50,10 +43,7 @@ export default function Radio({ items, groupName, mobile }: RadioProps) {
 
   return (
     <fieldset
-      className={`${styles.filterContainer} ${mobile ? styles.mobile : ''} ${
-        scrollBar ? styles.scrollBar : ''
-      }`}
-      ref={containerRef}
+      className={`${styles.filterContainer} ${mobile ? styles.mobile : ''}`}
     >
       {items.map((item, index) => {
         const isItemChecked =
@@ -62,7 +52,6 @@ export default function Radio({ items, groupName, mobile }: RadioProps) {
           <div
             className={`${styles.filterItem} ${mobile ? styles.mobile : ''}`}
             key={`${item}-${index}`}
-            ref={itemRef}
           >
             <label htmlFor={item}>
               <input
