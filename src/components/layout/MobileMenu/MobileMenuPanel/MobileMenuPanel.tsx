@@ -11,24 +11,23 @@ import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
 import {
   DEFAULT_MOBILE_FILTER_STATE_VALUES,
   MOBILE_FILTERS,
+  ORDER_OPTIONS,
+  SORT_OPTIONS,
 } from '@/lib/globals'
 import MobileMenuListButton from '@/components/ui/MobileMenuListButton/MobileMenuListButton'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import MobileMenuButton from '@/components/ui/MobileMenuButton/MobileMenuButton'
 import MobileMenuOptionsList from '@/components/features/Mobile/MobileMenuOptionsList/MobileMenuOptionsList'
+import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
 
 type MobileMenuPanelProps = {
   filterType: MobileVisibleFilterType
   filterArray?: FilterArrayType
-  filterRadio?: FilterRadioType
-  filterRange?: FilterRangeType
 }
 
 export default function MobileMenuPanel({
   filterType,
   filterArray,
-  filterRadio,
-  filterRange,
 }: MobileMenuPanelProps) {
   const { mobileFilterState, setMobileFilterState } =
     useMobileFilterStateContext()
@@ -41,13 +40,19 @@ export default function MobileMenuPanel({
   // }
 
   return (
-    <div className={styles.panel} data-open={mobileFilterState[filterType]}>
+    <div
+      className={styles.panel}
+      data-open={mobileFilterState[filterType]}
+      data-type={filterType}
+    >
       <MobileMenuHeader title={filterType} />
-      {/* {filterType === 'filters' && <MobileMenuButton type='clearFilters' />} */}
-      {filterType === 'filters' ? (
-        <MobileMenuOptionsList />
-      ) : (
-        filterArray && <Multiselect filter={filterArray} mobile={true} />
+      {filterType === 'filters' && <MobileMenuOptionsList />}
+      {filterArray && <Multiselect filter={filterArray} mobile={true} />}
+      {filterType === 'sort' && (
+        <Radio items={SORT_OPTIONS} groupName='sort' mobile={true} />
+      )}
+      {filterType === 'order' && (
+        <Radio items={ORDER_OPTIONS} groupName='order' mobile={true} />
       )}
       <MobileMenuButton type='closeFilters' />
     </div>

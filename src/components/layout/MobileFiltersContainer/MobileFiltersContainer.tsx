@@ -16,10 +16,6 @@ export default function MobileFiltersContainer() {
     setMobileFilterState({ ...mobileFilterState, filters: true })
   }
 
-  useEffect(() => {
-    console.log('mobileFilterState', mobileFilterState.filters)
-  }, [mobileFilterState])
-
   return (
     <div className={styles.container}>
       <div className={styles.searchbarContainer}>

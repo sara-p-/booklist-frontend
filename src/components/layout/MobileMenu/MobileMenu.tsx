@@ -5,6 +5,8 @@ export default function MobileMenu() {
   return (
     <div className={styles.container}>
       <MobileMenuPanel filterType='filters' />
+      <MobileMenuPanel filterType='sort' />
+      <MobileMenuPanel filterType='order' />
       <MobileMenuPanel filterType='authors' filterArray='authors' />
       <MobileMenuPanel filterType='series' filterArray='series' />
       <MobileMenuPanel filterType='genres' filterArray='genres' />

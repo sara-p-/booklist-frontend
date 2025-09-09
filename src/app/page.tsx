@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react'
 import MobileMenu from '@/components/layout/MobileMenu/MobileMenu'
 import MobileFiltersContainer from '@/components/layout/MobileFiltersContainer/MobileFiltersContainer'
 import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
-import MobileMenuCloseButton from '@/components/features/Mobile/MobileMenuCloseButton/MobileMenuCloseButton'
 
 export default function Home() {
   const { filterValues } = useFilterValuesContext()
