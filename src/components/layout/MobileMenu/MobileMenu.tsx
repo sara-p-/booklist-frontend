@@ -13,6 +13,8 @@ export default function MobileMenu() {
       <MobileMenuPanel filterType='tropes' filterArray='tropes' />
       <MobileMenuPanel filterType='creatures' filterArray='creatures' />
       <MobileMenuPanel filterType='booktags' filterArray='booktags' />
+      <MobileMenuPanel filterType='rating' />
+      <MobileMenuPanel filterType='spice' />
     </div>
   )
 }

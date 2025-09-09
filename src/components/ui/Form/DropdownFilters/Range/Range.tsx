@@ -8,10 +8,11 @@ import useFilterStateContext from '@/hooks/useFilterStateContext'
 type RangeProps = {
   max: number
   buttonText: 'rating' | 'spice'
+  mobile?: boolean
   // onChange: (filter: 'rating' | 'spice', value: string[]) => void
 }
 
-export default function Range({ max, buttonText }: RangeProps) {
+export default function Range({ max, buttonText, mobile }: RangeProps) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { filterState, setFilterState } = useFilterStateContext()
   // convert the filter values to numbers since the filter values are strings
@@ -42,7 +43,11 @@ export default function Range({ max, buttonText }: RangeProps) {
 
   return (
     <>
-      <div className={styles.selectionContainer}>
+      <div
+        className={`${styles.selectionContainer} ${
+          mobile ? styles.mobile : ''
+        }`}
+      >
         <p className={styles.selectionTextContainer}>
           <span className={styles.selectionText}>range selected:</span>
           <span className={styles.selectionTextValue}>
@@ -59,10 +64,12 @@ export default function Range({ max, buttonText }: RangeProps) {
           clear
         </button>
       </div>
-      <div className={styles.rangeContainer}>
+      <div
+        className={`${styles.rangeContainer} ${mobile ? styles.mobile : ''}`}
+      >
         <Slider.Root
           className={styles.sliderRoot}
-          defaultValue={[0, max]}
+          defaultValue={[1, max]}
           max={max}
           step={1}
           minStepsBetweenThumbs={1}

@@ -37,6 +37,14 @@
   }
 }
 
+.mobile {
+  .button {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 24px;
+  }
+}
+
 .filterContainer {
   list-style: none;
   padding: 0;

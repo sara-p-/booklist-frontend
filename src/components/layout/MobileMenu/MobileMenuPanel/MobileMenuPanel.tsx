@@ -19,6 +19,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import MobileMenuButton from '@/components/ui/MobileMenuButton/MobileMenuButton'
 import MobileMenuOptionsList from '@/components/features/Mobile/MobileMenuOptionsList/MobileMenuOptionsList'
 import Radio from '@/components/ui/Form/DropdownFilters/Radio/Radio'
+import Range from '@/components/ui/Form/DropdownFilters/Range/Range'
 
 type MobileMenuPanelProps = {
   filterType: MobileVisibleFilterType
@@ -53,6 +54,12 @@ export default function MobileMenuPanel({
       )}
       {filterType === 'order' && (
         <Radio items={ORDER_OPTIONS} groupName='order' mobile={true} />
+      )}
+      {filterType === 'rating' && (
+        <Range max={10} buttonText='rating' mobile={true} />
+      )}
+      {filterType === 'spice' && (
+        <Range max={5} buttonText='spice' mobile={true} />
       )}
       <MobileMenuButton type='closeFilters' />
     </div>

@@ -4,6 +4,23 @@
   align-items: center;
   padding: 8px;
   border-bottom: var(--border-thin);
+  &.mobile {
+    padding: 16px;
+    border-bottom: var(--border-thick);
+    .selectionText {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .selectionTextValue {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .clearButton {
+      font-size: 16px;
+      font-weight: 500;
+      padding: 8px 32px;
+    }
+  }
 }
 
 .selectionTextContainer {
@@ -56,6 +73,10 @@
   padding: 0px;
   height: 100%;
   max-height: 200px;
+  &.mobile {
+    height: auto;
+    padding: 16px 0;
+  }
 }
 
 .sliderRoot {
