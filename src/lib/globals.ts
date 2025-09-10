@@ -70,3 +70,16 @@ export const DEFAULT_MOBILE_FILTER_STATE_VALUES: MobileFilterStateType = {
   rating: false,
   spice: false,
 }
+
+// export const DEFAULT_MOBILE_FILTERS: FilterType = {
+//   sort: 'reading order',
+//   order: 'desc',
+//   authors: [],
+//   series: [],
+//   genres: [],
+//   tropes: [],
+//   creatures: [],
+//   booktags: [],
+//   rating: ['0', '10'],
+//   spice: ['0', '5'],
+// }
