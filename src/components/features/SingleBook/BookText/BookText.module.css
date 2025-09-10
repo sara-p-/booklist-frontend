@@ -37,15 +37,30 @@
   }
 }
 
+/* Smell */
 .smell {
-  background-color: var(--primary);
-  color: var(--secondary);
-  padding: 16px;
+  border: var(--border-thick);
+  padding: 32px;
   .title {
-    border-bottom: 3px solid var(--secondary);
+    border-bottom: none;
   }
   .text {
-    font-size: 32px;
-    font-weight: 500;
+    p {
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1.2;
+      text-wrap: pretty;
+      /* display: inline-block; */
+      margin: 0;
+      font-style: italic;
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 16px;
+    .text {
+      p {
+        font-size: 16px;
+      }
+    }
   }
 }
