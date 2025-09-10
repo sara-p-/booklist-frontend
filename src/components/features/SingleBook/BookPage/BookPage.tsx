@@ -13,6 +13,9 @@ import SearchResults from '@/components/layout/SearchResults/SearchResults'
 import FiltersSection from '@/components/layout/FiltersSection/FiltersSection'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { BookType } from '@/types/bookType'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
 export default function BookPage({
   parsedBook,
@@ -25,7 +28,7 @@ export default function BookPage({
 
   if (filterValues.search !== '') {
     return (
-      <div className={styles.pageContainer}>
+      <div className={styles.searchResultsContainer}>
         <FiltersSection />
         <div className={styles.bookListContainer}>
           <SearchResults />
@@ -35,7 +38,10 @@ export default function BookPage({
   }
 
   return (
-    <>
+    <div className={styles.pageContainer}>
+      <Link href='/' className={styles.backToHomeLink}>
+        <FontAwesomeIcon icon={faArrowLeft} /> back to home
+      </Link>
       <div className={styles.container}>
         <div className={styles.mainContainer}>
           <BookInfo book={parsedBook} />
@@ -86,6 +92,6 @@ export default function BookPage({
         </div>
       </div>
       <Pagination slug={slug} />
-    </>
+    </div>
   )
 }

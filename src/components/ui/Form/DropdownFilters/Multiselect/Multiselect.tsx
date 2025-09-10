@@ -3,10 +3,12 @@ import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { getAllFilterItems } from '@/lib/filtering-utils'
 import { FilterArrayType } from '@/types/filterType'
 import { useBookListContext } from '@/hooks/useBookListContext'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import useHandleMultiSelectClear from '@/hooks/useHandleMultiSelectClear'
 import useHandleExclude from '@/hooks/useHandleExclude'
 import useHandleMultiSelectChange from '@/hooks/useHandleMultiSelectChange'
+import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
+import useFilterStateContext from '@/hooks/useFilterStateContext'
 
 type MultiselectProps = {
   filter: FilterArrayType
@@ -15,6 +17,8 @@ type MultiselectProps = {
 
 function Multiselect({ filter, mobile }: MultiselectProps) {
   const { filterValues } = useFilterValuesContext()
+  const { mobileFilterState } = useMobileFilterStateContext()
+  const { filterState } = useFilterStateContext()
   const { bookList } = useBookListContext()
   const [exclude, setExclude] = useState(false) // state for the exclude button
   const dropdownRef = useRef<HTMLUListElement>(null)
@@ -45,6 +49,13 @@ function Multiselect({ filter, mobile }: MultiselectProps) {
     // scroll to the top of the dropdown when the clear button is clicked
     dropdownRef.current?.scrollTo(0, 0)
   }
+
+  // scroll to the top of the dropdown when the dropdown is opened
+  useEffect(() => {
+    if (mobileFilterState[filter] || filterState[filter]) {
+      dropdownRef.current?.scrollTo(0, 0)
+    }
+  }, [mobileFilterState, filterState, filter])
 
   return (
     <>

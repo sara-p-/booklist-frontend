@@ -1,20 +1,20 @@
 .container {
   width: 100%;
   max-width: var(--max-width);
-  padding: 0 16px;
+  padding: 0;
   margin: auto;
 }
 
 .buttons {
   width: auto;
-  padding: 1rem 0;
+  padding: 1rem 0 0 0;
   margin: 2rem auto 3rem auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: var(--border-thick);
   @media (max-width: 768px) {
-    padding: 8px 0 2rem 0;
+    padding: 8px 0 0 0;
   }
 }
 

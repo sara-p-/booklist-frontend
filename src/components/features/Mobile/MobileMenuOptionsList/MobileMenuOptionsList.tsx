@@ -2,38 +2,26 @@
 
 import MobileMenuListButton from '@/components/ui/MobileMenuListButton/MobileMenuListButton'
 import styles from './MobileMenuOptionsList.module.css'
-import { DEFAULT_FILTER_VALUES, MOBILE_FILTERS } from '@/lib/globals'
-import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
+import { MOBILE_FILTERS } from '@/lib/globals'
 import MobileMenuButton from '@/components/ui/MobileMenuButton/MobileMenuButton'
+import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
+import { useEffect, useRef } from 'react'
 
 export default function MobileMenuOptionsList() {
-  const { filterValues, setFilterValues } = useFilterValuesContext()
+  const { mobileFilterState } = useMobileFilterStateContext()
+  const listRef = useRef<HTMLUListElement>(null)
 
-  const selectedItems =
-    JSON.stringify(filterValues) === JSON.stringify(DEFAULT_FILTER_VALUES)
-      ? true
-      : false
-
-  function handleTheClearButton() {
-    setFilterValues({
-      ...filterValues,
-      ...DEFAULT_FILTER_VALUES,
-    })
-  }
+  // Make sure the list is scrolled to the top when the filters are opened
+  useEffect(() => {
+    if (mobileFilterState.filters) {
+      listRef.current?.scrollTo(0, 0)
+    }
+  }, [mobileFilterState.filters])
 
   return (
     <>
-      {/* <div className={styles.selectionContainer}>
-        <button
-          className={styles.button}
-          onClick={handleTheClearButton}
-          disabled={selectedItems}
-        >
-          reset filters
-        </button>
-      </div> */}
       <MobileMenuButton type='clearFilters' />
-      <ul className={styles.list}>
+      <ul className={styles.list} ref={listRef}>
         {MOBILE_FILTERS.map((filter) => (
           <MobileMenuListButton filterName={filter} key={filter} />
         ))}
