@@ -1,23 +1,29 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { useFilterValuesContext } from './useFilterValuesContext'
-import { POSSIBLE_ACTIVE_MOBILE_FILTERS } from '@/lib/globals'
+import {
+  POSSIBLE_ACTIVE_MOBILE_FILTERS,
+  DEFAULT_FILTER_VALUES,
+} from '@/lib/globals'
 import { FilterType } from '@/types/filterType'
-import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
 export default function useActiveMobileFiltersNumber() {
   const { filterValues } = useFilterValuesContext()
   const [activeFilters, setActiveFilters] = useState(0)
-
+  // Compare the current filter values to the default filter values
+  // If they are not the same, increment the active filters count
   useEffect(() => {
     let currentActiveFilters = 0
-    const currentValues = { ...filterValues }
     for (const filterName of POSSIBLE_ACTIVE_MOBILE_FILTERS) {
-      if (
-        currentValues[filterName as keyof FilterType] !==
+      const currentValue = JSON.stringify(
+        filterValues[filterName as keyof FilterType]
+      )
+      const defaultValue = JSON.stringify(
         DEFAULT_FILTER_VALUES[filterName as keyof FilterType]
-      ) {
-        console.log(`${filterName} is not the default value`)
-        currentActiveFilters += 1
+      )
+      if (currentValue !== defaultValue) {
+        currentActiveFilters++
       }
     }
     setActiveFilters(currentActiveFilters)
