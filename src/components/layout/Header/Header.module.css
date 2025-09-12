@@ -8,8 +8,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
-  padding: 11.25px 0;
+  z-index: 101;
+  padding: 8.25px 0;
 }
 
 .container {
