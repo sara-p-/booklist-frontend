@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Header.module.css'
 import Searchbar from '@/components/ui/Form/Searchbar/Searchbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,6 +13,7 @@ import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 export default function Header() {
   const [activeButton, setActiveButton] = React.useState('books')
   const { filterValues, setFilterValues } = useFilterValuesContext()
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   function handleButtonClick(label: string) {
     setActiveButton(label)
@@ -24,6 +25,10 @@ export default function Header() {
       ...filterValues,
       ...DEFAULT_FILTER_VALUES,
     })
+  }
+
+  function handleThemeToggle() {
+    setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
   return (
@@ -57,7 +62,7 @@ export default function Header() {
           <Searchbar />
         </div>
         <div className={styles.column}>
-          <button className={styles.themeToggle}>
+          <button className={styles.themeToggle} onClick={handleThemeToggle}>
             <FontAwesomeIcon icon={faMoon} />
           </button>
         </div>

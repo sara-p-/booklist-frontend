@@ -12,6 +12,7 @@ import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import FilterValuesContextProvider from '@/contexts/FilterValues/FilterValuesContextProvider'
 import ExcludeValuesContextProvider from '@/contexts/ExcludeState/ExcludeValuesContextProvider'
 import MobileFilterStateContextProvider from '@/contexts/MobileFilterState/MobileFilterStateContextProvider'
+
 config.autoAddCss = false
 
 const inter = Inter({
