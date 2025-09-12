@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   z-index: 101;
-  padding: 8.25px 0;
+  padding: 9.25px 0;
 }
 
 .container {
@@ -48,12 +48,12 @@
 
 .title {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 36px;
   line-height: 1;
 }
 
 .icon {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .menuContainer {
@@ -72,5 +72,30 @@
   transition: color 0.2s ease-in-out;
   &:hover {
     color: var(--accent);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .header {
+    background-color: var(--secondary);
+    border-bottom: 3px solid var(--primary);
+  }
+  .titleContainer {
+    color: var(--primary);
+  }
+  .themeToggle {
+    color: var(--primary);
+  }
+}
+
+[data-theme='dark'].header {
+  background-color: var(--secondary);
+  border-bottom: 3px solid var(--primary);
+
+  .titleContainer {
+    color: var(--primary);
+  }
+  .themeToggle {
+    color: var(--primary);
   }
 }

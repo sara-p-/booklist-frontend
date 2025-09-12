@@ -19,13 +19,13 @@
 
 .input {
   width: 100%;
-  padding: 8px 0;
+  padding: 6px 0;
   border: none;
   background-color: transparent;
   color: var(--primary);
   font-size: 16px;
   font-weight: 400;
-  letter-spacing: -0.5px;
+  /* letter-spacing: -0.5px; */
   outline: none;
   transition: all 0.2s ease-in-out;
   appearance: none;

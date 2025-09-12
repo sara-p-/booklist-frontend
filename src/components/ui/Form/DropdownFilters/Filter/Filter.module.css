@@ -52,10 +52,6 @@
 }
 
 .buttonTextContainer {
-  /* display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 4px; */
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
@@ -99,5 +95,24 @@
   &.open {
     display: block;
     z-index: 100;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    &.sort {
+      & button {
+        background-color: var(--secondary);
+        color: var(--primary);
+      }
+    }
+  }
+}
+[data-theme='dark'] .container {
+  &.sort {
+    & button {
+      background-color: var(--secondary);
+      color: var(--primary);
+    }
   }
 }

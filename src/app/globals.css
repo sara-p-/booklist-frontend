@@ -3,6 +3,7 @@
   --secondary: #e6e6e6;
   --light: #b6b6b6;
   --medium: #858585;
+  --medium-dark: #353535;
   --dark: #545454;
   --accent: var(--dark);
   --accent-light: var(--light);
@@ -12,7 +13,7 @@
   [data-theme='dark'] {
     --primary: #e6e6e6;
     --secondary: #242424;
-    --accent: var(--light);
+    --accent: var(--dark);
   }
 
   /* Typography */
@@ -35,7 +36,7 @@
   --mobile-menu-close-button-height: 64px;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --primary: #e6e6e6;
     --secondary: #242424;
@@ -43,12 +44,12 @@
   html {
     color-scheme: dark;
   }
-} */
+}
 
 html,
 body {
   max-width: 100vw;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   font-size: var(--font-size);
   font-weight: 400;
   height: 100%;
@@ -165,4 +166,20 @@ h6,
   border: 0;
   padding: 0;
   white-space: nowrap;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    &:hover {
+      color: var(--light);
+    }
+  }
+}
+
+[data-theme='dark'] {
+  a {
+    &:hover {
+      color: var(--light);
+    }
+  }
 }

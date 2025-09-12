@@ -75,3 +75,33 @@
   width: 0;
   height: 0;
 }
+
+@media (prefers-color-scheme: dark) {
+  .filterContainer {
+    &::-webkit-scrollbar-thumb {
+      background: var(--light);
+    }
+    &::-webkit-scrollbar-track {
+      background: var(--accent);
+    }
+  }
+  .filterItem label {
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+}
+
+[data-theme='dark'] .filterContainer {
+  &::-webkit-scrollbar-thumb {
+    background: var(--light);
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--accent);
+  }
+  .filterItem label {
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+}
