@@ -69,7 +69,7 @@ export default function Range({ max, buttonText, mobile }: RangeProps) {
       >
         <Slider.Root
           className={styles.sliderRoot}
-          defaultValue={[1, max]}
+          defaultValue={[0, max]}
           max={max}
           step={1}
           minStepsBetweenThumbs={1}
@@ -78,6 +78,13 @@ export default function Range({ max, buttonText, mobile }: RangeProps) {
         >
           <Slider.Track className={styles.sliderTrack}>
             <Slider.Range className={styles.sliderRange} />
+            {/* <div className={styles.sliderTrackNumbersContainer}>
+              {Array.from({ length: max + 1 }, (_, index) => (
+                <div key={index} className={styles.sliderTrackNumber}>
+                  {index}
+                </div>
+              ))}
+            </div> */}
           </Slider.Track>
           <Slider.Thumb className={styles.sliderThumb} />
           <Slider.Thumb className={styles.sliderThumb} />

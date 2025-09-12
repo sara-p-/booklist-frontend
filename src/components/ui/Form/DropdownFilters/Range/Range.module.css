@@ -99,6 +99,24 @@
   height: 3px;
 }
 
+.sliderTrackNumbersContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 119%;
+  margin-left: -9%;
+  padding: 14px 0 0;
+}
+
+.sliderTrackNumber {
+  font-size: 12px;
+  font-weight: 400;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .sliderRange {
   position: absolute;
   background-color: var(--accent);

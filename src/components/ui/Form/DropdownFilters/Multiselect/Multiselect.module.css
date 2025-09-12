@@ -104,11 +104,17 @@
       color: var(--secondary);
     }
   }
+  &:focus-within {
+    /* background-color: var(--light); */
+    outline: 1px solid var(--primary);
+    outline-offset: -1px;
+  }
   &:hover {
     background-color: var(--light);
   }
   &:focus {
     background-color: var(--light);
+    outline: 1px solid var(--primary);
   }
 }
 
@@ -116,6 +122,9 @@
   opacity: 0;
   width: 0;
   height: 0;
+  &:focus {
+    background-color: var(--light);
+  }
 }
 
 /* Mobile */
