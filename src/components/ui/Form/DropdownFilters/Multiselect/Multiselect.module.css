@@ -64,7 +64,7 @@
   /* Style the scrollbar track */
   &::-webkit-scrollbar-track {
     background: var(--light);
-    border-left: var(--border-thin);
+    border-left: 1px solid var(--primary);
     /* border-radius: 10px; */
   }
 
@@ -126,15 +126,14 @@
 /* Mobile */
 .mobile {
   &.selectionContainer {
-    border-bottom: var(--border-thick);
+    border-bottom: 3px solid var(--primary);
     padding: 16px;
     width: 100%;
   }
   &.filterContainer {
     max-height: 100%;
   }
-  .filterItem {
-  }
+
   .filterItem label {
     font-size: 20px;
     font-weight: 500;

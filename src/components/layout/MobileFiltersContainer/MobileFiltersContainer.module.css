@@ -12,7 +12,7 @@
   flex-direction: column;
   padding: 16px 0;
   gap: 16px;
-  border-bottom: var(--border-thick);
+  border-bottom: 3px solid var(--primary);
   @media (max-width: 768px) {
     display: flex;
   }
@@ -27,7 +27,7 @@
 }
 
 .filtersButton {
-  background-color: var(--primary);
+  background-color: var(--medium);
   border: none;
   cursor: pointer;
   width: 100%;

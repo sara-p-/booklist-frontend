@@ -35,8 +35,10 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollToTop(window.scrollY > 300)
+      console.log('scrollToTop')
     }
     window.addEventListener('scroll', handleScroll)
+    console.log('active listener')
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])

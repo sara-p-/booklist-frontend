@@ -21,7 +21,7 @@
   /* Style the scrollbar track */
   &::-webkit-scrollbar-track {
     background: var(--light);
-    border-left: var(--border-thin);
+    border-left: 1px solid var(--primary);
     /* border-radius: 10px; */
   }
 
@@ -61,7 +61,7 @@
     }
   }
   &.mobile {
-    border-bottom: var(--border-medium);
+    border-bottom: 2px solid var(--primary);
     label {
       font-size: 20px;
       font-weight: 500;
