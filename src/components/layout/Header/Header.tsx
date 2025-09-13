@@ -1,23 +1,24 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './Header.module.css'
 import Searchbar from '@/components/ui/Form/Searchbar/Searchbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBook, faMoon } from '@fortawesome/free-solid-svg-icons'
-import MenuButton from '@/components/ui/MenuButton/MenuButton'
+import { faBook, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
+import useThemeStateContext from '@/hooks/useThemeStateContext'
 
 export default function Header() {
-  const [activeButton, setActiveButton] = React.useState('books')
+  // const [activeButton, setActiveButton] = React.useState('books')
   const { filterValues, setFilterValues } = useFilterValuesContext()
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const { toggleTheme, theme } = useThemeStateContext()
 
-  function handleButtonClick(label: string) {
-    setActiveButton(label)
-  }
+  // For use with the Book/Timeline buttons that are currently not in use
+  // function handleButtonClick(label: string) {
+  //   setActiveButton(label)
+  // }
 
   // Function to reset the filters when the logo is clicked
   function handleLogoClick() {
@@ -25,10 +26,6 @@ export default function Header() {
       ...filterValues,
       ...DEFAULT_FILTER_VALUES,
     })
-  }
-
-  function handleThemeToggle() {
-    setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
   return (
@@ -62,8 +59,13 @@ export default function Header() {
           <Searchbar />
         </div>
         <div className={styles.column}>
-          <button className={styles.themeToggle} onClick={handleThemeToggle}>
-            <FontAwesomeIcon icon={faMoon} />
+          <button className={styles.themeToggle} onClick={toggleTheme}>
+            <span className='visually-hidden'>Toggle theme</span>
+            {theme === 'dark' ? (
+              <FontAwesomeIcon className={styles.icon} icon={faSun} />
+            ) : (
+              <FontAwesomeIcon className={styles.icon} icon={faMoon} />
+            )}
           </button>
         </div>
       </div>

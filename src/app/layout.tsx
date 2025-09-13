@@ -12,6 +12,7 @@ import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import FilterValuesContextProvider from '@/contexts/FilterValues/FilterValuesContextProvider'
 import ExcludeValuesContextProvider from '@/contexts/ExcludeState/ExcludeValuesContextProvider'
 import MobileFilterStateContextProvider from '@/contexts/MobileFilterState/MobileFilterStateContextProvider'
+import ThemeStateContextProvider from '@/contexts/ThemeState/ThemeStateContextProvider'
 
 config.autoAddCss = false
 
@@ -45,16 +46,20 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.variable} ${redactedScript.variable}`}>
-        <ExcludeValuesContextProvider>
-          <FilterValuesContextProvider newFilterValues={DEFAULT_FILTER_VALUES}>
-            <BookListContextProvider initialBookList={data}>
-              <Header />
-              <MobileFilterStateContextProvider>
-                {children}
-              </MobileFilterStateContextProvider>
-            </BookListContextProvider>
-          </FilterValuesContextProvider>
-        </ExcludeValuesContextProvider>
+        <ThemeStateContextProvider>
+          <ExcludeValuesContextProvider>
+            <FilterValuesContextProvider
+              newFilterValues={DEFAULT_FILTER_VALUES}
+            >
+              <BookListContextProvider initialBookList={data}>
+                <Header />
+                <MobileFilterStateContextProvider>
+                  {children}
+                </MobileFilterStateContextProvider>
+              </BookListContextProvider>
+            </FilterValuesContextProvider>
+          </ExcludeValuesContextProvider>
+        </ThemeStateContextProvider>
       </body>
     </html>
   )

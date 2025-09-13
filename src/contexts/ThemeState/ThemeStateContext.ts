@@ -3,11 +3,11 @@
 import React from 'react'
 
 type ThemeStateContextType = {
-  theme: 'light' | 'dark'
-  setTheme: (theme: 'light' | 'dark') => void
+  theme: string
+  toggleTheme: () => void
 }
 
 export const ThemeStateContext = React.createContext<ThemeStateContextType>({
-  theme: 'light',
-  setTheme: (theme: 'light' | 'dark') => {},
+  theme: '',
+  toggleTheme: () => {},
 })
