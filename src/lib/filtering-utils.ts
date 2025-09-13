@@ -296,13 +296,20 @@ export function filterBooksByArray(
         newBooksArray.push(book)
       }
     } else {
-      // Check to see if the book's genres contain every Filter Value genre. If so, add that book to the new array
-      const allValuesPresent = filterValuesArray.every((value) => {
-        return bookFilterCategoryArray.includes(value)
-      })
-      if (allValuesPresent) {
+      if (
+        filterValuesArray.some((value) =>
+          bookFilterCategoryArray.includes(value)
+        )
+      ) {
         newBooksArray.push(book)
       }
+      // // Check to see if the book's genres contain a Filter Value genre. If so, add that book to the new array
+      // const allValuesPresent = filterValuesArray.every((value) => {
+      //   return bookFilterCategoryArray.includes(value)
+      // })
+      // if (allValuesPresent) {
+      //   newBooksArray.push(book)
+      // }
     }
   })
 

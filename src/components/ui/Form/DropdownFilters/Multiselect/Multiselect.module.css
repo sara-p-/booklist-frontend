@@ -143,12 +143,6 @@
 }
 
 [data-theme='dark'] .filterContainer {
-  /* &::-webkit-scrollbar-thumb {
-    background: var(--accent);
-  }
-  &::-webkit-scrollbar-track {
-    background: var(--light);
-  } */
   &::-webkit-scrollbar-thumb {
     background: var(--primary);
   }
