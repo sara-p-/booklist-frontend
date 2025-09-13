@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: var(--border-thick);
+  border-bottom: 3px solid var(--primary);
   padding: 16px;
   width: 100%;
 }
@@ -17,7 +17,7 @@
   font-size: 12px;
   font-weight: 400;
   appearance: none;
-  border: var(--border-thin);
+  border: 1px solid var(--primary);
   border-radius: 0;
   padding: 4px 16px;
   background-color: var(--secondary);
@@ -57,7 +57,7 @@
   /* Style the scrollbar track */
   &::-webkit-scrollbar-track {
     background: var(--light);
-    border-left: var(--border-thin);
+    border-left: 1px solid var(--primary);
     /* border-radius: 10px; */
   }
 
@@ -69,6 +69,12 @@
 
   /* Style the scrollbar thumb on hover */
   &::-webkit-scrollbar-thumb:hover {
+    background: var(--dark);
+  }
+}
+
+[data-theme='dark'] .list {
+  &::-webkit-scrollbar-thumb {
     background: var(--dark);
   }
 }

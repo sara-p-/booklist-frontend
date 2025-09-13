@@ -6,8 +6,9 @@
   padding: 0 8px;
   max-width: 400px;
   border: none;
-  border: var(--border-thick);
+  border: 3px solid var(--primary);
   background-color: var(--secondary);
+  color: var(--primary);
   border-radius: 100px;
   @media (max-width: 768px) {
     display: none;
@@ -42,6 +43,7 @@
   padding: 0;
   margin: 0;
   background-color: transparent;
+  color: var(--primary);
   border: none;
   cursor: pointer;
   &:hover {

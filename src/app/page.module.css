@@ -13,23 +13,3 @@
     );
   }
 }
-
-/* @media (prefers-color-scheme: dark) {
-  .bookListContainer {
-    padding-top: calc(var(--header-height) + var(--filters-height) + 32px);
-    @media (max-width: 768px) {
-      padding-top: calc(
-        var(--header-height) + var(--mobile-filters-height) + 32px
-      );
-    }
-  }
-}
-
-[data-theme='dark'] .bookListContainer {
-  padding-top: calc(var(--header-height) + var(--filters-height) + 32px);
-  @media (max-width: 768px) {
-    padding-top: calc(
-      var(--header-height) + var(--mobile-filters-height) + 32px
-    );
-  }
-} */

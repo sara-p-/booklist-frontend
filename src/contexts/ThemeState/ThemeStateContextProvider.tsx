@@ -11,6 +11,7 @@ export default function ThemeStateContextProvider({
 }) {
   // Initialize theme based on system preference or stored preference
   const getInitialTheme = () => {
+    if (typeof window === 'undefined') return 'light'
     if (typeof window !== 'undefined' && window.localStorage) {
       const storedTheme = localStorage.getItem('theme')
       if (storedTheme) return storedTheme

@@ -10,7 +10,7 @@
 .title {
   margin: 0;
   width: 100%;
-  border-bottom: var(--border-thick);
+  border-bottom: 3px solid var(--primary);
   padding-bottom: 4px;
 }
 

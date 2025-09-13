@@ -1,7 +1,7 @@
 .link {
   text-decoration: none;
   padding: 12px 48px;
-  border: var(--border-medium);
+  border: 2px solid var(--primary);
   border-radius: 0;
   font-size: 14px;
   font-weight: 500;

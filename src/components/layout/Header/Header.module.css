@@ -76,19 +76,6 @@
   }
 }
 
-/* @media (prefers-color-scheme: dark) {
-  .header {
-    background-color: var(--secondary);
-    border-bottom: 3px solid var(--primary);
-  }
-  .titleContainer {
-    color: var(--primary);
-  }
-  .themeToggle {
-    color: var(--primary);
-  }
-} */
-
 [data-theme='dark'] .header {
   background-color: var(--secondary);
   border-bottom: 3px solid var(--primary);

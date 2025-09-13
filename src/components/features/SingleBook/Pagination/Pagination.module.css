@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: var(--border-thick);
+  border-top: 3px solid var(--primary);
   @media (max-width: 768px) {
     padding: 8px 0 0 0;
   }

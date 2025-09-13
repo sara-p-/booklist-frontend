@@ -20,20 +20,17 @@
   padding: 8px;
   cursor: pointer;
   background-color: var(--secondary);
+  color: var(--primary);
   border: none;
   outline: none;
-  border-bottom: var(--border-thick);
-  border-top: 1px solid var(--secondary);
-  border-left: 1px solid var(--secondary);
-  border-right: 1px solid var(--secondary);
+  border: 1px solid var(--secondary);
+  border-bottom: 3px solid var(--primary);
   width: 100%;
   appearance: none;
   &.selected {
     background-color: var(--primary);
+    border: 1px solid var(--primary);
     border-bottom: 3px solid var(--primary);
-    border-top: 1px solid var(--primary);
-    border-left: 1px solid var(--primary);
-    border-right: 1px solid var(--primary);
     color: var(--secondary);
   }
   &:focus {
@@ -49,6 +46,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  /* color: var(--primary); */
 }
 
 .buttonTextContainer {
@@ -78,13 +76,14 @@
 
 .buttonIcon {
   font-size: 12px;
+  color: var(--primary);
 }
 
 .content {
   display: none;
   width: 100%;
   padding: 0;
-  border: var(--border-thin);
+  border: 1px solid var(--primary);
   background-color: var(--secondary);
   position: absolute;
   top: 33px;
@@ -98,16 +97,6 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .container {
-    &.sort {
-      & button {
-        background-color: var(--secondary);
-        color: var(--primary);
-      }
-    }
-  }
-}
 [data-theme='dark'] .container {
   &.sort {
     & button {
