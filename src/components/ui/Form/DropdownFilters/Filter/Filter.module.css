@@ -3,12 +3,10 @@
   position: relative;
   &.sort {
     & button {
-      background-color: var(--primary);
+      background-color: var(--secondary);
+      border: 1px solid var(--primary);
       border-bottom: 3px solid var(--primary);
-      border-top: 1px solid var(--primary);
-      border-left: 1px solid var(--primary);
-      border-right: 1px solid var(--primary);
-      color: var(--secondary);
+      color: var(--primary);
     }
   }
 }
@@ -35,7 +33,7 @@
   }
   &:focus {
     outline: 1px solid var(--primary);
-    outline-offset: -1px;
+    outline-offset: 2px;
   }
 }
 

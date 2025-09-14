@@ -17,6 +17,7 @@ export default function Radio({ items, groupName, mobile }: RadioProps) {
   const { filterState, setFilterState } = useFilterStateContext()
   const { mobileFilterState } = useMobileFilterStateContext()
   const dropdownRef = useRef<HTMLFieldSetElement>(null)
+
   function handleRadioChange(filter: string, value: string) {
     const newFilterValues = { ...filterValues }
     // If the filter is 'sort', set the 'order filter based on the 'sort' value
@@ -33,10 +34,10 @@ export default function Radio({ items, groupName, mobile }: RadioProps) {
       })
     }
 
-    setFilterState({
-      ...filterState,
-      [groupName]: false,
-    })
+    // setFilterState({
+    //   ...filterState,
+    //   [groupName]: false,
+    // })
   }
 
   // scroll to the top of the dropdown when the dropdown is opened
@@ -66,7 +67,10 @@ export default function Radio({ items, groupName, mobile }: RadioProps) {
           >
             <label htmlFor={item}>
               <input
+                aria-label={item}
+                aria-checked={isItemChecked}
                 type='radio'
+                role='radio'
                 name={groupName}
                 id={item}
                 value={item}

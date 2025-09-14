@@ -9,6 +9,9 @@
   border: none;
   appearance: none;
   outline: none;
+  &:focus-within {
+    background-color: rgba(182, 182, 182, 0.3);
+  }
   &.mobile {
     max-height: 100%;
   }
@@ -49,6 +52,11 @@
     cursor: pointer;
     width: 100%;
     padding: 8px;
+    &:focus-within {
+      background-color: var(--light);
+      outline: 1px solid var(--primary);
+      outline-offset: -1px;
+    }
     &:has(input:checked) {
       background-color: var(--primary);
       color: var(--secondary);

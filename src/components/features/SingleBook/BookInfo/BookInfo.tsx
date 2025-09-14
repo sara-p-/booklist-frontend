@@ -26,7 +26,7 @@ export default function BookInfo({ book }: { book: BookType }) {
       <div className={styles.imageContainer}>
         <Image
           src={book.image}
-          alt={bookTitle}
+          alt={`Book cover of ${bookTitle}`}
           fill={true}
           sizes='311px, 467px'
         />

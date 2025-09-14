@@ -35,7 +35,6 @@ export default function Book({ book }: { book: BookType }) {
         href={`/book/${book.slug}`}
         className={styles.bookLink}
         onNavigate={handleHomeNavigation}
-        // scroll={false}
       >
         <Image
           className={styles.bookImage}
