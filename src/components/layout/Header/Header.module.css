@@ -76,6 +76,17 @@
   }
 }
 
+[data-theme='light'] .header {
+  a.titleLink:focus {
+    outline: 1px solid var(--secondary);
+    outline-offset: 2px;
+  }
+  button:focus {
+    outline: 1px solid var(--secondary);
+    outline-offset: 2px;
+  }
+}
+
 [data-theme='dark'] .header {
   background-color: var(--secondary);
   border-bottom: 3px solid var(--primary);

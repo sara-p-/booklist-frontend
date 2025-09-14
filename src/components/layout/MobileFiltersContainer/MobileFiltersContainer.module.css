@@ -27,7 +27,7 @@
 }
 
 .filtersButton {
-  background-color: var(--medium);
+  background-color: var(--primary);
   border: none;
   cursor: pointer;
   width: 100%;
@@ -37,12 +37,9 @@
   color: var(--secondary);
 }
 
-/* .filtersButtonText {
-  font-size: 16px;
-  font-weight: 500;
+[data-theme='dark'] .filtersButton {
+  background-color: var(--medium);
+  color: var(--secondary);
+  border-top: 3px solid var(--primary);
+  border-bottom: 3px solid var(--primary);
 }
-
-.activeFiltersText {
-  font-size: 14px;
-  font-weight: 400;
-} */

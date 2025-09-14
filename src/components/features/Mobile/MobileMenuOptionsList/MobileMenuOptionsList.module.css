@@ -75,6 +75,10 @@
 
 [data-theme='dark'] .list {
   &::-webkit-scrollbar-thumb {
-    background: var(--dark);
+    background: var(--primary);
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--medium);
+    /* border-left: 2px solid var(--primary); */
   }
 }

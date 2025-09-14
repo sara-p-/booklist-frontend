@@ -147,6 +147,7 @@
   }
   &::-webkit-scrollbar-track {
     background: var(--medium);
+    /* border-left: 2px solid var(--primary); */
   }
   .filterItem label {
     &.selected {
