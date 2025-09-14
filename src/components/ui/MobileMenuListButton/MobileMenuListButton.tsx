@@ -56,8 +56,19 @@ function FilterValue({ filterName }: { filterName: VisibleFilterType }) {
     return <span className={styles.filterValue}>{filterValue}</span>
   }
 
-  if (filterName === 'rating' || filterName === 'spice') {
-    return <span className={styles.filterValue}>{filterValue}</span>
+  if (filterName === 'rating') {
+    return (
+      <span
+        className={styles.filterValue}
+      >{`${filterValue[0]}/10 - ${filterValue[1]}/10`}</span>
+    )
+  }
+  if (filterName === 'spice') {
+    return (
+      <span
+        className={styles.filterValue}
+      >{`${filterValue[0]}/5 - ${filterValue[1]}/5`}</span>
+    )
   }
 
   return (
