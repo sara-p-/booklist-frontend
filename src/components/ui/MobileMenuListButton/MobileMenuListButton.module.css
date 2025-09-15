@@ -9,7 +9,7 @@
   appearance: none;
   color: var(--primary);
   width: 100%;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 1px solid var(--primary);
   font-family: inherit;
   &:hover {
     background-color: var(--primary);

@@ -25,9 +25,21 @@
   --medium-width: 1000px;
   --padding: 1rem;
   --header-height: 55px;
-  --filters-height: 204.5px;
-  --mobile-filters-height: 179px;
+  --filters-height: 220px;
+  --mobile-filters-height: 187px;
   --mobile-menu-close-button-height: 67px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --filters-height: 364px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --filters-height: 220px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
