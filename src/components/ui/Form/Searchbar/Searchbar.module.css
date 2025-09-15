@@ -10,6 +10,10 @@
   background-color: var(--secondary);
   color: var(--primary);
   border-radius: 100px;
+  &:focus-within {
+    outline: 1px solid var(--primary);
+    outline-offset: 2px;
+  }
   @media (max-width: 768px) {
     display: none;
     &.mobile {
@@ -30,6 +34,10 @@
   outline: none;
   transition: all 0.2s ease-in-out;
   appearance: none;
+  &::placeholder {
+    color: var(--primary);
+    opacity: 0.6;
+  }
 }
 
 .mobile {
