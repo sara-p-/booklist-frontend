@@ -61,7 +61,7 @@ export default function Header() {
         <div className={styles.column}>
           <button className={styles.themeToggle} onClick={toggleTheme}>
             <span className='visually-hidden'>Toggle theme</span>
-            {theme === 'dark' ? (
+            {theme && theme === 'dark' ? (
               <FontAwesomeIcon className={styles.icon} icon={faSun} />
             ) : (
               <FontAwesomeIcon className={styles.icon} icon={faMoon} />

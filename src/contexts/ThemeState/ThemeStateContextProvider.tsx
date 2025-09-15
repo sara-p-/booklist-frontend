@@ -9,19 +9,29 @@ export default function ThemeStateContextProvider({
 }: {
   children: React.ReactNode
 }) {
+  const [theme, setTheme] = useState<string>('light')
   // Initialize theme based on system preference or stored preference
-  const getInitialTheme = () => {
-    if (typeof window === 'undefined') return 'light'
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const storedTheme = localStorage.getItem('theme')
-      if (storedTheme) return storedTheme
+  // Initialize theme from localStorage or system preference after mount
+  useEffect(() => {
+    const initializeTheme = () => {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const storedTheme = localStorage.getItem('theme')
+        if (storedTheme) {
+          setTheme(storedTheme)
+          return
+        }
+      }
+      // If no stored preference, use system preference
+      if (typeof window !== 'undefined') {
+        const prefersDark = window.matchMedia(
+          '(prefers-color-scheme: dark)'
+        ).matches
+        setTheme(prefersDark ? 'dark' : 'light')
+      }
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light'
-  }
 
-  const [theme, setTheme] = useState<string>(getInitialTheme())
+    initializeTheme()
+  }, [])
 
   // Apply theme class to the body or root element
   useEffect(() => {
