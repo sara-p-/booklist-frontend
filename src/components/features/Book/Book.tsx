@@ -5,9 +5,11 @@ import styles from './Book.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { convertStringToDate, scrollToTop } from '@/lib/utils'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
+import { useState } from 'react'
 
 export default function Book({ book }: { book: BookType }) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
+  const [preFetch, setPreFetch] = useState<boolean>(false)
   const isList = filterValues.view === 'list'
   const itemClass = isList ? styles.bookListItem : styles.bookGridItem
 
@@ -35,6 +37,8 @@ export default function Book({ book }: { book: BookType }) {
         href={`/book/${book.slug}`}
         className={styles.bookLink}
         onNavigate={handleHomeNavigation}
+        prefetch={preFetch}
+        onMouseEnter={() => setPreFetch(true)}
       >
         <Image
           className={styles.bookImage}

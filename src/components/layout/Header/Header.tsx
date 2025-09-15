@@ -30,6 +30,9 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
+      <a href='#filters-section' className='visually-hidden'>
+        Skip to filters section
+      </a>
       <div className={styles.container}>
         <div className={`${styles.column} ${styles.leftColumn}`}>
           <Link

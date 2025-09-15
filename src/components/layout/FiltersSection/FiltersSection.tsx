@@ -14,7 +14,10 @@ function FiltersSection() {
   // TODO: Add the 'completed' filter.
 
   return (
-    <div className={styles.container}>
+    <div id='filters-section' className={styles.container}>
+      <a href='#main-content' className='visually-hidden'>
+        Skip to main content
+      </a>
       <div className={styles.filtersWrapper}>
         <FilterStateContextProvider>
           <Filter buttonText='sort'>
