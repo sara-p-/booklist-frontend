@@ -38,6 +38,11 @@
   &::-webkit-scrollbar-thumb:hover {
     background: var(--dark);
   }
+  @media (max-width: 768px) {
+    &::-webkit-scrollbar-track {
+      border-left: 3px solid var(--primary);
+    }
+  }
 }
 
 .filterItem {
@@ -89,7 +94,7 @@
     background: var(--primary);
   }
   &::-webkit-scrollbar-track {
-    background: var(--medium);
+    background: var(--secondary);
   }
   .filterItem label {
     &:hover {

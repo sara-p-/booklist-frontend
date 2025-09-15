@@ -57,7 +57,7 @@
   /* Style the scrollbar track */
   &::-webkit-scrollbar-track {
     background: var(--light);
-    border-left: 1px solid var(--primary);
+    border-left: 3px solid var(--primary);
     /* border-radius: 10px; */
   }
 
@@ -78,7 +78,6 @@
     background: var(--primary);
   }
   &::-webkit-scrollbar-track {
-    background: var(--medium);
-    /* border-left: 2px solid var(--primary); */
+    background: var(--secondary);
   }
 }
