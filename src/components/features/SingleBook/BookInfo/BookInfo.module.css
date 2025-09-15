@@ -1,8 +1,9 @@
 .container {
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  @media (max-width: 768px) {
-    flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
 }
 
@@ -16,9 +17,6 @@
     display: block;
     padding-top: 66.67%;
   }
-  @media (max-width: 768px) {
-    /* flex: 1; */
-  }
 }
 
 .imageContainer {
@@ -30,9 +28,6 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  @media (max-width: 768px) {
-    /* flex: 1; */
-  }
 }
 
 .titleContainer {

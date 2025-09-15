@@ -9,8 +9,9 @@
   z-index: 100;
   background-color: var(--secondary);
   border-bottom: 3px solid var(--primary);
-  @media (max-width: 768px) {
-    display: none;
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
   }
 }
 

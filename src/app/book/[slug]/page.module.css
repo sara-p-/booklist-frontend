@@ -4,9 +4,10 @@
   margin: calc(var(--header-height) + 48px) auto;
   padding: 0 16px;
   display: flex;
+  flex-direction: column;
   gap: 2rem;
-  @media (max-width: 768px) {
-    flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
 }
 

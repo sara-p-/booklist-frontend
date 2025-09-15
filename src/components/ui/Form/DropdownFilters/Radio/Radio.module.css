@@ -24,7 +24,7 @@
   /* Style the scrollbar track */
   &::-webkit-scrollbar-track {
     background: var(--light);
-    border-left: 1px solid var(--primary);
+    border-left: 3px solid var(--primary);
     /* border-radius: 10px; */
   }
 
@@ -38,9 +38,9 @@
   &::-webkit-scrollbar-thumb:hover {
     background: var(--dark);
   }
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     &::-webkit-scrollbar-track {
-      border-left: 3px solid var(--primary);
+      border-left: 1px solid var(--primary);
     }
   }
 }

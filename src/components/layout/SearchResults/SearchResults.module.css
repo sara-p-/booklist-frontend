@@ -1,17 +1,18 @@
 .resultsContainer {
   display: flex;
-  gap: 2rem;
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 16px;
   height: auto;
-  max-height: 400px;
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 24px;
-    max-height: none;
-    padding-bottom: 32px;
+  flex-direction: column;
+  gap: 24px;
+  max-height: none;
+  padding: 0 16px;
+  @media (min-width: 768px) {
+    padding: 0 0 32px 0;
+    flex-direction: row;
+    max-height: 400px;
+    gap: 2rem;
   }
 }
 
@@ -38,8 +39,9 @@
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  @media (max-width: 768px) {
-    max-height: 300px;
+  max-height: 300px;
+  @media (min-width: 768px) {
+    max-height: 100%;
   }
   /* Scrollbar */
   /* Style the entire scrollbar */
@@ -64,11 +66,12 @@
   &::-webkit-scrollbar-thumb:hover {
     background: var(--dark);
   }
-  @media (max-width: 768px) {
+
+  /* @media (min-width: 768px) {
     &::-webkit-scrollbar-track {
-      border-left: 3px solid var(--primary);
+      border-left: 1px solid var(--primary);
     }
-  }
+  } */
 }
 
 .resultItem {

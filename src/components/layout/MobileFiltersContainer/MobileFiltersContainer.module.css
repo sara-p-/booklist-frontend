@@ -1,5 +1,5 @@
 .container {
-  display: none;
+  display: flex;
   position: fixed;
   top: calc(var(--header-height));
   left: 0;
@@ -13,8 +13,8 @@
   padding: 16px 0;
   gap: 16px;
   border-bottom: 3px solid var(--primary);
-  @media (max-width: 768px) {
-    display: flex;
+  @media (min-width: 768px) {
+    display: none;
   }
 }
 

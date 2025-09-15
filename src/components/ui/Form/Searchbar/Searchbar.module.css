@@ -1,5 +1,5 @@
 .searchbar {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 4px;
   width: 100%;
@@ -14,11 +14,11 @@
     outline: 1px solid var(--primary);
     outline-offset: 2px;
   }
-  @media (max-width: 768px) {
-    display: none;
-    &.mobile {
-      display: flex;
-    }
+  &.mobile {
+    display: flex;
+  }
+  @media (min-width: 768px) {
+    display: flex;
   }
 }
 

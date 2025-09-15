@@ -74,6 +74,8 @@ a {
   color: inherit;
   text-decoration: underline;
   font-weight: 500;
+  font-size: 14px;
+  line-height: 1.3;
   &:hover {
     color: var(--accent);
   }
@@ -81,9 +83,9 @@ a {
     outline: 1px solid var(--primary);
     outline-offset: 2px;
   }
-  @media (max-width: 768px) {
-    font-size: 14px;
-    line-height: 1.3;
+  @media (min-width: 768px) {
+    font-size: 16px;
+    /* line-height: 1.5; */
   }
 }
 
@@ -95,62 +97,62 @@ button {
 }
 
 p {
-  font-size: var(--font-size);
-  line-height: 1.5;
-  margin-bottom: 1rem;
-  @media (max-width: 768px) {
-    font-size: 14px;
-    line-height: 1.3;
-    font-weight: 500;
-    margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 500;
+  margin-bottom: 8px;
+  @media (min-width: 768px) {
+    font-size: var(--font-size);
+    line-height: 1.5;
+    margin-bottom: 1rem;
   }
 }
 
 h1,
 .h1 {
-  font-size: 38px;
+  font-size: 36px;
+  letter-spacing: -1px;
+  line-height: 1.2;
   font-weight: 700;
-  letter-spacing: -1.5px;
   margin: 0;
-  line-height: 1;
-  @media (max-width: 768px) {
-    font-size: 36px;
-    letter-spacing: -1px;
-    line-height: 1.2;
+
+  @media (min-width: 768px) {
+    font-size: 38px;
+    letter-spacing: -1.5px;
+    line-height: 1;
   }
 }
 
 h2,
 .h2 {
-  font-size: 32px;
   font-weight: 500;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   line-height: 1;
-  @media (max-width: 768px) {
-    font-size: 28px;
-    letter-spacing: -0.5px;
-    /* line-height: 1.2; */
+  font-size: 28px;
+  @media (min-width: 768px) {
+    letter-spacing: -1px;
+    font-size: 32px;
   }
 }
 
 h3,
 .h3 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.5px;
   line-height: 1;
-  @media (max-width: 768px) {
-    font-size: 22px;
+  @media (min-width: 768px) {
+    font-size: 24px;
   }
 }
 
 h4,
 .h4 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1;
-  @media (max-width: 768px) {
-    font-size: 18px;
+  @media (min-width: 768px) {
+    font-size: 20px;
   }
 }
 
