@@ -1,11 +1,11 @@
 .button {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 32px;
   z-index: 1000;
   background-color: var(--secondary);
   color: var(--primary);
-  border: var(--border-thick);
+  border: 3px solid var(--primary);
   padding: 10px;
   border-radius: 0;
   cursor: pointer;

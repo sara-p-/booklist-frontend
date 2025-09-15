@@ -40,9 +40,11 @@ export function uniqueArray(originalArray, key) {
 }
 
 // Scroll to top
-export function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  })
+export function scrollToTop(theRef) {
+  if (theRef) {
+    theRef.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
 }
