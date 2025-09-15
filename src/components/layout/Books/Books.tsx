@@ -12,7 +12,7 @@ function Books() {
   const viewClass = view === 'grid' ? styles.bookGrid : styles.bookList
   // In Grid view, show the books in a grid without headers
   return (
-    <ul id='main-content' className={viewClass}>
+    <ul className={viewClass}>
       {filteredBooks &&
         filteredBooks.map((book: BookType) => (
           <Book key={book.bookId} book={book} />

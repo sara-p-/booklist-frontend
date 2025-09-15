@@ -51,11 +51,15 @@ export default function Home() {
       <div className={styles.container}>
         <FiltersSection />
         <MobileFiltersContainer />
-        <div className={styles.bookListContainer}>
-          {filteredBooks.length > 0 && filterValues.search === '' && <Books />}
-          {filteredBooks.length > 0 && filterValues.search !== '' && (
-            <SearchResults />
-          )}
+        <div id='main-content' className={styles.bookListContainer}>
+          <div className={styles.bookListWrapper}>
+            {filteredBooks.length > 0 && filterValues.search === '' && (
+              <Books />
+            )}
+            {filteredBooks.length > 0 && filterValues.search !== '' && (
+              <SearchResults />
+            )}
+          </div>
         </div>
         {showScrollToTop && <ScrollToTop />}
       </div>
