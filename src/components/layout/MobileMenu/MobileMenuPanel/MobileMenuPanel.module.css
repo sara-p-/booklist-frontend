@@ -18,3 +18,12 @@
     transform: translateX(-100%);
   }
 }
+
+.bottomButtons {
+  display: flex;
+  gap: 0;
+  position: fixed;
+  bottom: var(--header-height);
+  left: 0;
+  right: 0;
+}

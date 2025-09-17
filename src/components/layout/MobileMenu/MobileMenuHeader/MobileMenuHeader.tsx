@@ -21,7 +21,7 @@ export default function MobileMenuHeader({ title }: MobileMenuHeaderProps) {
       {title === 'filters' ? (
         <button className={styles.button} onClick={handleCloseMenu}>
           <span className='visually-hidden'>Close mobile menu</span>
-          <FontAwesomeIcon className={styles.icon} icon={faChevronLeft} />
+          <FontAwesomeIcon className={styles.icon} icon={faTimes} />
         </button>
       ) : (
         <button className={styles.button} onClick={handleCloseMenu}>

@@ -58,6 +58,7 @@
   &::-webkit-scrollbar-track {
     background: var(--light);
     border-left: 3px solid var(--primary);
+    border-bottom: 1px solid var(--primary);
     /* border-radius: 10px; */
   }
 

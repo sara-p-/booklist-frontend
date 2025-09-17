@@ -20,7 +20,7 @@ export default function MobileMenuOptionsList() {
 
   return (
     <>
-      <MobileMenuButton type='clearFilters' />
+      {/* <MobileMenuButton type='clearFilters' /> */}
       <ul className={styles.list} ref={listRef}>
         {MOBILE_FILTERS.map((filter) => (
           <MobileMenuListButton filterName={filter} key={filter} />

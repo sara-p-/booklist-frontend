@@ -42,7 +42,14 @@ export default function MobileMenuPanel({
       {filterType === 'spice' && (
         <Range max={5} buttonText='spice' mobile={true} />
       )}
-      <MobileMenuButton type='closeFilters' />
+      {filterType === 'filters' ? (
+        <div className={styles.bottomButtons}>
+          <MobileMenuButton type='closeFilters' alt={true} />
+          <MobileMenuButton type='clearFilters' alt={true} />
+        </div>
+      ) : (
+        <MobileMenuButton type='closeFilters' />
+      )}
     </div>
   )
 }

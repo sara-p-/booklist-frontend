@@ -13,9 +13,10 @@ import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 
 type MobileMenuButtonProps = {
   type: 'closeFilters' | 'clearFilters'
+  alt?: boolean
 }
 
-export default function MobileMenuButton({ type }: MobileMenuButtonProps) {
+export default function MobileMenuButton({ type, alt }: MobileMenuButtonProps) {
   const filteredBooks = useFilteredBooks()
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const { mobileFilterState, setMobileFilterState } =
@@ -41,7 +42,9 @@ export default function MobileMenuButton({ type }: MobileMenuButtonProps) {
   if (type === 'closeFilters') {
     return (
       <button
-        className={`${styles.button} ${styles.closeFilters}`}
+        className={`${styles.button} ${styles.closeFilters} ${
+          alt ? styles.buttonAlt : ''
+        }`}
         onClick={handleCloseFiltersClick}
       >
         <FontAwesomeIcon icon={faArrowLeft} /> view {filteredBooks.length} books
@@ -51,7 +54,9 @@ export default function MobileMenuButton({ type }: MobileMenuButtonProps) {
 
   return (
     <button
-      className={`${styles.button} ${styles.clearFilters}`}
+      className={`${styles.button} ${styles.clearFilters} ${
+        alt ? styles.buttonAlt : ''
+      }`}
       onClick={handleClearFiltersClick}
     >
       reset filters
