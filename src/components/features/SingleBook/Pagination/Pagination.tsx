@@ -5,12 +5,10 @@ import styles from './Pagination.module.css'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useFilteredBooks } from '@/hooks/useFilteredBooks'
-import { scrollToTop } from '@/lib/utils'
+import { scrollToTopOfWindow } from '@/lib/utils'
 
 export default function Pagination({ slug }: { slug: string }) {
   const filteredBooks = useFilteredBooks()
-
-  console.log(filteredBooks)
 
   if (!filteredBooks) return null
 
@@ -34,7 +32,7 @@ export default function Pagination({ slug }: { slug: string }) {
         <div className={styles.buttonContainer}>
           {previousBook && (
             <Link
-              onNavigate={scrollToTop}
+              onNavigate={scrollToTopOfWindow}
               className={styles.button}
               href={`/book/${previousBook}`}
             >
@@ -43,16 +41,21 @@ export default function Pagination({ slug }: { slug: string }) {
           )}
         </div>
         <div className={styles.buttonContainer}>
-          <Link onNavigate={scrollToTop} className={styles.button} href={`/`}>
+          <Link
+            onNavigate={scrollToTopOfWindow}
+            className={styles.button}
+            href={`/`}
+          >
             {'all books'}
           </Link>
         </div>
         <div className={styles.buttonContainer}>
           {nextBook && (
             <Link
-              onNavigate={scrollToTop}
+              onNavigate={scrollToTopOfWindow}
               className={styles.button}
               href={`/book/${nextBook}`}
+              scroll={false}
             >
               {'next'} <FontAwesomeIcon icon={faArrowRight} size='sm' />
             </Link>

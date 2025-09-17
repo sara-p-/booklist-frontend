@@ -39,6 +39,14 @@ export function uniqueArray(originalArray, key) {
   )
 }
 
+// Scroll to top of window
+export function scrollToTopOfWindow() {
+  console.log(window.scrollY)
+  window.scrollTo({
+    top: 0,
+  })
+}
+
 // Scroll to top
 export function scrollToTop(theRef) {
   if (theRef) {
