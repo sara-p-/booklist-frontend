@@ -2,13 +2,13 @@ import styles from './Multiselect.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { getAllFilterItems } from '@/lib/filtering-utils'
 import { FilterArrayType } from '@/types/filterType'
-import { useBookListContext } from '@/hooks/useBookListContext'
 import React, { useEffect, useRef, useState } from 'react'
 import useHandleMultiSelectClear from '@/hooks/useHandleMultiSelectClear'
 import useHandleExclude from '@/hooks/useHandleExclude'
 import useHandleMultiSelectChange from '@/hooks/useHandleMultiSelectChange'
 import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
+import useParsedBookList from '@/hooks/useParsedBookList'
 
 type MultiselectProps = {
   filter: FilterArrayType
@@ -19,10 +19,10 @@ function Multiselect({ filter, mobile }: MultiselectProps) {
   const { filterValues } = useFilterValuesContext()
   const { mobileFilterState } = useMobileFilterStateContext()
   const { filterState } = useFilterStateContext()
-  const { bookList } = useBookListContext()
+  const parsedBookList = useParsedBookList() // parsed book list to remove the HTML tags from the title and series name
   const [exclude, setExclude] = useState(false) // state for the exclude button
   const dropdownRef = useRef<HTMLUListElement>(null)
-  const items = getAllFilterItems(bookList, filter)
+  const items = getAllFilterItems(parsedBookList, filter)
   const { handleClear } = useHandleMultiSelectClear(filter)
   const { handleExclude } = useHandleExclude(filter, exclude)
   const { handleMultiselectChange } = useHandleMultiSelectChange()

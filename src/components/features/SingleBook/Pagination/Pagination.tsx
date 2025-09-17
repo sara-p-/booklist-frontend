@@ -10,6 +10,8 @@ import { scrollToTop } from '@/lib/utils'
 export default function Pagination({ slug }: { slug: string }) {
   const filteredBooks = useFilteredBooks()
 
+  console.log(filteredBooks)
+
   if (!filteredBooks) return null
 
   const currentBookIndex = filteredBooks.findIndex((book) => book.slug === slug)

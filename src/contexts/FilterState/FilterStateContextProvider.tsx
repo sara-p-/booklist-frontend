@@ -10,6 +10,7 @@ export default function FilterStateContextProvider({
 }) {
   const [filterState, setFilterState] = useState<FilterStateType>({
     sort: false,
+    order: false,
     authors: false,
     series: false,
     genres: false,

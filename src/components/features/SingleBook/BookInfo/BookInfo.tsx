@@ -10,14 +10,14 @@ import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
 export default function BookInfo({ book }: { book: BookType }) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
-  const bookTitle = parse(book.title) as string
-  const bookSeries = parse(book.series[0].name) as string
+  // const bookTitle = parse(book.title) as string
+  // const bookSeries = parse(book.series[0].name) as string
 
   function handleSeriesClick() {
     setFilterValues({
       ...filterValues,
       ...DEFAULT_FILTER_VALUES,
-      series: [bookSeries],
+      series: [book.series[0].name],
     })
   }
 
@@ -26,7 +26,7 @@ export default function BookInfo({ book }: { book: BookType }) {
       <div className={styles.imageContainer}>
         <Image
           src={book.image}
-          alt={`Book cover of ${bookTitle}`}
+          alt={`Book cover of ${book.title}`}
           fill={true}
           sizes='311px, 467px'
         />
@@ -34,7 +34,7 @@ export default function BookInfo({ book }: { book: BookType }) {
 
       <div className={styles.infoContainer}>
         <div className={styles.titleContainer}>
-          <h1 className={styles.title}>{bookTitle}</h1>
+          <h1 className={styles.title}>{book.title}</h1>
           <h2 className={styles.author}>{book.authors[0].name}</h2>
         </div>
         <ul className={styles.list}>
@@ -42,7 +42,7 @@ export default function BookInfo({ book }: { book: BookType }) {
             <p>
               <span className={`${styles.label} h4`}>series: </span>
               <Link onNavigate={handleSeriesClick} href='/'>
-                {bookSeries}
+                {book.series[0].name}
               </Link>
             </p>
           </li>
