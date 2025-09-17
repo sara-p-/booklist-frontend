@@ -1,4 +1,41 @@
-.container {
+.textContainer {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 0 16px 0;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  z-index: 102;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(
+      -10px
+    ); /* Starting and ending position (at the bottom) */
+  }
+  75% {
+    transform: translateY(0); /* Highest point of the bounce */
+  }
+}
+
+.loadingTextSpan {
+  animation: bounce 1.2s infinite;
+  display: inline-block;
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}
+
+/* .container {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
@@ -7,9 +44,9 @@
   & > * {
     font-family: var(--font-redacted-script);
   }
-}
+} */
 
-.filtersContainer {
+/* .filtersContainer {
   width: 100%;
   margin: 0 auto;
   padding: 0 0 16px 0;
@@ -34,7 +71,6 @@
 .filter {
   width: 100%;
   position: relative;
-  /* opacity: 0.1; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,7 +110,6 @@
   height: 100%;
   position: relative;
   background-color: var(--loading-light);
-  /* opacity: 0.1; */
   &::after {
     content: '';
     display: block;
@@ -83,5 +118,5 @@
 }
 
 .item {
-  aspect-ratio: 2/3; /* Modern property, overrides padding-top if supported */
-}
+  aspect-ratio: 2/3; 
+} */
