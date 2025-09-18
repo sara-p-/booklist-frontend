@@ -46,7 +46,7 @@
   /* Scrollbar */
   /* Style the entire scrollbar */
   &::-webkit-scrollbar {
-    width: 12px; /* Width of vertical scrollbar */
+    width: var(--scrollbar-width); /* Width of vertical scrollbar */
   }
 
   /* Style the scrollbar track */

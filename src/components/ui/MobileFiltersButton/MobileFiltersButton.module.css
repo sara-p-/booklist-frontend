@@ -1,0 +1,27 @@
+.button {
+  background-color: var(--secondary);
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 24px 16px;
+  color: var(--primary);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  border-top: 3px solid var(--primary);
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+[data-theme='dark'] .button {
+  background-color: var(--secondary);
+  color: var(--primary);
+  /* border-top: 3px solid var(--primary);
+  border-bottom: 3px solid var(--primary); */
+  /* border-top: 3px solid var(--primary); */
+}

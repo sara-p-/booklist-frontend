@@ -2,10 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 16px;
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
+  @media (min-width: 768px) {
+    padding: 0 16px;
+  }
 }
 
 /* .bookCount {

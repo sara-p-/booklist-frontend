@@ -10,8 +10,9 @@ import Loading from './loading'
 import ScrollToTop from '@/components/features/ScrollToTop/ScrollToTop'
 import { useEffect, useRef, useState } from 'react'
 import MobileMenu from '@/components/layout/MobileMenu/MobileMenu'
-import MobileFiltersContainer from '@/components/layout/MobileFiltersContainer/MobileFiltersContainer'
+import MobileSearchBarContainer from '@/components/layout/MobileSearchBarContainer/MobileSearchBarContainer'
 import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
+import MobileFiltersButton from '@/components/ui/MobileFiltersButton/MobileFiltersButton'
 
 export default function Home() {
   const { filterValues } = useFilterValuesContext()
@@ -59,7 +60,7 @@ export default function Home() {
     <>
       <div className={styles.container}>
         <FiltersSection />
-        <MobileFiltersContainer />
+        <MobileSearchBarContainer />
         <div
           id='main-content'
           className={styles.bookListContainer}
@@ -76,6 +77,7 @@ export default function Home() {
         </div>
         {showScrollToTop && <ScrollToTop theRef={theRef} />}
       </div>
+      <MobileFiltersButton />
       <MobileMenu />
     </>
   )

@@ -17,13 +17,11 @@ export default function useSetFilterPosition(
           ? true
           : false
       setPositionFromRight(tooCloseToRight)
-      console.log('tooCloseToRight')
     }
   }, [filterRef])
 
   useEffect(() => {
     const handleResize = () => {
-      console.log('handleResize')
       if (filterRef.current) {
         const tooCloseToRight =
           window.innerWidth - filterRef.current?.getBoundingClientRect().right <

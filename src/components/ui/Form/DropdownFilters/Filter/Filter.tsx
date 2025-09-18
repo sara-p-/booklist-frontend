@@ -1,14 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Filter.module.css'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useRef, useCallback } from 'react'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import useEscapeKey from '@/hooks/useEscapeKey'
 import useClickOutside from '@/hooks/useClickOutside'
 import {
   FilterArrayType,
   FilterType,
-  ExcludeValuesType,
   VisibleFilterType,
 } from '@/types/filterType'
 import { areArraysEqual } from '@/lib/utils'
