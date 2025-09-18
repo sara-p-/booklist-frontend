@@ -4,6 +4,7 @@ import styles from './MobileMenuListButton.module.css'
 import { VisibleFilterType } from '@/types/filterType'
 import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
 import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
+import { getOrderLabel } from '@/lib/filtering-utils'
 
 type MobileMenuListButtonProps = {
   filterName: VisibleFilterType
@@ -52,10 +53,21 @@ function FilterValue({ filterName }: { filterName: VisibleFilterType }) {
         : 0
   }
 
-  if (filterName === 'sort' || filterName === 'order') {
+  // If this is the 'order' filter, change the label based on the 'sort' filter value
+  // All of this is to make the order options make more sense to the user
+  const orderLabelAsc = getOrderLabel('asc', filterValues.sort)
+  const orderLabelDesc = getOrderLabel('desc', filterValues.sort)
+
+  if (filterName === 'sort') {
     return <span className={styles.filterValue}>{filterValue}</span>
   }
-
+  if (filterName === 'order') {
+    return (
+      <span className={styles.filterValue}>
+        {filterValue === 'asc' ? orderLabelAsc : orderLabelDesc}
+      </span>
+    )
+  }
   if (filterName === 'rating') {
     return (
       <span

@@ -33,11 +33,6 @@ export default function Radio({ items, groupName, mobile }: RadioProps) {
         [filter]: value,
       })
     }
-
-    // setFilterState({
-    //   ...filterState,
-    //   [groupName]: false,
-    // })
   }
 
   // scroll to the top of the dropdown when the dropdown is opened
