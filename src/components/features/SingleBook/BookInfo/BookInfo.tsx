@@ -28,7 +28,7 @@ export default function BookInfo({ book }: { book: BookType }) {
           src={book.image}
           alt={`Book cover of ${book.title}`}
           fill={true}
-          sizes='311px, 467px'
+          sizes='400px, 600px'
         />
       </div>
 

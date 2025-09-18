@@ -10,12 +10,15 @@
 .imageContainer {
   position: relative;
   width: 100%;
-  max-width: 311px;
+  max-width: 400px;
   height: auto;
   &::after {
     content: '';
     display: block;
     padding-top: 66.67%;
+  }
+  @media (min-width: 768px) {
+    max-width: 311px;
   }
 }
 
