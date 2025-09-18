@@ -15,6 +15,7 @@ import { areArraysEqual } from '@/lib/utils'
 import useFilterStateContext from '@/hooks/useFilterStateContext'
 import { getOrderLabel } from '@/lib/filtering-utils'
 import { useExcludeValuesContext } from '@/hooks/useExcludeValuesContext'
+import useSetFilterPosition from '@/hooks/useSetFilterPosition'
 
 type FilterProps = {
   children?: React.ReactNode
@@ -23,32 +24,12 @@ type FilterProps = {
 function Filter({ children, buttonText }: FilterProps) {
   // Context that defines the filter values
   const { filterValues } = useFilterValuesContext()
-  // Context that defines the exclude values
-  const { excludeValues } = useExcludeValuesContext()
   // Context that defines whether the filter is open or not
   const { filterState, setFilterState } = useFilterStateContext()
   // Ref to the filter element
   const filterRef = useRef<HTMLDivElement>(null)
-  // State to define whether the filter is too close to the side of the screen, and change the class accordingly
-  const [positionFromRight, setPositionFromRight] = useState<boolean>(false)
-
-  /* CONTENT BOX POSITION */
-  // If the filter is too close to the side of the screen, align it to the left instead of the right
-
-  useEffect(() => {
-    const handleResize = () => {
-      const windowWidth = window.innerWidth
-      if (filterRef.current) {
-        const tooCloseToRight =
-          windowWidth - filterRef.current?.getBoundingClientRect().right < 130
-            ? true
-            : false
-        setPositionFromRight(tooCloseToRight)
-      }
-    }
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  // Custom hook to define whether the filter is too close to the side of the screen, and change the class accordingly
+  const positionFromRight = useSetFilterPosition(filterRef)
 
   /* HANDLERS */
   // Close the filter dropdown for a variety of reasons
