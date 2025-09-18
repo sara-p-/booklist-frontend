@@ -26,7 +26,8 @@
   --padding: 1rem;
   --header-height: 55px;
   --filters-height: 220px;
-  --mobile-filters-height: 187px;
+  --filters-height-tablet: 292px;
+  --filters-height-mobile: 187px;
   --mobile-menu-close-button-height: 67.5px;
 }
 

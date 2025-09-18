@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   position: relative;
-  &.sort {
+  &.radio {
     & button {
       background-color: var(--secondary);
       border: 1px solid var(--primary);
@@ -92,6 +92,10 @@
   &.open {
     display: block;
     z-index: 100;
+  }
+  &.positionFromRight {
+    left: auto;
+    right: 0;
   }
 }
 

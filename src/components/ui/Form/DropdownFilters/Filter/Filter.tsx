@@ -29,6 +29,26 @@ function Filter({ children, buttonText }: FilterProps) {
   const { filterState, setFilterState } = useFilterStateContext()
   // Ref to the filter element
   const filterRef = useRef<HTMLDivElement>(null)
+  // State to define whether the filter is too close to the side of the screen, and change the class accordingly
+  const [positionFromRight, setPositionFromRight] = useState<boolean>(false)
+
+  /* CONTENT BOX POSITION */
+  // If the filter is too close to the side of the screen, align it to the left instead of the right
+
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth
+      if (filterRef.current) {
+        const tooCloseToRight =
+          windowWidth - filterRef.current?.getBoundingClientRect().right < 130
+            ? true
+            : false
+        setPositionFromRight(tooCloseToRight)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   /* HANDLERS */
   // Close the filter dropdown for a variety of reasons
@@ -72,12 +92,13 @@ function Filter({ children, buttonText }: FilterProps) {
   const contentClasses = filterState[buttonText]
     ? `${styles.content} ${styles.open}`
     : styles.content
+
   // change the button classes based on the filter values
   const buttonClasses = getFilterButtonClasses(buttonText, filterValues)
   // get the container classes based on the button text
   const containerClasses =
     buttonText === 'sort' || buttonText === 'order'
-      ? `${styles.container} ${styles.sort}`
+      ? `${styles.container} ${styles.radio}`
       : styles.container
 
   return (
@@ -90,7 +111,13 @@ function Filter({ children, buttonText }: FilterProps) {
           <FontAwesomeIcon icon={faChevronDown} />
         )}
       </button>
-      <div className={contentClasses}>{children}</div>
+      <div
+        className={`${contentClasses} ${
+          positionFromRight ? styles.positionFromRight : ''
+        }`}
+      >
+        {children}
+      </div>
     </div>
   )
 }

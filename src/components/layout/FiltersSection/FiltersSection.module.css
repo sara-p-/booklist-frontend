@@ -19,10 +19,13 @@
   width: 100%;
   max-width: var(--medium-width);
   display: grid;
-  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  grid-template-columns: repeat(3, minmax(150px, 275px));
   gap: 36px 16px;
   margin: 0 auto;
   padding: 36px 16px;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, minmax(160px, 1fr));
+  }
   @media (min-width: 1024px) {
     grid-template-columns: repeat(5, minmax(186px, 1fr));
   }
