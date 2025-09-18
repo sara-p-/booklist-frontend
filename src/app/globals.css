@@ -24,11 +24,8 @@
   --max-width: 1095px;
   --medium-width: 1000px;
   --padding: 1rem;
-  --header-height: 42.5px;
-  /* --filters-height: 220px; */
+  --header-height: 55px;
   --filters-height: 131.5px;
-  --filters-height-tablet: 292px;
-  --filters-height-mobile: 135.5px;
   --mobile-menu-close-button-height: 67.5px;
   --mobile-filters-button-height: 69.5px;
 
@@ -38,7 +35,7 @@
 @media (min-width: 768px) {
   :root {
     --filters-height: 292px;
-    --header-height: 55px;
+    /* --header-height: 55px; */
     --scrollbar-width: 12px;
   }
 }

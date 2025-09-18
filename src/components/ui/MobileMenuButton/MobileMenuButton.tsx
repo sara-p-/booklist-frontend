@@ -32,7 +32,7 @@ export default function MobileMenuButton({ type, alt }: MobileMenuButtonProps) {
   }
 
   function handleClearFiltersClick() {
-    handleCloseFiltersClick()
+    // handleCloseFiltersClick()
     setFilterValues({
       ...filterValues,
       ...DEFAULT_FILTER_VALUES,

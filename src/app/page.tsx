@@ -40,7 +40,6 @@ export default function Home() {
     }
   }, [mobileFilterState])
 
-  // console.log(bookListContainerRef.current?.scrollTop)
   // Show scroll to top button when user scrolls down
   useEffect(() => {
     if (theRef) {
@@ -75,7 +74,9 @@ export default function Home() {
             )}
           </div>
         </div>
-        {showScrollToTop && <ScrollToTop theRef={theRef} />}
+        {showScrollToTop && filterValues.search === '' && (
+          <ScrollToTop theRef={theRef} />
+        )}
       </div>
       <MobileFiltersButton />
       <MobileMenu />

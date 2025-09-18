@@ -6,8 +6,10 @@
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
+  border-top: 3px solid var(--primary);
   @media (min-width: 768px) {
     padding: 0 16px;
+    border-top: none;
   }
 }
 
