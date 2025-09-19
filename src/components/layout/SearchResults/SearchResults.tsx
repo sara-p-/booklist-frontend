@@ -23,55 +23,59 @@ export default function SearchResults() {
   }
 
   return (
-    <div className={styles.resultsContainer}>
-      <div className={`${styles.resultsGroup} ${styles.bookResults}`}>
-        <h2 className={styles.resultsTitle}>Books ({books.length})</h2>
-        <ul className={styles.resultsList}>
-          {books.map((book) => (
-            <li key={book.id} className={styles.resultItem}>
-              <Link
-                className={styles.resultLink}
-                onNavigate={onTitleClick}
-                href={`/book/${book.slug}`}
-              >
-                {book.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className={`${styles.resultsGroup} ${styles.authorResults}`}>
-        <h2 className={styles.resultsTitle}>Authors ({authors.length})</h2>
-        <ul className={styles.resultsList}>
-          {authors.map((author) => (
-            <li key={author.id} className={styles.resultItem}>
-              <Link
-                className={styles.resultLink}
-                href={`/`}
-                onNavigate={() => handleLinkClick('authors', author.name)}
-              >
-                {author.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className={`${styles.resultsGroup} ${styles.seriesResults}`}>
-        <h2 className={styles.resultsTitle}>Series ({series.length})</h2>
-        <ul className={styles.resultsList}>
-          {series.map((series) => (
-            <li key={series.id} className={styles.resultItem}>
-              <Link
-                prefetch={false}
-                className={styles.resultLink}
-                href={`/`}
-                onNavigate={() => handleLinkClick('series', series.name)}
-              >
-                {series.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <div id='main-content' className={styles.container}>
+      <div className={styles.wrapper}>
+        <div className={styles.resultsContainer}>
+          <div className={`${styles.resultsGroup} ${styles.bookResults}`}>
+            <h2 className={styles.resultsTitle}>Books ({books.length})</h2>
+            <ul className={styles.resultsList}>
+              {books.map((book) => (
+                <li key={book.id} className={styles.resultItem}>
+                  <Link
+                    className={styles.resultLink}
+                    onNavigate={onTitleClick}
+                    href={`/book/${book.slug}`}
+                  >
+                    {book.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={`${styles.resultsGroup} ${styles.authorResults}`}>
+            <h2 className={styles.resultsTitle}>Authors ({authors.length})</h2>
+            <ul className={styles.resultsList}>
+              {authors.map((author) => (
+                <li key={author.id} className={styles.resultItem}>
+                  <Link
+                    className={styles.resultLink}
+                    href={`/`}
+                    onNavigate={() => handleLinkClick('authors', author.name)}
+                  >
+                    {author.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={`${styles.resultsGroup} ${styles.seriesResults}`}>
+            <h2 className={styles.resultsTitle}>Series ({series.length})</h2>
+            <ul className={styles.resultsList}>
+              {series.map((series) => (
+                <li key={series.id} className={styles.resultItem}>
+                  <Link
+                    prefetch={false}
+                    className={styles.resultLink}
+                    href={`/`}
+                    onNavigate={() => handleLinkClick('series', series.name)}
+                  >
+                    {series.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   )

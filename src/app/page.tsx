@@ -7,8 +7,7 @@ import { useFilteredBooks } from '@/hooks/useFilteredBooks'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import SearchResults from '@/components/layout/SearchResults/SearchResults'
 import Loading from './loading'
-import ScrollToTop from '@/components/features/ScrollToTop/ScrollToTop'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import MobileMenu from '@/components/layout/MobileMenu/MobileMenu'
 import MobileSearchBarContainer from '@/components/layout/MobileSearchBarContainer/MobileSearchBarContainer'
 import useMobileFilterStateContext from '@/hooks/useMobileFilterStateContext'
@@ -17,16 +16,7 @@ import MobileFiltersButton from '@/components/ui/MobileFiltersButton/MobileFilte
 export default function Home() {
   const { filterValues } = useFilterValuesContext()
   const filteredBooks = useFilteredBooks()
-  const [showScrollToTop, setShowScrollToTop] = useState(false)
-  const [theRef, setTheRef] = useState<HTMLDivElement | null>(null)
   const { mobileFilterState } = useMobileFilterStateContext()
-  const bookListContainerRef = useRef<HTMLDivElement>(null)
-
-  const handleRef = (ref: HTMLDivElement) => {
-    if (ref) {
-      setTheRef(ref)
-    }
-  }
 
   // Do a few things when the mobile menu is open or closed
   useEffect(() => {
@@ -40,18 +30,6 @@ export default function Home() {
     }
   }, [mobileFilterState])
 
-  // Show scroll to top button when user scrolls down
-  useEffect(() => {
-    if (theRef) {
-      const handleScroll = () => {
-        setShowScrollToTop(theRef.scrollTop > 300)
-      }
-
-      theRef.addEventListener('scroll', handleScroll)
-      return () => theRef.removeEventListener('scroll', handleScroll)
-    }
-  }, [theRef])
-
   // If the book list is not loaded, show the loading component
   if (!filteredBooks) return <Loading />
 
@@ -60,22 +38,9 @@ export default function Home() {
       <div className={styles.container}>
         <FiltersSection />
         <MobileSearchBarContainer />
-        <div
-          id='main-content'
-          className={styles.bookListContainer}
-          ref={handleRef}
-        >
-          <div className={styles.bookListWrapper}>
-            {filteredBooks.length > 0 && filterValues.search === '' && (
-              <Books />
-            )}
-            {filteredBooks.length > 0 && filterValues.search !== '' && (
-              <SearchResults />
-            )}
-          </div>
-        </div>
-        {showScrollToTop && filterValues.search === '' && (
-          <ScrollToTop theRef={theRef} />
+        {filteredBooks.length > 0 && filterValues.search === '' && <Books />}
+        {filteredBooks.length > 0 && filterValues.search !== '' && (
+          <SearchResults />
         )}
       </div>
       <MobileFiltersButton />
