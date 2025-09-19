@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Redacted_Script } from 'next/font/google'
+import { Inter, Redacted_Script, Redacted } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header/Header'
 
@@ -27,6 +27,12 @@ const redactedScript = Redacted_Script({
   subsets: ['latin'],
 })
 
+const redacted = Redacted({
+  variable: '--font-redacted',
+  weight: ['400'],
+  subsets: ['latin'],
+})
+
 export const metadata: Metadata = {
   title: 'BookList',
   description: "A list of books I've read",
@@ -45,7 +51,9 @@ export default async function RootLayout({
 
   return (
     <html lang='en'>
-      <body className={`${inter.variable} ${redactedScript.variable}`}>
+      <body
+        className={`${inter.variable} ${redactedScript.variable} ${redacted.variable}`}
+      >
         <ThemeStateContextProvider>
           <ExcludeValuesContextProvider>
             <FilterValuesContextProvider

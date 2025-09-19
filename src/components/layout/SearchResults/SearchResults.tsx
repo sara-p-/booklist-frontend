@@ -10,9 +10,9 @@ export default function SearchResults() {
   const { setFilterValues } = useFilterValuesContext()
 
   const onTitleClick = () => {
-    setFilterValues({
-      ...DEFAULT_FILTER_VALUES,
-    })
+    // setFilterValues({
+    //   ...DEFAULT_FILTER_VALUES,
+    // })
   }
 
   function handleLinkClick(linkType: string, linkText: string) {

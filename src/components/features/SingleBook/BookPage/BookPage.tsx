@@ -16,6 +16,8 @@ import { BookType } from '@/types/bookType'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
+import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 
 export default function BookPage({
   parsedBook,
@@ -24,9 +26,30 @@ export default function BookPage({
   parsedBook: BookType
   slug: string
 }) {
-  const { filterValues } = useFilterValuesContext()
+  const [searchIsActive, setSearchIsActive] = useState(false)
+  const { filterValues, setFilterValues } = useFilterValuesContext()
+  const searchRef = useRef(filterValues.search)
 
-  if (filterValues.search !== '') {
+  // On load, clear the search
+  useEffect(() => {
+    setFilterValues({ ...DEFAULT_FILTER_VALUES })
+  }, [])
+
+  // If the search becomes active after the initial load, show the search results
+  useEffect(() => {
+    if (
+      searchRef.current !== filterValues.search &&
+      filterValues.search !== ''
+    ) {
+      setSearchIsActive(true)
+      searchRef.current = filterValues.search
+    } else if (filterValues.search === '') {
+      setSearchIsActive(false)
+      searchRef.current = filterValues.search
+    }
+  }, [filterValues.search])
+
+  if (searchIsActive) {
     return (
       <div className={styles.searchResultsContainer}>
         <FiltersSection />
