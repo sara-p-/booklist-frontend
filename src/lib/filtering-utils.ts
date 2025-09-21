@@ -2,43 +2,6 @@ import { BookItem, BookType } from '@/types/bookType'
 import { FilterArrayType } from '@/types/filterType'
 
 /**
- * Accepts a filter key and returns the typing of the filter.
- *
- * Used in the creation of the multiselect filter options.
- *
- * @param {string} filterKey - The filter key.
- * @returns {string} The typing of the filter.
- */
-export const getFilterType = (filterKey: string) => {
-  switch (filterKey) {
-    case 'sort':
-      return 'string'
-    case 'order':
-      return 'string'
-    case 'authors':
-      return 'string[]'
-    case 'series':
-      return 'string[]'
-    case 'genres':
-      return 'string[]'
-    case 'tropes':
-      return 'string[]'
-    case 'creatures':
-      return 'string[]'
-    case 'booktags':
-      return 'string[]'
-    case 'rating':
-      return 'string[]'
-    case 'spice':
-      return 'string[]'
-    case 'completed':
-      return 'boolean'
-    case 'search':
-      return 'string'
-  }
-}
-
-/**
  * Takes the bookList array and returns an array of items/options for the multiselect filter.
  *
  * Used in the creation of the multiselect filter options.
@@ -62,7 +25,18 @@ export const getAllFilterItems = (
   // sort the array by name
   uniqueItems.sort((a, b) => a.name.localeCompare(b.name))
 
-  return uniqueItems
+  // Add the number of books each filter item has
+  const newItems = uniqueItems.map((item) => {
+    return {
+      ...item,
+      amount: bookList.filter((book) =>
+        book[type].some((option) => option.name === item.name)
+      ).length,
+    }
+  })
+
+  console.log('newItems run')
+  return newItems
 }
 
 // /**
@@ -423,4 +397,25 @@ export function setOrderValue(sortValue: string) {
     default:
       return 'desc'
   }
+}
+
+/**
+ * Accepts a multiselect item and returns the number of books with that item
+ *
+ * Used in the creation of the multiselect filter options.
+ *
+ * @param {item} item - The multiselect item.
+ * @param {BookType[]} bookList - The bookList array.
+ * @returns {number} The number of books with that item.
+ */
+export function getBookCountForMultiselectItem(
+  filterType: FilterArrayType,
+  item: string,
+  bookList: BookType[]
+) {
+  if (!bookList) return 0
+
+  return bookList.filter((book) =>
+    book[filterType].some((option) => option.name === item)
+  ).length
 }

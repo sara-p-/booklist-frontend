@@ -1,8 +1,11 @@
 import styles from './Multiselect.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
-import { getAllFilterItems } from '@/lib/filtering-utils'
+import {
+  getAllFilterItems,
+  getBookCountForMultiselectItem,
+} from '@/lib/filtering-utils'
 import { FilterArrayType } from '@/types/filterType'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useMemo, useEffect, useRef, useState } from 'react'
 import useHandleMultiSelectClear from '@/hooks/useHandleMultiSelectClear'
 import useHandleExclude from '@/hooks/useHandleExclude'
 import useHandleMultiSelectChange from '@/hooks/useHandleMultiSelectChange'
@@ -22,12 +25,17 @@ function Multiselect({ filter, mobile }: MultiselectProps) {
   const { bookList } = useBookListContext()
   const [exclude, setExclude] = useState(false) // state for the exclude button
   const dropdownRef = useRef<HTMLUListElement>(null)
-  const items = getAllFilterItems(bookList, filter)
+  const items = useMemo(
+    () => getAllFilterItems(bookList, filter),
+    [bookList, filter]
+  )
   const { handleClear } = useHandleMultiSelectClear(filter)
   const { handleExclude } = useHandleExclude(filter, exclude)
   const { handleMultiselectChange } = useHandleMultiSelectChange()
 
-  // get the length of the array
+  // Get the number of selected items
+  // If the length is > 0, enable the clear and exclude buttons
+  // This is used below in the button disabled states
   const selectedItems = filterValues[filter].length
 
   // Handle the exclude button click
@@ -56,6 +64,8 @@ function Multiselect({ filter, mobile }: MultiselectProps) {
       dropdownRef.current?.scrollTo(0, 0)
     }
   }, [mobileFilterState, filterState, filter])
+
+  // Get the number of books each multiselect option has
 
   return (
     <>
@@ -88,6 +98,12 @@ function Multiselect({ filter, mobile }: MultiselectProps) {
           const isItemChecked =
             filterValues[filter].includes(item.name) || false
 
+          // const bookCount = getBookCountForMultiselectItem(
+          //   filter,
+          //   item.name,
+          //   bookList
+          // )
+
           return (
             <li className={styles.filterItem} key={item.id}>
               <label
@@ -103,6 +119,9 @@ function Multiselect({ filter, mobile }: MultiselectProps) {
                   checked={isItemChecked}
                 />
                 {item.name}
+                {item.amount && item.amount > 0 && (
+                  <span className={styles.bookCount}> ({item.amount})</span>
+                )}
               </label>
             </li>
           )
