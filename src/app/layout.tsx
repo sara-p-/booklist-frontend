@@ -13,6 +13,7 @@ import FilterValuesContextProvider from '@/contexts/FilterValues/FilterValuesCon
 import ExcludeValuesContextProvider from '@/contexts/ExcludeState/ExcludeValuesContextProvider'
 import MobileFilterStateContextProvider from '@/contexts/MobileFilterState/MobileFilterStateContextProvider'
 import ThemeStateContextProvider from '@/contexts/ThemeState/ThemeStateContextProvider'
+import { cookies } from 'next/headers'
 
 config.autoAddCss = false
 
@@ -48,13 +49,19 @@ export default async function RootLayout({
   const data = await fetchData(
     'https://readthatbooklist.com/wp-json/booklist/v1/books'
   )
+  const cookieStore = await cookies()
+  const theme = cookieStore.get('theme')?.value
+  const initialTheme = theme || 'false'
+
+  console.log('cookies', cookieStore)
 
   return (
     <html lang='en'>
       <body
         className={`${inter.variable} ${redactedScript.variable} ${redacted.variable}`}
+        data-theme={initialTheme}
       >
-        <ThemeStateContextProvider>
+        <ThemeStateContextProvider initialTheme={initialTheme}>
           <ExcludeValuesContextProvider>
             <FilterValuesContextProvider
               newFilterValues={DEFAULT_FILTER_VALUES}
