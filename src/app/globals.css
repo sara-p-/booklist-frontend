@@ -1,6 +1,6 @@
 :root {
-  --primary: #242424;
-  --secondary: #e6e6e6;
+  --white: #e6e6e6;
+  --black: #242424;
   --light: #b6b6b6;
   --medium: #858585;
   --medium-dark: #353535;
@@ -31,6 +31,10 @@
   --mobile-searchbar-height: 75.5px;
 
   --scrollbar-width: 16px;
+
+  /* Theme */
+  --primary: var(--black);
+  --secondary: var(--white);
 }
 
 @media (min-width: 768px) {
@@ -44,16 +48,6 @@
 @media (min-width: 1024px) {
   :root {
     --filters-height: 220px;
-  }
-}
-
-body[data-theme='dark'] {
-  --primary: #e6e6e6;
-  --secondary: #242424;
-  a {
-    &:hover {
-      color: var(--light);
-    }
   }
 }
 
@@ -191,3 +185,30 @@ h6,
   padding: 0;
   white-space: nowrap;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: var(--white);
+    --secondary: var(--black);
+  }
+  body a {
+    &:hover {
+      color: var(--light);
+    }
+  }
+}
+
+body[data-theme='dark'] {
+  --primary: var(--white);
+  --secondary: var(--black);
+  a {
+    &:hover {
+      color: var(--light);
+    }
+  }
+}
+
+/* body[data-theme='light'] {
+  --primary: var(--black);
+  --secondary: var(--white);
+} */

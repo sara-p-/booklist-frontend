@@ -51,7 +51,7 @@ export default async function RootLayout({
   )
   const cookieStore = await cookies()
   const theme = cookieStore.get('theme')?.value
-  const initialTheme = theme || 'false'
+  const initialTheme = theme || ''
 
   console.log('cookies', cookieStore)
 
