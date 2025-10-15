@@ -13,6 +13,7 @@ export default async function BookPageRoute({
     `https://readthatbooklist.com/wp-json/booklist/v1/book?slug=${slug}`
   )
 
+  // Parsing the book data to remove the HTML from the title and series name.
   const parsedBook: BookType = {
     ...book,
     title: parse(book.title) as string,
