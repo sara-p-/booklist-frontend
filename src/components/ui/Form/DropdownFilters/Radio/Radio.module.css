@@ -58,9 +58,10 @@
     width: 100%;
     padding: 8px;
     &:focus-within {
-      background-color: var(--light);
+      background-color: var(--medium-dark);
       outline: 1px solid var(--primary);
       outline-offset: -1px;
+      /* color: var(--primary); */
     }
     &:has(input:checked) {
       background-color: var(--primary);
@@ -71,6 +72,7 @@
     }
     &:focus {
       background-color: var(--light);
+      color: var(--secondary);
     }
   }
   &.mobile {

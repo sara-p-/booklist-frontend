@@ -9,9 +9,12 @@ export default async function BookPageRoute({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const book = await fetchData(
+
+  const bookResponse = await fetchData(
     `https://readthatbooklist.com/wp-json/booklist/v1/book?slug=${slug}`
   )
+
+  const book = bookResponse.data.items
 
   // Parsing the book data to remove the HTML from the title and series name.
   const parsedBook: BookType = {

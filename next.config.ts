@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
         hostname: 'www.readthatbooklist.com',
         pathname: '/wp-content/uploads/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'booklistwp.local',
+        pathname: '/wp-content/uploads/**',
+      },
     ],
   },
 }

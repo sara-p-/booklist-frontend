@@ -46,14 +46,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const data = await fetchData(
+  const response = await fetchData(
     'https://readthatbooklist.com/wp-json/booklist/v1/books'
   )
   const cookieStore = await cookies()
   const theme = cookieStore.get('theme')?.value
   const initialTheme = theme || ''
-
-  console.log('cookies', cookieStore)
 
   return (
     <html lang='en'>
@@ -66,7 +64,7 @@ export default async function RootLayout({
             <FilterValuesContextProvider
               newFilterValues={DEFAULT_FILTER_VALUES}
             >
-              <BookListContextProvider initialBookList={data}>
+              <BookListContextProvider initialBookList={response.data.items}>
                 <Header />
                 <MobileFilterStateContextProvider>
                   {children}
