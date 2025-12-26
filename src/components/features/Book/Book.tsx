@@ -95,7 +95,7 @@ export default function Book({ book }: { book: BookType }) {
             </li>
             <li>
               <p className={styles.bookMobileRating}>
-                <b>rating:</b> {book.rating}/10
+                <b>rating:</b> {book.rating}/5
               </p>
             </li>
             <li>
@@ -105,7 +105,7 @@ export default function Book({ book }: { book: BookType }) {
             </li>
           </ul>
           <div className={styles.bookRating}>
-            <p className={`${styles.bookRatingValue} h3`}>{book.rating}/10</p>
+            <p className={`${styles.bookRatingValue} h3`}>{book.rating}/5</p>
           </div>
         </>
       )}

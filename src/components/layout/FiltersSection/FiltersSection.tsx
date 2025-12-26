@@ -11,7 +11,6 @@ import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 
 function FiltersSection() {
   const { filterValues } = useFilterValuesContext()
-  // TODO: Add the 'completed' filter.
 
   return (
     <div id='filters-section' className={styles.container}>
@@ -45,7 +44,7 @@ function FiltersSection() {
             <Multiselect filter='booktags' />
           </Filter>
           <Filter buttonText='rating'>
-            <Range max={10} buttonText='rating' />
+            <Range max={5} buttonText='rating' />
           </Filter>
           <Filter buttonText='spice'>
             <Range max={5} buttonText='spice' />

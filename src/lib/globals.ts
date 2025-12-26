@@ -15,7 +15,7 @@ export const DEFAULT_FILTER_VALUES: FilterType = {
   tropes: [],
   creatures: [],
   booktags: [],
-  rating: ['0', '10'],
+  rating: ['0', '5'],
   spice: ['0', '5'],
   // finished: true,
   search: '',
