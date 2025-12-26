@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import { Inter, Redacted_Script, Redacted } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header/Header'
-
 // FontAwesome Icons
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+
 import { fetchData } from '@/lib/fetch'
 import BookListContextProvider from '@/contexts/BookList/BookListContextProvider'
-import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
+import { API_URL, DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import FilterValuesContextProvider from '@/contexts/FilterValues/FilterValuesContextProvider'
 import ExcludeValuesContextProvider from '@/contexts/ExcludeState/ExcludeValuesContextProvider'
 import MobileFilterStateContextProvider from '@/contexts/MobileFilterState/MobileFilterStateContextProvider'
@@ -46,9 +46,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const response = await fetchData(
-    'https://readthatbooklist.com/wp-json/booklist/v1/books'
-  )
+  const response = await fetchData(`${API_URL}/books`)
   const cookieStore = await cookies()
   const theme = cookieStore.get('theme')?.value
   const initialTheme = theme || ''

@@ -2,6 +2,7 @@ import parse from 'html-react-parser'
 import { fetchData } from '@/lib/fetch'
 import { BookType, BookItem } from '@/types/bookType'
 import BookPage from '@/components/features/SingleBook/BookPage/BookPage'
+import { API_URL } from '@/lib/globals'
 
 export default async function BookPageRoute({
   params,
@@ -10,9 +11,7 @@ export default async function BookPageRoute({
 }) {
   const { slug } = await params
 
-  const bookResponse = await fetchData(
-    `https://readthatbooklist.com/wp-json/booklist/v1/book?slug=${slug}`
-  )
+  const bookResponse = await fetchData(`${API_URL}/book?slug=${slug}`)
 
   const book = bookResponse.data.items
 

@@ -81,3 +81,6 @@ export const POSSIBLE_ACTIVE_MOBILE_FILTERS: VisibleFilterType[] = [
   'rating',
   'spice',
 ]
+
+export const API_URL: string =
+  'https://readthatbooklist.com/wp-json/booklist/v1'
