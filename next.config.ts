@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
         pathname: '/wp-content/uploads/**',
       },
       {
+        protocol: 'https',
+        hostname: 'api.readthatbooklist.com',
+        pathname: '/wp-content/uploads/**',
+      },
+      {
         protocol: 'http',
         hostname: 'booklistwp.local',
         pathname: '/wp-content/uploads/**',

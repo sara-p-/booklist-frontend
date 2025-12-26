@@ -83,4 +83,4 @@ export const POSSIBLE_ACTIVE_MOBILE_FILTERS: VisibleFilterType[] = [
 ]
 
 export const API_URL: string =
-  'https://readthatbooklist.com/wp-json/booklist/v1'
+  'https://api.readthatbooklist.com/wp-json/booklist/v1'
