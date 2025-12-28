@@ -75,7 +75,6 @@ function Filter({ children, buttonText }: FilterProps) {
 
   // change the button classes based on the filter values
   const buttonClasses = getFilterButtonClasses(buttonText, filterValues)
-  console.log(filterValues)
   // get the container classes based on the button text
   const containerClasses =
     buttonText === 'sort' || buttonText === 'order'
@@ -115,7 +114,6 @@ const SelectionText = React.memo(function SelectionText({
 }: SelectionTextProps) {
   const { filterValues } = useFilterValuesContext()
   const { excludeValues } = useExcludeValuesContext()
-  // console.log(excludeValues.genres)
   const orderLabel = getOrderLabel(filterValues.order, filterValues.sort)
 
   if (buttonText === 'sort') {
