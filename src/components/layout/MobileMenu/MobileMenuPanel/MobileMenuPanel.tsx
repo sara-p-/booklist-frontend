@@ -37,7 +37,7 @@ export default function MobileMenuPanel({
         <Radio items={ORDER_OPTIONS} groupName='order' mobile={true} />
       )}
       {filterType === 'rating' && (
-        <Range max={10} buttonText='rating' mobile={true} />
+        <Range max={5} buttonText='rating' mobile={true} />
       )}
       {filterType === 'spice' && (
         <Range max={5} buttonText='spice' mobile={true} />

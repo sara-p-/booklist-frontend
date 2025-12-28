@@ -19,6 +19,7 @@
 }
 
 .closeFilters {
+  border-bottom: 3px solid var(--primary);
   bottom: calc(var(--header-height));
 }
 
