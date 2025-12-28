@@ -75,6 +75,7 @@ function Filter({ children, buttonText }: FilterProps) {
 
   // change the button classes based on the filter values
   const buttonClasses = getFilterButtonClasses(buttonText, filterValues)
+  console.log(filterValues)
   // get the container classes based on the button text
   const containerClasses =
     buttonText === 'sort' || buttonText === 'order'
@@ -174,7 +175,7 @@ function getFilterButtonClasses(
     return parseInt(value)
   })
   // if the button text is 'rating' and the rating values are not the default, add the 'selected' class
-  if (buttonText === 'rating' && !areArraysEqual(ratingValues, [0, 10])) {
+  if (buttonText === 'rating' && !areArraysEqual(ratingValues, [0, 5])) {
     theButtonClasses = `${styles.button} ${styles.selected}`
   }
   if (buttonText === 'spice' && !areArraysEqual(spiceValues, [0, 5])) {
