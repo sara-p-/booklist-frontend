@@ -7,8 +7,9 @@
     100vh - var(--header-height) - var(--filters-height) -
       var(--mobile-filters-button-height)
   );
+
   overflow-y: scroll;
-  /* &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: var(--scrollbar-width);
   }
 
@@ -21,9 +22,11 @@
   }
   &::-webkit-scrollbar-thumb:hover {
     background: var(--dark);
-  } */
+  }
   @media (min-width: 768px) {
     height: calc(100vh - var(--header-height) - var(--filters-height));
+    /* Using dvh instead of vh to avoid issues with the header and filters */
+    height: calc(100dvh - var(--header-height) - var(--filters-height));
   }
 }
 
