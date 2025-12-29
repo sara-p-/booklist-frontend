@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--loading-light);
+  &::after {
+    content: '';
+    display: block;
+    padding-top: 66.67%;
+  }
+}

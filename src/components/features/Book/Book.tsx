@@ -5,7 +5,8 @@ import styles from './Book.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { convertStringToDate, scrollToTop } from '@/lib/utils'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
+import LoadingBookImage from '@/components/layout/Loading/LoadingBookImage/LoadingBookImage'
 
 export default function Book({ book }: { book: BookType }) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
@@ -40,13 +41,15 @@ export default function Book({ book }: { book: BookType }) {
         prefetch={preFetch}
         onMouseEnter={() => setPreFetch(true)}
       >
-        <Image
-          className={styles.bookImage}
-          src={book.image}
-          alt={`Book cover of ${book.title}`}
-          fill={true}
-          sizes='(max-width: 768px) 150px, 208px'
-        />
+        <Suspense fallback={<LoadingBookImage />}>
+          <Image
+            className={styles.bookImage}
+            src={book.image}
+            alt={`Book cover of ${book.title}`}
+            fill={true}
+            sizes='150px, 208px'
+          />
+        </Suspense>
       </Link>
       {isList && (
         <>

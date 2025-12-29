@@ -7,11 +7,11 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
+import LoadingBookImage from '@/components/layout/Loading/LoadingBookImage/LoadingBookImage'
+import { Suspense } from 'react'
 
 export default function BookInfo({ book }: { book: BookType }) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
-  // const bookTitle = parse(book.title) as string
-  // const bookSeries = parse(book.series[0].name) as string
 
   function handleSeriesClick() {
     setFilterValues({
@@ -24,12 +24,15 @@ export default function BookInfo({ book }: { book: BookType }) {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <Image
-          src={book.image}
-          alt={`Book cover of ${book.title}`}
-          fill={true}
-          sizes='400px, 600px'
-        />
+        <LoadingBookImage />
+        <Suspense fallback={<LoadingBookImage />}>
+          <Image
+            src={book.image}
+            alt={`Book cover of ${book.title}`}
+            fill={true}
+            sizes='400px, 600px'
+          />
+        </Suspense>
       </div>
 
       <div className={styles.infoContainer}>
