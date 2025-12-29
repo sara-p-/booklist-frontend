@@ -8,8 +8,8 @@
       var(--mobile-filters-button-height)
   );
   overflow-y: scroll;
-  &::-webkit-scrollbar {
-    width: var(--scrollbar-width); /* Width of vertical scrollbar */
+  /* &::-webkit-scrollbar {
+    width: var(--scrollbar-width);
   }
 
   &::-webkit-scrollbar-track {
@@ -21,7 +21,7 @@
   }
   &::-webkit-scrollbar-thumb:hover {
     background: var(--dark);
-  }
+  } */
   @media (min-width: 768px) {
     height: calc(100vh - var(--header-height) - var(--filters-height));
   }

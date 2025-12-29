@@ -1,7 +1,7 @@
 .button {
   position: fixed;
-  bottom: calc(var(--mobile-filters-button-height) + 20px);
-  right: 20px;
+  bottom: calc(var(--mobile-filters-button-height) + 16px);
+  right: 16px;
   z-index: 1000;
   background-color: var(--secondary);
   color: var(--primary);
