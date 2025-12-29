@@ -14,6 +14,8 @@ import ExcludeValuesContextProvider from '@/contexts/ExcludeState/ExcludeValuesC
 import MobileFilterStateContextProvider from '@/contexts/MobileFilterState/MobileFilterStateContextProvider'
 import ThemeStateContextProvider from '@/contexts/ThemeState/ThemeStateContextProvider'
 import { cookies } from 'next/headers'
+// Vercel Speed Insights
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 config.autoAddCss = false
 
@@ -66,6 +68,8 @@ export default async function RootLayout({
                 <Header />
                 <MobileFilterStateContextProvider>
                   {children}
+                  {/* Vercel Speed Insights */}
+                  <SpeedInsights />
                 </MobileFilterStateContextProvider>
               </BookListContextProvider>
             </FilterValuesContextProvider>
