@@ -3,10 +3,11 @@ import styles from './BookInfo.module.css'
 import Image from 'next/image'
 import { BookType } from '@/types/bookType'
 import { convertStringToDate } from '@/lib/utils'
-import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
+import { Suspense } from 'react'
+import LoadingBookImage from '@/components/layout/Loading/LoadingBookImage/LoadingBookImage'
 
 export default function BookInfo({ book }: { book: BookType }) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
@@ -22,14 +23,16 @@ export default function BookInfo({ book }: { book: BookType }) {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <Image
-          src={book.image}
-          alt={`Book cover of ${book.title}`}
-          fill={true}
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 400px, 600px'
-          priority
-          quality={85}
-        />
+        <Suspense fallback={<LoadingBookImage />}>
+          <Image
+            src={book.image}
+            alt={`Book cover of ${book.title}`}
+            fill={true}
+            sizes='(max-width: 768px) 100vw, 500px'
+            priority
+            quality={85}
+          />
+        </Suspense>
       </div>
 
       <div className={styles.infoContainer}>
