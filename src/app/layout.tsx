@@ -22,23 +22,38 @@ config.autoAddCss = false
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
+  display: 'swap',
+  preload: true,
 })
 
 const redactedScript = Redacted_Script({
   variable: '--font-redacted-script',
   weight: ['300', '400', '700'],
   subsets: ['latin'],
+  display: 'swap',
+  preload: false,
 })
 
 const redacted = Redacted({
   variable: '--font-redacted',
   weight: ['400'],
   subsets: ['latin'],
+  display: 'swap',
+  preload: false,
 })
 
 export const metadata: Metadata = {
   title: 'BookList',
   description: "A list of books I've read",
+  metadataBase: new URL('https://www.readthatbooklist.com'),
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  other: {
+    'format-detection': 'telephone=no',
+  },
 }
 
 // TODO: Update the API endpoint

@@ -7,8 +7,6 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
-import LoadingBookImage from '@/components/layout/Loading/LoadingBookImage/LoadingBookImage'
-import { Suspense } from 'react'
 
 export default function BookInfo({ book }: { book: BookType }) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
@@ -24,15 +22,14 @@ export default function BookInfo({ book }: { book: BookType }) {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <LoadingBookImage />
-        <Suspense fallback={<LoadingBookImage />}>
-          <Image
-            src={book.image}
-            alt={`Book cover of ${book.title}`}
-            fill={true}
-            sizes='400px, 600px'
-          />
-        </Suspense>
+        <Image
+          src={book.image}
+          alt={`Book cover of ${book.title}`}
+          fill={true}
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 400px, 600px'
+          priority
+          quality={85}
+        />
       </div>
 
       <div className={styles.infoContainer}>

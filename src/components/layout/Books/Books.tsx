@@ -41,8 +41,8 @@ function Books() {
         <div className={styles.bookListWrapper}>
           <ul className={viewClass}>
             {filteredBooks &&
-              filteredBooks.map((book: BookType) => (
-                <Book key={book.bookId} book={book} />
+              filteredBooks.map((book: BookType, index: number) => (
+                <Book key={book.bookId} book={book} priority={index < 8} />
               ))}
           </ul>
         </div>

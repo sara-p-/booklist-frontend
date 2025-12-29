@@ -5,10 +5,15 @@ import styles from './Book.module.css'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { convertStringToDate, scrollToTop } from '@/lib/utils'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
-import { Suspense, useState } from 'react'
-import LoadingBookImage from '@/components/layout/Loading/LoadingBookImage/LoadingBookImage'
+import { useState } from 'react'
 
-export default function Book({ book }: { book: BookType }) {
+export default function Book({
+  book,
+  priority = false,
+}: {
+  book: BookType
+  priority?: boolean
+}) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const [preFetch, setPreFetch] = useState<boolean>(false)
   const isList = filterValues.view === 'list'
@@ -41,15 +46,16 @@ export default function Book({ book }: { book: BookType }) {
         prefetch={preFetch}
         onMouseEnter={() => setPreFetch(true)}
       >
-        <Suspense fallback={<LoadingBookImage />}>
-          <Image
-            className={styles.bookImage}
-            src={book.image}
-            alt={`Book cover of ${book.title}`}
-            fill={true}
-            sizes='150px, 208px'
-          />
-        </Suspense>
+        <Image
+          className={styles.bookImage}
+          src={book.image}
+          alt={`Book cover of ${book.title}`}
+          fill={true}
+          sizes='(max-width: 768px) 150px, 208px'
+          quality={80}
+          priority={priority}
+          loading={priority ? undefined : 'lazy'}
+        />
       </Link>
       {isList && (
         <>

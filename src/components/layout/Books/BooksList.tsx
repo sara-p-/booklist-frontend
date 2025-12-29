@@ -30,8 +30,8 @@ function BooksList() {
             <li key={arrayOfBooks[0].bookId}>
               <h2 className={`${styles.groupName} h1`}>{value}</h2>
               <ul className={`${styles.bookList} ${styles.bookArrayList}`}>
-                {arrayOfBooks.map((book: BookType) => (
-                  <Book key={book.bookId} book={book} />
+                {arrayOfBooks.map((book: BookType, index: number) => (
+                  <Book key={book.bookId} book={book} priority={index < 4} />
                 ))}
               </ul>
             </li>
@@ -49,8 +49,8 @@ function BooksList() {
             <li key={arrayOfBooks[0].bookId}>
               <h2 className={`${styles.groupName} h1`}>{value}/10</h2>
               <ul className={`${styles.bookList} ${styles.bookArrayList}`}>
-                {arrayOfBooks.map((book: BookType) => (
-                  <Book key={book.bookId} book={book} />
+                {arrayOfBooks.map((book: BookType, index: number) => (
+                  <Book key={book.bookId} book={book} priority={index < 4} />
                 ))}
               </ul>
             </li>
@@ -68,8 +68,8 @@ function BooksList() {
             <li key={arrayOfBooks[0].bookId}>
               <h2 className={`${styles.groupName} h1`}>{value}/5</h2>
               <ul className={`${styles.bookList} ${styles.bookArrayList}`}>
-                {arrayOfBooks.map((book: BookType) => (
-                  <Book key={book.bookId} book={book} />
+                {arrayOfBooks.map((book: BookType, index: number) => (
+                  <Book key={book.bookId} book={book} priority={index < 4} />
                 ))}
               </ul>
             </li>
@@ -81,8 +81,8 @@ function BooksList() {
   return (
     <ul className={styles.bookList}>
       {filteredBooks &&
-        filteredBooks.map((book: BookType) => (
-          <Book key={book.bookId} book={book} />
+        filteredBooks.map((book: BookType, index: number) => (
+          <Book key={book.bookId} book={book} priority={index < 8} />
         ))}
     </ul>
   )
