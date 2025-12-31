@@ -49,6 +49,7 @@
 
 .titleLink {
   text-decoration: none;
+  cursor: pointer;
   &:hover {
     text-decoration: none;
     color: var(--accent);

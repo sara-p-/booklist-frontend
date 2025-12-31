@@ -6,8 +6,6 @@ import { convertStringToDate } from '@/lib/utils'
 import Link from 'next/link'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
-import { Suspense } from 'react'
-import LoadingBookImage from '@/components/layout/Loading/LoadingBookImage/LoadingBookImage'
 
 export default function BookInfo({ book }: { book: BookType }) {
   const { filterValues, setFilterValues } = useFilterValuesContext()
@@ -23,16 +21,15 @@ export default function BookInfo({ book }: { book: BookType }) {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <Suspense fallback={<LoadingBookImage />}>
-          <Image
-            src={book.image}
-            alt={`Book cover of ${book.title}`}
-            fill={true}
-            sizes='(max-width: 768px) 100vw, 500px'
-            priority
-            quality={85}
-          />
-        </Suspense>
+        <Image
+          src={book.image}
+          alt={`Book cover of ${book.title}`}
+          fill={true}
+          sizes='(max-width: 768px) 100vw, 400px'
+          priority
+          quality={80}
+          unoptimized={false}
+        />
       </div>
 
       <div className={styles.infoContainer}>
