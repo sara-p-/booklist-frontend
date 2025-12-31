@@ -67,7 +67,7 @@ export default function BookInfo({ book }: { book: BookType }) {
           <li className={styles.item}>
             <p>
               <span className={`${styles.label} h4`}>rating:</span>{' '}
-              {book.rating}/10
+              {book.rating}/5
             </p>
           </li>
           <li className={styles.item}>
