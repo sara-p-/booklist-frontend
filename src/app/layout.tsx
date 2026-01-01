@@ -16,6 +16,7 @@ import ThemeStateContextProvider from '@/contexts/ThemeState/ThemeStateContextPr
 import { cookies } from 'next/headers'
 // Vercel Speed Insights
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import SearchClickValueContextProvider from '@/contexts/SearchClickValue/SearchClickValueContextProvider'
 
 config.autoAddCss = false
 
@@ -82,9 +83,11 @@ export default async function RootLayout({
               <BookListContextProvider initialBookList={response.data.items}>
                 <Header />
                 <MobileFilterStateContextProvider>
-                  {children}
-                  {/* Vercel Speed Insights */}
-                  <SpeedInsights />
+                  <SearchClickValueContextProvider>
+                    {children}
+                    {/* Vercel Speed Insights */}
+                    <SpeedInsights />
+                  </SearchClickValueContextProvider>
                 </MobileFilterStateContextProvider>
               </BookListContextProvider>
             </FilterValuesContextProvider>

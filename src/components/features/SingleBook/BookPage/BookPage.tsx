@@ -18,6 +18,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
+import { useSearchClickValueContext } from '@/hooks/useSearchClickValueContext'
 
 export default function BookPage({
   parsedBook,
@@ -29,7 +30,7 @@ export default function BookPage({
   const [searchIsActive, setSearchIsActive] = useState(false)
   const { filterValues, setFilterValues } = useFilterValuesContext()
   const searchRef = useRef(filterValues.search)
-
+  const { searchClickValue, setSearchClickValue } = useSearchClickValueContext()
   // On load, clear the search
   useEffect(() => {
     setFilterValues({ ...DEFAULT_FILTER_VALUES })
@@ -48,6 +49,15 @@ export default function BookPage({
       searchRef.current = filterValues.search
     }
   }, [filterValues.search])
+
+  // If the search is open on a single book page, and the user clicks on the search result for the same book, close the search
+  useEffect(() => {
+    if (searchClickValue === slug) {
+      setSearchIsActive(false)
+      setFilterValues({ ...DEFAULT_FILTER_VALUES })
+      setSearchClickValue('')
+    }
+  }, [searchClickValue])
 
   if (searchIsActive) {
     return (

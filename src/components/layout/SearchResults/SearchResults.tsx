@@ -4,15 +4,15 @@ import Link from 'next/link'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
 import { useSearch } from '@/hooks/useSearch'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
+import { useSearchClickValueContext } from '@/hooks/useSearchClickValueContext'
 
 export default function SearchResults() {
   const { books, authors, series } = useSearch()
   const { setFilterValues } = useFilterValuesContext()
-
-  const onTitleClick = () => {
-    // setFilterValues({
-    //   ...DEFAULT_FILTER_VALUES,
-    // })
+  const { setSearchClickValue } = useSearchClickValueContext()
+  const onTitleClick = (slug: string | undefined) => {
+    if (!slug) return
+    setSearchClickValue(slug)
   }
 
   function handleLinkClick(linkType: string, linkText: string) {
@@ -33,7 +33,7 @@ export default function SearchResults() {
                 <li key={book.id} className={styles.resultItem}>
                   <Link
                     className={styles.resultLink}
-                    onNavigate={onTitleClick}
+                    onNavigate={() => onTitleClick(book.slug)}
                     href={`/book/${book.slug}`}
                   >
                     {book.title}
