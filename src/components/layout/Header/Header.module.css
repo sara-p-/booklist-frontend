@@ -86,6 +86,15 @@
   }
 }
 
+.portfolioLink {
+  color: var(--primary);
+  font-size: 20px;
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: var(--accent);
+  }
+}
+
 [data-theme='light'] .header {
   a.titleLink:focus {
     outline: 1px solid var(--secondary);
@@ -94,6 +103,12 @@
   button:focus {
     outline: 1px solid var(--secondary);
     outline-offset: 2px;
+  }
+  .portfolioLink {
+    color: var(--secondary);
+    &:hover {
+      color: var(--accent);
+    }
   }
 }
 
@@ -106,5 +121,11 @@
   }
   .themeToggle {
     color: var(--primary);
+  }
+  .portfolioLink {
+    color: var(--primary);
+    &:hover {
+      color: var(--accent);
+    }
   }
 }

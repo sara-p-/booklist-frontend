@@ -4,7 +4,12 @@ import React from 'react'
 import styles from './Header.module.css'
 import Searchbar from '@/components/ui/Form/Searchbar/Searchbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBook, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBook,
+  faHeart,
+  faMoon,
+  faSun,
+} from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { DEFAULT_FILTER_VALUES } from '@/lib/globals'
 import { useFilterValuesContext } from '@/hooks/useFilterValuesContext'
@@ -70,6 +75,15 @@ export default function Header() {
               <FontAwesomeIcon className={styles.icon} icon={faMoon} />
             )}
           </button>
+          <Link
+            href='https://sara-pitt.com/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className={styles.portfolioLink}
+          >
+            <FontAwesomeIcon className={styles.icon} icon={faHeart} />
+            <span className='visually-hidden'>Sara Pitt's Portfolio</span>
+          </Link>
         </div>
       </div>
     </header>
